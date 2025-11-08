@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Quản lý loại sản phẩm</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="custom-header">
+    <div class="dashboard-title">DASHBOARD</div>
+    <nav class="admin-nav-inline">
+      <ul>
+        <li><a href="dashboard.html">TỔNG QUAN</a></li>
+        <li><a href="users.html">NGƯỜI DÙNG</a></li>
+        <li><a href="categories.html" class="active">LOẠI SP</a></li>
+        <li><a href="products.html">SẢN PHẨM</a></li>
+        <li><a href="import.html">NHẬP HÀNG</a></li>
+        <li><a href="pricing.html">GIÁ BÁN</a></li>
+        <li><a href="orders.html">ĐƠN HÀNG</a></li>
+        <li><a href="inventory.html">TỒN KHO</a></li>
+        <li><a href="../index.html">THOÁT</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- NỘI DUNG -->
+  <main class="admin-content">
+    <div class="page-title">
+      <a href="dashboard.html">Quay lại Dashboard</a>
+      Quản lý loại sản phẩm
+    </div>
+
+    <div class="action-bar">
+      <form class="categories-form">
+        <input type="text" placeholder="Tên loại sản phẩm">
+        <button type="submit" class="btn-add">Thêm</button>
+      </form>
+    </div>
+
+    <!-- BẢNG DANH SÁCH -->
+    <div class="content-box">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Tên loại</th>
+            <th>Hành động</th>
+          </tr>
+        </thead>
+        <tbody id="categoriesBody">
+          <!-- JS sẽ tự động điền -->
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- JS: TỰ ĐỘNG HIỂN THỊ LOẠI -->
+  <script src="../data-book.js"></script>
+  <script>
+    const tbody = document.getElementById("categoriesBody");
+
+    const typeMap = {
+      "history-img": "Lịch sử",
+      "sceince-img": "Khoa học",
+      "poem-img": "Thơ",
+      "everypic-img": "Văn học nước ngoài"
+    };
+
+    const categories = [...new Set(
+      books.map(b => {
+        for (const [folder, name] of Object.entries(typeMap)) {
+          if (b.image.includes(folder)) return name;
+        }
+        return "Văn học Việt Nam";
+      })
+    )];
+
+    tbody.innerHTML = categories.map((name, index) => `
+      <tr>
+        <td>${index + 1}</td>
+        <td>${name}</td>
+        <td>
+          <button class="btn-small btn-reset">Sửa</button>
+          <button class="btn-small btn-lock">Xóa</button>
+        </td>
+      </tr>
+    `).join('');
+  </script>
+
+</body>
+</html>

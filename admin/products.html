@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Quản lý sản phẩm</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <div class="custom-header">
+    <div class="dashboard-title">DASHBOARD</div>
+    <nav class="admin-nav-inline">
+      <ul>
+        <li><a href="dashboard.html">TỔNG QUAN</a></li>
+        <li><a href="users.html">NGƯỜI DÙNG</a></li>
+        <li><a href="categories.html">LOẠI SP</a></li>
+        <li><a href="products.html" class="active">SẢN PHẨM</a></li>
+        <li><a href="import.html">NHẬP HÀNG</a></li>
+        <li><a href="pricing.html">GIÁ BÁN</a></li>
+        <li><a href="orders.html">ĐƠN HÀNG</a></li>
+        <li><a href="inventory.html">TỒN KHO</a></li>
+        <li><a href="../index.html">THOÁT</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <main class="admin-content">
+    <div class="page-title">
+      <a href="dashboard.html">Quay lại Dashboard</a>
+      Quản lý sản phẩm
+    </div>
+
+    <div class="action-bar">
+      <form class="products-form-grid">
+        <input type="text" placeholder="Mã sản phẩm">
+        <input type="text" placeholder="Tên sản phẩm">
+        <input type="text" placeholder="Loại sản phẩm">
+        <textarea placeholder="Mô tả sản phẩm"></textarea>
+        <input type="file" accept="image/*">
+        <button type="submit" class="btn-add">Thêm sản phẩm</button>
+      </form>
+    </div>
+
+    <div class="content-box">
+      <h2 style="margin: 0 0 16px; color: #2e7d32; font-size: 20px;">Danh sách sản phẩm</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Mã</th>
+            <th>Tên</th>
+            <th>Tác giả</th>
+            <th>Loại</th>
+            <th>Hình</th>
+            <th>Hành động</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Dữ liệu sẽ được thêm tự động -->
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <script src="../data-book.js"></script>
+<script>
+  const tbody = document.querySelector(".table tbody");
+
+  // Gán loại theo thư mục ảnh
+  books.forEach(b => {
+    if (b.image.includes("history-img")) b.type = "Lịch sử";
+    else if (b.image.includes("sceince-img")) b.type = "Khoa học";
+    else if (b.image.includes("poem-img")) b.type = "Thơ";
+    else if (b.image.includes("everypic-img")) b.type = "Văn học nước ngoài";
+    else b.type = "Văn học Việt Nam";
+  });
+
+  tbody.innerHTML = books.map(b => `
+    <tr>
+      <td>${b.id}</td>
+      <td>${b.title}</td>
+      <td>${b.author}</td>
+      <td>${b.type}</td>
+      <td><img src="../${b.image}" width="50" style="border-radius:4px;"></td>
+      <td>
+        <button class="btn-small btn-reset">Sửa</button>
+        <button class="btn-small btn-lock">Xóa</button>
+      </td>
+    </tr>
+  `).join('');
+</script>
+
+</body>
+</html>

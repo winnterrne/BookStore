@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Quản lý tồn kho</title>
+  <link rel="stylesheet" href="admin.css">
+  <style>
+    .status-ok { color: #2e7d32; font-weight: 600; }
+    .status-warning { color: #f57c00; font-weight: 600; }
+    .status-danger { color: #d32f2f; font-weight: 600; }
+    #warning { margin-top: 16px; line-height: 1.6; color: #d32f2f; font-weight: 600; }
+    .table td { vertical-align: middle; }
+    .ellipsis {
+      max-width: 220px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="custom-header">
+    <div class="dashboard-title">DASHBOARD</div>
+    <nav class="admin-nav-inline">
+      <ul>
+        <li><a href="dashboard.html">TỔNG QUAN</a></li>
+        <li><a href="users.html">NGƯỜI DÙNG</a></li>
+        <li><a href="categories.html">LOẠI SP</a></li>
+        <li><a href="products.html">SẢN PHẨM</a></li>
+        <li><a href="import.html">NHẬP HÀNG</a></li>
+        <li><a href="pricing.html">GIÁ BÁN</a></li>
+        <li><a href="orders.html">ĐƠN HÀNG</a></li>
+        <li><a href="inventory.html" class="active">TỒN KHO</a></li>
+        <li><a href="../index.html">THOÁT</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <main class="admin-content">
+    <div class="page-title">
+      <a href="dashboard.html">Quay lại Dashboard</a>
+      Quản lý tồn kho
+    </div>
+
+    <div class="action-bar">
+      <form class="orders-search-grid" style="grid-template-columns:1fr 1fr 120px !important; gap:12px !important; align-items:end !important;">
+
+        <!-- NGÀY TRA CỨU -->
+        <div class="input-with-label">
+         <label>Ngày tra cứu:</label>
+          <input type="text" placeholder="dd/mm/yyyy" 
+             onfocus="(this.type='date')" 
+             onblur="if(!this.value) this.type='text'">
+        </div>
+
+      <!-- TÌM KIẾM MÃ/TÊN -->
+        <div class="input-with-label">
+        <label>Mã sản phẩm hoặc tên:</label>
+          <input type="text" id="searchInput" placeholder="Nhập để tìm nhanh">
+        </div>
+
+      <!-- NÚT TRA CỨU – ÉP CĂN ĐÁY 100% -->
+        <div style="display:flex; align-items:end; height:100%;">
+          <button type="submit" class="btn-add" 
+              style="width:100%; height:44px; margin:0; padding:0 20px; font-weight:600;">
+           Tra cứu
+          </button>
+        </div>
+
+      </form>
+    </div>
+
+    <div class="content-box">
+      <h2 style="margin: 0 0 16px; color: #2e7d32; font-size: 20px;">Kết quả tồn kho</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Mã SP</th>
+            <th>Tên SP</th>
+            <th>Tồn</th>
+            <th>Đã bán</th>
+            <th>Tổng nhập</th>
+            <th>Trạng thái</th>
+            <th>Hành động</th>
+          </tr>
+        </thead>
+        <tbody id="inventoryBody">
+          <!-- Dữ liệu sẽ được tự động thêm bởi JS -->
+        </tbody>
+      </table>
+      <p id="warning"></p>
+    </div>
+  </main>
+
+<script src="../data-book.js"></script>
+<script>
+  const tbody = document.getElementById("inventoryBody");
+  const warning = document.getElementById("warning");
+  const searchForm = document.getElementById("searchForm");
+  const searchInput = document.getElementById("searchInput");
+
+  function seededRandom(seed) {
+    const x = Math.sin(seed) * 10000;
+    return x - Math.floor(x);
+  }
+
+  const products = books.map(item => {
+    const seed = item.id * 12345;
+    const minImport = item.stock + 15;
+    const maxImport = item.stock + 120;
+    const totalImported = Math.floor(seededRandom(seed) * (maxImport - minImport + 1)) + minImport;
+    const sold = totalImported - item.stock;
+
+    let status = "Còn hàng";
+    let statusClass = "status-ok";
+    if (item.stock === 0) {
+      status = "Hết hàng";
+      statusClass = "status-danger";
+    } else if (item.stock <= 10) {
+      status = "Sắp hết";
+      statusClass = "status-warning";
+    }
+
+    return {
+      id: item.id,
+      title: item.title,
+      stock: item.stock,
+      sold: sold,
+      totalImported: totalImported,
+      status: status,
+      statusClass: statusClass,
+      image: item.image
+    };
+  });
+
+  function display(list) {
+    tbody.innerHTML = "";
+    warning.innerHTML = "";
+
+    list.forEach(p => {
+      tbody.innerHTML += `
+        <tr>
+          <!-- CỘT MÃ SP -->
+          <td style="text-align:center; font-weight:700; color:#2e7d32; width:60px;">
+            ${p.id}
+          </td>
+
+          <!-- CỘT TÊN SP + ẢNH – DÙNG TABLE-CELL ĐỂ CĂN CHỈNH HOÀN HẢO -->
+          <td style="padding:14px 16px !important;">
+            <div style="display:flex; align-items:center; gap:14px; height:100%;">
+              <img src="../${p.image}"
+                   onerror="this.src='../images/no-image.jpg'"
+                   style="width:56px; height:78px; object-fit:cover; border-radius:8px; 
+                          box-shadow:0 3px 10px rgba(0,0,0,0.2); transition:all .3s; cursor:zoom-in;
+                          flex-shrink:0;"
+                   onmouseover="this.style.transform='scale(2.5)'; this.style.zIndex='999'; this.style.boxShadow='0 15px 40px rgba(0,0,0,0.4)'"
+                   onmouseout="this.style.transform='scale(1)'; this.style.zIndex='1'; this.style.boxShadow='0 3px 10px rgba(0,0,0,0.2)'">
+              <div style="min-width:0;">
+                <div title="${p.title}"
+                     style="font-weight:600; color:#222; max-width:320px; white-space:nowrap; 
+                            overflow:hidden; text-overflow:ellipsis; line-height:1.4;">
+                  ${p.title}
+                </div>
+                <small style="color:#666; font-size:12px;">ID: ${p.id}</small>
+              </div>
+            </div>
+          </td>
+
+          <!-- CÁC CỘT CÒN LẠI – CĂN GIỮA, ĐẸP NHƯ ADMIN.CSS -->
+          <td style="text-align:center; padding:14px 16px !important;">
+            <strong style="font-size:18px; color:#2e7d32;">${p.stock}</strong>
+          </td>
+          <td style="text-align:center; padding:14px 16px !important;">${p.sold}</td>
+          <td style="text-align:center; padding:14px 16px !important;">${p.totalImported}</td>
+          <td style="text-align:center; padding:14px 16px !important;">
+            <span class="${p.statusClass}">${p.status}</span>
+          </td>
+          <td style="text-align:center; padding:14px 16px !important;">
+            <button class="btn-small btn-reset">Sửa</button>
+            <button class="btn-small" style="background:#2e7d32;color:#fff;">Nhập</button>
+          </td>
+        </tr>
+      `;
+
+      if (p.stock <= 10) {
+        warning.innerHTML += `Cảnh báo: <strong>${p.title}</strong> chỉ còn <strong>${p.stock}</strong> cuốn!<br>`;
+      }
+    });
+  }
+
+  display(products);
+
+  searchForm.addEventListener("submit", e => {
+    e.preventDefault();
+    const query = searchInput.value.trim().toLowerCase();
+    const filtered = products.filter(p =>
+      p.id.toString().includes(query) || p.title.toLowerCase().includes(query)
+    );
+    display(filtered);
+  });
+</script>
+
+</body>
+</html>

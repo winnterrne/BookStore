@@ -1,0 +1,887 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+#main {
+    padding-top: 80px;
+}
+
+html {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 400px;
+    color: #212529;
+    scroll-behavior: smooth;
+}
+body {
+    opacity: 0;
+    transform: translateY(40px);
+    animation: fadeSlideUp 1s ease-out forwards;
+}
+@keyframes fadeSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+/*
+1. Vị trí
+2. Kích thước (width, heigth)
+3. Màu sắc
+4. Kiểu dáng
+*/
+
+                        /* HEADER: BEGIN */
+
+#header {
+    height: 85px;
+    position: fixed;
+    background-color: #fff;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-bottom: solid;
+    border-color: green;
+    border-bottom-width: 1.6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 999;
+}
+
+#header .menu {
+    width: 100%;
+    max-width: 1200px;
+    flex: 1;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+
+#header .logo {
+    margin-left: 100px;
+}
+
+#nav, .subnav {
+    list-style: none;
+}
+
+#nav {
+    display: inline-block;
+}
+
+#nav > li {
+    display: inline-block;
+}
+
+#nav li {
+    position: relative;
+}
+
+#nav > li > a {    
+    color: black;
+    text-transform: uppercase;
+}
+
+#nav li a {
+    text-decoration: none;
+    line-height: 46px;
+    padding-left: 24px;
+    padding-right: 24px;
+    display: block;
+}
+
+#nav li:hover .subnav{
+    display: block;
+}
+
+#nav li a::after {
+    content: " ";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    transform: scale(0);
+    background-color: black;
+    transition: transform 0.5s;
+}
+#nav li a:hover::after {
+    transform: scale(1);
+}
+
+
+#nav .subnav a {
+    color: black;
+    padding: 0px 16px;
+}
+
+
+#nav .subnav {
+    position: absolute;
+    display: none;
+    top: 100%;
+    background-color: #fff;
+    box-shadow: 0 0  10px rgba(0,0,0,0.3);
+    min-width: 160px;
+    
+}
+
+#nav .nav-arrow-down {
+    font-size: 14px;
+}
+
+#header .search-button {
+    float: right;
+    padding: 0 21px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-right: 100px;
+    
+}
+
+#header .input-box {
+    width: 200px;
+    height: 35px;
+    border-width: 1px;
+    border-radius: 15px;
+    padding-left: 10px;
+    
+}
+
+#header .search-button:hover {
+    cursor: pointer;
+}
+
+#header .search-search {
+    position: absolute;
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 15px;
+    margin-left: 170px;
+    padding-bottom: 10px;
+    
+}
+
+#header .search-book {
+    margin-left: 10px;
+    font-size: larger;
+}
+
+.search-shopping {
+    margin-left: 10px;
+    font-size: larger;
+
+}
+
+.book-user {
+    position: relative;
+    display: inline-block;
+}
+
+.hover-text {
+    min-width: 140px;
+    position: absolute;
+    top: 20px;
+    display: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 14px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.book-user:hover .hover-text {
+    display: block;
+}
+
+
+.hover-text a {
+    display: block;
+    margin: 4px 0;
+    text-decoration: none;
+    color: #333;
+    white-space: nowrap;
+    text-align: left;
+}
+
+.hover-text a:hover {
+    color: #007BFF;
+}
+/* Hộp kết quả */
+.search-results {
+    position: absolute;
+    background: #ffffff;
+    border-radius: 10px;
+    border: 1px solid #e2e2e2;
+    padding: 20px 10px;
+    width: 280px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+    display: none;
+    max-height: 240px;
+    overflow-y: auto;
+    margin-top: 280px;
+}
+
+/* Từng item trong kết quả */
+.search-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: 0.2s;
+    border-radius: 6px;
+}
+
+/* Hover sáng lên */
+.search-item:hover {
+    background: #f3f6ff;
+}
+
+/* Ảnh sách */
+.search-item img {
+    width: 40px;
+    height: 55px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+/* Chữ tiêu đề */
+.search-item span {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.3;
+    font-weight: 500;
+}
+
+
+                      /* HEADER: END */
+
+                      /* CONTENT-SLIDER: BEGIN */
+.slider-content {
+  padding-top: 36px;
+  overflow: hidden;
+  text-align: center;
+  position: relative;
+}
+.mySlides {
+    display: none;
+}
+.mySlides img {
+    width: 100%;
+    object-fit: cover;
+    height: auto;
+}
+.mySlides:first-child {
+    display: block;
+}
+.mySlides .text-content {
+  text-align: center;
+  font-style: italic;
+  font-size: 24px;
+  margin-top: 10px;
+}
+
+
+                    /* CONTENT-SLIDER: END */
+
+
+/*
+===CSS LOGIN - LOGOUT : BEGIN===
+*/
+
+.container-log{
+  max-width: 900px;
+  height: 450px;
+  margin: 40px auto;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 24px;
+}
+.container-log h2 {
+    margin-bottom: 20px;
+    color: forestgreen;
+}
+.container-log button {
+  border: none;
+  height: 45px;
+  border-radius: 4px;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-primary {
+  background: forestgreen;
+  color: white;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--dark);
+}
+
+.container-log input {
+  width: 100%;
+  height: 50px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+/*
+===CSS LOGIN - LOGOUT : END===
+*/
+                    /* CONTENT-ABOUT US : BEGIN */
+#content-contact,
+#content-newbooks,
+#content-author,
+#content {
+    padding-left: 85px;
+    padding-right: 85px;
+    margin-top: 20px;
+}
+
+.title-header {
+    border-top: solid 1.6px forestgreen;
+    padding-top: 20px;
+    padding-bottom: 22px;
+}
+/* CAC TITLE HEADER CUA TUNG CONTENT*/
+.title-header h5,
+.title-header h4,
+.title-header h3,
+.title-header h2  {
+    font-size: 25px;
+    color: forestgreen;
+    margin: 0;
+}
+
+#content .about-content {
+    margin-top: 25px;
+    margin-bottom: 100px;
+    padding: 0px 55px;
+    display: flex;
+    align-items: flex-start;
+}
+
+#about-us .content-section {
+    padding: 0 65px;
+    margin-bottom: 100px;
+}
+
+#about-us .section-spanhead {
+    font-size: 20px;
+    margin-bottom: 60px;
+    font-style: italic;
+    color: forestgreen;
+    line-height: 60px;
+}
+
+#about-us .section-subheading {
+    font-size: 120%;
+    line-height: 30px;
+}
+
+#about-us .section-button {
+    width: 120px;
+    height: 45px;
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 30px;
+    background-color: forestgreen;
+    color: white;
+    border: none;
+    border-radius: 3px;
+}
+
+#about-us .section-button:hover {
+    color: forestgreen;
+    background-color: white;
+    border: 1px forestgreen solid;
+}
+
+.content-img {
+    margin-left: 100px;
+}
+
+                     /* CONTENT-ABOUT US : END */
+
+                      /* CONTENT-NEWBOOKS : BEGIN */
+
+.list-book {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+.about-newbooks {
+    display: flex;
+    align-items: flex-start;  
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.content-book {
+    position: relative; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 250px;
+    margin-bottom: 20px;
+}
+
+.content-book img {
+    width: 90%;
+    height: 330px;
+    object-fit: cover;
+    border-radius: 1px;
+    transition: transform 0.3s ease;
+}
+.content-book .book-child {
+    align-items: center; 
+}
+.content-book:hover .book-love,
+.content-book:hover .book-horror,
+.content-book:hover .book-history,
+.content-book:hover .book-child {
+    transform: scale(1.08);
+}
+
+    /* NUT MUA HANG*/
+.content-book .action-cart {
+    display: flex;
+    cursor: grab;
+    height: 45px;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 20%;
+    visibility:hidden;
+    transform: translateY(40px);
+    transition: all 0.2s ease;
+}
+.content-book:hover .action-cart {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+#newbooks .buy-btn-left {
+    align-items: center;
+    background-color: white;
+    width: 44px;
+    height: 46px;
+    border: 1px solid forestgreen;
+    border-radius: 4px;
+    color: forestgreen;
+    font-size: large;
+    margin-right: 2px;
+    cursor: pointer;
+    transition: background-color 1s;
+     color: 1s;
+}
+
+#newbooks .buy-btn-left:hover {
+    background-color: forestgreen;
+    color: white;
+}
+#newbooks .buy-btn-right {
+    height: 46px;
+    width: 160px;
+    background-color: forestgreen;
+    border: 1px solid;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 1s;
+     color: 1s;
+}
+#newbooks .buy-btn-right:hover {
+    background-color: white;
+    color: forestgreen;
+}
+
+/*  THONG TIN SACH  */
+#newbooks .info-book {
+    text-align: center;
+    margin-top: 15px;
+    color: #333; 
+}
+#newbooks .info-book p,
+#newbooks .info-book h3  {
+    display: inline-block;  
+}
+
+
+
+               /* CONTENT-NEWBOOKS : END */
+
+              /* CONTENT-AUTHORS : BEGIN */
+.list-author {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 50px;
+    
+}
+.author-item-base {
+    display: flex;
+    height: 180px;
+    width: 180px;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    overflow: hidden;
+    background:#f4f4f4;
+    border-radius: 100px;
+    margin-top: 20px;
+}
+.author-name {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+}
+       /* CONTENT AUTHOR: END */
+
+       /* CONTENT CONTACT: BEGIN */
+.contact-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 200px;
+}
+.contact-row .box {
+    min-height: 300px;
+    display: flex;
+    text-align: left;
+    flex-direction: column;
+}
+.box .last-box,
+.box .first-box {
+    width: 200px;
+    height: 55px;
+    background-color: white;
+    padding-right: 50px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 10px;
+    border-color: gray;
+    border-width: 1px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 15px;
+    margin-bottom: 10px;
+}
+.box .mail-box {
+    width: 419px;
+    height: 70px;
+    background-color: white;
+    padding-right: 50px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 10px;
+    border-color: gray;
+    border-width: 1px;
+    font-size: 16px;
+    margin-bottom: 7px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 15px;
+}
+.box .sign-box {
+    width: 85px;
+    height: 50px;
+    font-weight: bold;
+    background-color: forestgreen;
+    color: white;
+    border: solid 1px black;
+    border-radius: 4px;
+    transition: all 0.9s ease;
+}
+.sign-box:hover {
+    transform: translateY(0);
+    background-color: white;
+    color: forestgreen;
+    border: forestgreen solid 1px;
+}
+.contact-list {
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 330px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 20px 6px;
+}
+.contact-list i::before {
+    margin-right: 5px;
+}
+/*
+              PAGINATION
+*/
+.content-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.paignation {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    color: #383838;
+    padding: 10px 40px;
+    border-radius: 6px;
+}
+.paignation ul {
+    margin: 20px 30px;
+}
+.paignation ul li {
+    display: inline-block;
+    margin: 0px 10px;
+    background: #ccc;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 400px;
+    line-height: 30px;
+    cursor: pointer;
+}
+.paignation ul li:hover {
+    background-color: #ff4568;
+    background-position: 0 -45px;
+    transition: background-color  0.5s;
+}
+.paignation .btn2,
+.paignation .btn1 {
+ 
+    align-items: center;
+    font-size: 17px;
+    font-weight: 400px;
+    color: #383838;
+    background: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+.paignation ul li.active {
+    color: #fff;
+    background-image: linear-gradient(#ff4568,#ff4568);
+    background-repeat: no-repeat;
+}
+
+
+/* 
+FOOTERR
+*/
+.container {
+    border-top: solid;
+    border-top-width: 1.6px;
+    border-color: forestgreen;
+}
+.row {
+    display: flex;
+
+}
+.first-col {
+    margin-top: 35px;
+    margin-bottom: 25px;
+    margin-left: 100px;
+    font-size: 18px;
+    line-height: 40px;
+}
+.list-menu,
+.list-contact {
+    list-style-type: none;
+}
+.first-col img {
+    width: 70px;
+}
+.first-col i {
+    color: forestgreen;
+    margin-right: 5px;
+}
+.third-col,
+.second-col {
+    margin-left: 280px;
+    margin-top: 50px;
+    font-size: 18px;
+    line-height: 40px;
+    
+}
+.title-menu {
+    font-size: larger;
+    color: forestgreen;
+    margin-bottom: 20px;
+}
+.social {
+    font-size: 35px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+
+    
+}
+.social a {
+    color: black;
+    text-decoration: none;
+}
+.social a:hover {
+    opacity: 0.5;
+}
+.word-footer {
+    font-size: 17px;
+    display: flex;
+    justify-content: center;
+}
+.copy-right  a{
+    margin-top: 15px;
+    font-size: 16px;
+    color: #757575;
+}
+
+/*  =========== HISTORY =========== */
+.cart-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.cart-container h2 {
+  color: forestgreen;
+  margin-bottom: 20px;
+}
+
+.cart-content {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.cart-left {
+  flex: 2;
+}
+
+.cart-right {
+  flex: 1;
+  background: beige;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.cart-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cart-table th,
+.cart-table td {
+  border-bottom: 1px solid #eee;
+  padding: 10px;
+  text-align: left;
+}
+
+.cart-product {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cart-product img {
+  width: 60px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.qty button {
+  border: 1px solid #ccc;
+  background: #fff;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+}
+
+.qty span {
+  margin: 0 8px;
+  font-weight: bold;
+}
+
+.price,
+.subtotal {
+  color: forestgreen;
+  font-weight: 600;
+}
+
+.remove {
+  color: red;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.cart-total {
+  text-align: right;
+  margin-top: 15px;
+  font-size: 18px;
+}
+
+.cart-right h3 {
+  color: darkgreen;
+  margin-bottom: 15px;
+}
+
+.cart-right input,
+.cart-right textarea {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+.cart-right .btn-primary {
+    width: 125px;
+    height: 45px;
+    border: none;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.product-image img {
+    width: 65px;
+}
+
+.btn-chitiet {
+    background-color: forestgreen;
+    color: white;
+    font-weight: bold;
+    display: inline-block;
+    width: 120px;
+    text-align: center;
+    height: 40px;
+    align-content: center;
+    border-radius: 5px;
+}
+
+
+
+
+
+

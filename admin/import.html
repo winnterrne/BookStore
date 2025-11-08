@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Quản lý nhập hàng</title>
+  <link rel="stylesheet" href="admin.css">
+  <style>
+    .import-form-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr auto; gap: 10px; margin-bottom: 20px; }
+    .import-form-grid input, .import-form-grid button { height: 42px; font-size: 14px; }
+    .table { font-size: 14px; }
+    .table th, .table td { padding: 10px 8px; }
+    .ellipsis { max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: inline-block; }
+    .status-pending { color: #f57c00; font-weight: 600; }
+    .status-completed { color: #2e7d32; font-weight: 600; }
+    .btn-small { padding: 5px 10px; font-size: 13px; }
+  </style>
+</head>
+<body>
+
+  <div class="custom-header">
+    <div class="dashboard-title">DASHBOARD</div>
+    <nav class="admin-nav-inline">
+      <ul>
+        <li><a href="dashboard.html">TỔNG QUAN</a></li>
+        <li><a href="users.html">NGƯỜI DÙNG</a></li>
+        <li><a href="categories.html">LOẠI SP</a></li>
+        <li><a href="products.html">SẢN PHẨM</a></li>
+        <li><a href="import.html" class="active">NHẬP HÀNG</a></li>
+        <li><a href="pricing.html">GIÁ BÁN</a></li>
+        <li><a href="orders.html">ĐƠN HÀNG</a></li>
+        <li><a href="inventory.html">TỒN KHO</a></li>
+        <li><a href="../index.html">THOÁT</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <main class="admin-content">
+    <div class="page-title">
+      <a href="dashboard.html">Quay lại Dashboard</a>
+      Quản lý nhập hàng
+    </div>
+
+    <!-- FORM NHẬP -->
+    <div class="action-bar">
+      <form id="importForm" class="import-form-grid">
+        <input type="text" placeholder="dd/mm/yyyy" 
+            onfocus="(this.type='date')" 
+            onblur="if(!this.value) this.type='text'">
+        <input type="text" id="productCode" placeholder="Mã sản phẩm" required>
+        <input type="number" id="quantity" placeholder="Số lượng" min="1" required>
+        <input type="number" id="unitPrice" placeholder="Giá nhập/quyển" min="0" required>
+        <button type="submit" class="btn-add">Thêm phiếu nhập</button>
+      </form>
+    </div>
+
+    <!-- BẢNG PHIẾU NHẬP -->
+    <div class="content-box">
+      <h2 style="margin: 0 0 16px; color: #2e7d32; font-size: 20px;">Danh mục phiếu nhập</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Ngày nhập</th>
+            <th>Sản phẩm</th>
+            <th>Số lượng</th>
+            <th>Giá nhập/quyển</th>
+            <th>Trạng thái</th>
+            <th>Hành động</th>
+          </tr>
+        </thead>
+        <tbody id="importBody"></tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- DỮ LIỆU SÁCH -->
+  <script src="../data-book.js"></script>
+  <script>
+    // === KHỞI TẠO totalImported NẾU CHƯA CÓ ===
+    books.forEach(b => {
+      if (!b.totalImported) b.totalImported = b.stock + 100;
+    });
+
+    // === TỰ ĐỘNG TẠO PHIẾU NHẬP CHO SÁCH SẮP HẾT (stock <= 10) ===
+    let imports = JSON.parse(localStorage.getItem('bookImports') || '[]');
+    let nextId = imports.length ? Math.max(...imports.map(i => parseInt(i.id.replace('PN', '')))) + 1 : 1;
+
+    const today = new Date().toISOString().split('T')[0];
+
+    // Tìm sách sắp hết
+    const lowStockBooks = books.filter(b => b.stock <= 10);
+
+    // Tạo phiếu nhập nếu chưa có
+    lowStockBooks.forEach(book => {
+      const exists = imports.some(i => i.productId == book.id && !i.completed);
+      if (!exists) {
+        const unitPrice = Math.round(book.oldPrice * 0.7); // 70% oldPrice
+        const newImport = {
+          id: 'PN' + String(nextId++).padStart(3, '0'),
+          date: today,
+          productId: book.id,
+          quantity: 50,
+          unitPrice: unitPrice,
+          completed: false
+        };
+        imports.push(newImport);
+      }
+    });
+
+    // Lưu lại
+    localStorage.setItem('bookImports', JSON.stringify(imports));
+
+    const tbody = document.getElementById('importBody');
+    const form = document.getElementById('importForm');
+
+    // === HIỂN THỊ BẢNG ===
+    function render() {
+      tbody.innerHTML = '';
+      imports.forEach(imp => {
+        const book = books.find(b => b.id == imp.productId);
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td><strong>${imp.id}</strong></td>
+          <td>${imp.date}</td>
+          <td class="ellipsis" title="${book?.title || '—'}">${book?.title || '—'}</td>
+          <td><strong>${imp.quantity}</strong></td>
+          <td>${imp.unitPrice.toLocaleString()}đ</td>
+          <td>
+            <span class="${imp.completed ? 'status-completed' : 'status-pending'}">
+              ${imp.completed ? 'Đã hoàn thành' : 'Chưa hoàn thành'}
+            </span>
+          </td>
+          <td>
+            <button class="btn-small btn-reset" onclick="edit('${imp.id}')">Sửa</button>
+            ${!imp.completed 
+              ? `<button class="btn-small" style="background:#2e7d32;color:#fff;" onclick="complete('${imp.id}')">Hoàn thành</button>`
+              : `<button class="btn-small" style="background:gray;color:#fff;" disabled>Đã xong</button>`
+            }
+          </td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    // === THÊM PHIẾU THỦ CÔNG ===
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const code = document.getElementById('productCode').value.trim();
+      const book = books.find(b => b.id == code);
+      if (!book) return alert('Không tìm thấy mã sản phẩm: ' + code);
+
+      const newImport = {
+        id: 'PN' + String(nextId++).padStart(3, '0'),
+        date: document.getElementById('importDate').value || today,
+        productId: book.id,
+        quantity: +document.getElementById('quantity').value,
+        unitPrice: +document.getElementById('unitPrice').value,
+        completed: false
+      };
+
+      imports.push(newImport);
+      localStorage.setItem('bookImports', JSON.stringify(imports));
+      form.reset();
+      render();
+    });
+
+    // === HOÀN THÀNH → CẬP NHẬT TỒN KHO ===
+    window.complete = function(id) {
+      const imp = imports.find(i => i.id === id);
+      if (!imp || imp.completed) return;
+
+      const book = books.find(b => b.id == imp.productId);
+      if (book) {
+        book.stock += imp.quantity;
+        book.totalImported += imp.quantity;
+      }
+
+      imp.completed = true;
+      localStorage.setItem('bookImports', JSON.stringify(imports));
+      render();
+      alert(`Đã nhập thành công ${imp.quantity} cuốn "${book.title}"!`);
+    };
+
+    window.edit = function(id) {
+      alert('Chức năng sửa đang phát triển...');
+    };
+
+    // === KHỞI CHẠY ===
+    render();
+  </script>
+
+</body>
+</html>

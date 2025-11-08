@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Quản lý người dùng</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <div class="custom-header">
+    <div class="dashboard-title">DASHBOARD</div>
+    <nav class="admin-nav-inline">
+      <ul>
+        <li><a href="dashboard.html">TỔNG QUAN</a></li>
+        <li><a href="users.html" class="active">NGƯỜI DÙNG</a></li>
+        <li><a href="categories.html">LOẠI SP</a></li>
+        <li><a href="products.html">SẢN PHẨM</a></li>
+        <li><a href="import.html">NHẬP HÀNG</a></li>
+        <li><a href="pricing.html">GIÁ BÁN</a></li>
+        <li><a href="orders.html">ĐƠN HÀNG</a></li>
+        <li><a href="inventory.html">TỒN KHO</a></li>
+        <li><a href="../index.html">THOÁT</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <main class="admin-content">
+    <div class="page-title">
+      <a href="dashboard.html">Quay lại Dashboard</a>
+      Quản lý người dùng
+    </div>
+
+    <div class="action-bar">
+      <form class="users-form-grid">
+        <input type="text" placeholder="Tên đăng nhập">
+        <input type="email" placeholder="Email">
+        <input type="password" placeholder="Mật khẩu">
+        <select>
+          <option value="">Chọn vai trò</option>
+          <option value="admin">Quản trị viên</option>
+          <option value="staff">Nhân viên</option>
+          <option value="user">Người dùng</option>
+        </select>
+        <button type="submit" class="btn-add">Thêm người dùng</button>
+      </form>
+    </div>
+
+    <div class="content-box">
+      <h2 style="margin: 0 0 16px; color: #2e7d32; font-size: 20px;">Danh sách người dùng</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Tên đăng nhập</th>
+            <th>Email</th>
+            <th>Vai trò</th>
+            <th>Hành động</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>001</td>
+            <td>admin</td>
+            <td>admin@shop.com</td>
+            <td>Quản trị viên</td>
+            <td>
+              <button class="btn-small btn-reset">Sửa</button>
+              <button class="btn-small btn-lock">Xóa</button>
+            </td>
+          </tr>
+          <tr>
+            <td>002</td>
+            <td>TranVietDuc</td>
+            <td>tranvietduc@shop.com</td>
+            <td>Người dùng</td>
+            <td>
+              <button class="btn-small btn-reset">Sửa</button>
+              <button class="btn-small btn-lock">Xóa</button>
+            </td>
+          </tr>
+          <tr>
+            <td>003</td>
+            <td>LeTheHao</td>
+            <td>lethehao@shop.com</td>
+            <td>Người dùng</td>
+            <td>
+              <button class="btn-small btn-reset">Sửa</button>
+              <button class="btn-small btn-lock">Xóa</button>
+            </td>
+          </tr>
+          <tr>
+            <td>004</td>
+            <td>TranYenVy</td>
+            <td>tranyenvy@shop.com</td>
+            <td>Người dùng</td>
+            <td>
+              <button class="btn-small btn-reset">Sửa</button>
+              <button class="btn-small btn-lock">Xóa</button>
+            </td>
+          </tr>
+          <tr>
+            <td>005</td>
+            <td>TranDienKha</td>
+            <td>trandienkha@shop.com</td>
+            <td>Người dùng</td>
+            <td>
+              <button class="btn-small btn-reset">Sửa</button>
+              <button class="btn-small btn-lock">Xóa</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+</body>
+</html>

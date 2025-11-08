@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./accests/sytle.css">
+    <link rel="stylesheet" href="./themify-icons/themify-icons.css">
+    
+    <title>BOOKSTORE</title>
+</head>
+
+<body>
+    <div id="main">
+        <div id="header">
+            <!--                 HEAD OF PROJECT                     -->
+            <!-- Begin: Nav -->
+            <div class="logo">
+                <img src="./accests/img/logo.webp" alt="anh logo">
+            </div>
+
+            <div class="menu">
+                <ul id="nav">
+                <li><a href="index.html">Trang Chủ</a></li>
+                <li><a href="index.html">Giới Thiệu</a></li>
+                <li><a href="index.html">Liên Hệ</a></li>
+                <li><a href="index.html">Tác giả</a></li>
+                <li>
+                    <a href="">
+                        Thể Loại
+                        <i class="nav-arrow-down ti-music-alt down"></i>
+                    </a>
+                    <ul class="subnav">
+                        <li><a href="index.html">Thiếu Nhi</a></li>
+                        <li><a href="index.html">Lịch Sử</a></li>
+                        <li><a href="index.html">Trinh Thám</a></li>
+                        <li><a href="page2.html">Văn Học</a></li>
+                        <li><a href="page2.html">Khoa Học</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- End: Nav -->
+            </div>
+        
+            <!-- Begin: Search button -->
+            <div class="search-button">
+                <input class="input-box" type="text" placeholder=" Search...">
+                <i class="search-search ti-search"></i>
+                <a href="history.html" style="text-decoration: none; color: black;"><i class="search-shopping ti-shopping-cart-full"></i></a>
+
+                <div class="book-user"> 
+                    <i class="search-book ti-user"></i>
+                    <div class="hover-text">
+                        <a href="register.html">Đăng Ký</a>
+                        <a href="login.html">Đăng Nhập</a>
+                    </div>
+                </div>
+            </div>
+            <!-- End: Search button -->
+        </div>
+
+        <!--                 BODY OF PROJECT                     -->
+                <!--         CONTENT                  -->
+                           <!--Slider : Begin-->
+        <div class="slider-content">
+            <div class="mySlides">
+                <img src="./accests/img/ms_banner_img1.jpg" alt="">
+                <div class="text-content">Sách là ngọn đèn soi sáng trí tuệ con người</div>
+            </div>
+
+            <div class="mySlides">
+                <img src="./accests/img/ms_banner_img2.jpg" alt="">
+                <div class="text-content">Càng đọc nhiều, bạn càng biết ít</div>
+            </div>
+
+            <div class="mySlides">
+                <img src="./accests/img/ms_banner_img3.jpg" alt="">
+                <div class="text-content">Ai biết đọc mà không đọc thì chẳng hơn gì người mù.</div>
+            </div>
+        </div>                        
+                     <!--Slider : End-->
+
+                        <!--   NEW BOOK: BEGIN-->
+
+        <div id="content-newbooks">
+                <!--TITTLE: BEGIN-->
+            <div class="title-header">
+                <h3>Tản Văn - Thơ</h3>
+            </div>
+                 <!--TITTLE: END-->
+              
+        <div class="list-book">
+                             <!--SACH THU 1-->
+            <div id="newbooks" class="about-newbooks">
+                
+                <a class="link-book" href="#" onclick="viewBook(13)">
+                    <div class="content-book">
+                        <img class="book-child" title="Hà Nội Còn Một Chút Này" src="./accests/poem-img/hanoiconmotchutnay01.webp" alt="anh sach">
+                        <div class="action-cart">
+                            <button class="buy-btn-left" type="button">
+                                <i class="shopping-cart ti-shopping-cart"></i>
+                            </button>
+                            <button class="buy-btn-right">Mua Ngay</button>
+                        </div>
+
+                        <div class="info-book">
+                            <h3>  Hà Nội Còn Một Chút Này Nè</h3>
+                            <p>96.250 VND</p>
+                        </div>
+
+                    </div>
+                </a>
+                
+            </div>
+            <!--SACH THU 2-->
+            <div id="newbooks" class="about-newbooks">
+                <a class="list-book" href="#" onclick="viewBook(14)">
+                    <div class="content-book">
+                        <img class="book-history" title="Ngòn Đèn Dầu Lạc" src="./accests/poem-img/ngondendaulacbia.webp" alt="anh sach">
+                        <div class="action-cart">
+                            <button class="buy-btn-left" type="button">
+                                <i class="shopping-cart ti-shopping-cart"></i>
+                            </button>
+                            <button class="buy-btn-right">Mua Ngay</button>
+                        </div>
+
+                        <div class="info-book">
+                            <h3>Ngòn Đèn Dầu Lạc</h3>
+                            <p>100.000 VND</p>
+                        </div>
+                    </div>
+                </a>
+
+                
+            </div>
+            <!--SACH THU 3-->
+            <div id="newbooks" class="about-newbooks">
+                <a class="list-book" href="#" onclick="viewBook(15)">
+                    <div class="content-book">
+                        <img class="book-horror" title="Thư Cho Em" src="./accests/poem-img/thu-cho-em-01-e1709778449183.webp" alt="anh sach" >
+                        <div class="action-cart">
+                            <button class="buy-btn-left" type="button">
+                                <i class="shopping-cart ti-shopping-cart"></i>
+                            </button>
+                            <button class="buy-btn-right">Mua Ngay</button>
+                        </div>
+
+                        <div class="info-book">
+                            <h3>Thư Cho Em Chuyện Tình Hoàng Đan Qua Lời Kể  </h3>
+                            <p>90.000 VND</p>
+                        </div>
+
+                    </div>
+                </a>  
+            </div>
+            <!--SACH THU 4-->
+            <div id="newbooks" class="about-newbooks">
+                
+                <a class="list-book" href="#" onclick="viewBook(16)">
+                    <div class="content-book">
+                        <img class="book-love" title="Trong Đáy Mắt Trời Xanh Là Vĩnh Viễn" src="./accests/poem-img/trongdaymattroixanhlavinhvien0.webp" alt="anh sach">
+                        <div class="action-cart">
+                            <button class="buy-btn-left" type="button">
+                                <i class="shopping-cart ti-shopping-cart"></i>
+                            </button>
+                            <button class="buy-btn-right">Mua Ngay</button>
+                        </div>
+
+                        <div class="info-book">
+                            <h3>Trong Đáy Mắt Trời Xanh Là Vĩnh Viễn</h3>
+                            <p>145.000 VND</p>
+                        </div>
+
+                    </div>
+                </a>
+            </div>
+        </div>
+        </div>
+
+        
+        <div id="content-newbooks">
+                <!--TITTLE: BEGIN-->
+            <div class="title-header">
+                <h3>Sách Mới</h3>
+            </div>
+                 <!--TITTLE: END-->
+              
+        <div class="list-book">
+                             <!--SACH THU 1-->
+            <div id="newbooks" class="about-newbooks">
+                
+                <a class="link-book" href="#" onclick="viewBook(17)">
+                    <div class="content-book">
+                        <img class="book-child" title="Cách Mạng Siêu Nhân Hóa" src="./accests/sceince-img/cachmangsieunhanhoa01.webp" alt="anh sach">
+                        <div class="action-cart">
+                            <button class="buy-btn-left" type="button">
+                                <i class="shopping-cart ti-shopping-cart"></i>
+                            </button>
+                            <button class="buy-btn-right">Mua Ngay</button>
+                        </div>
+
+                        <div class="info-book">
+                            <h3>LucFerry Cách Mạng Siêu Nhân Hóa</h3>
+                            <p>167.700 VND</p>
+                        </div>
+
+                    </div>
+                </a>
+                
+            </div>
+            <!--SACH THU 2-->
+            <div id="newbooks" class="about-newbooks">
+                <a class="list-book" href="#" onclick="viewBook(18)">
+                    <div class="content-book">
+                        <img class="book-history" title="Phong Cách NVIDIA" src="./accests/sceince-img/phong-cach-nvidia-bia-ao-01.webp" alt="anh sach">
+                        <div class="action-cart">
+                            <button class="buy-btn-left" type="button">
+                                <i class="shopping-cart ti-shopping-cart"></i>
+                            </button>
+                            <button class="buy-btn-right">Mua Ngay</button>
+                        </div>
+
+                        <div class="info-book">
+                            <h3>Phong Cách NVIDIA, The NVIDIA Way</h3>
+                            <p>199.000 VND</p>
+                        </div>
+                    </div>
+                </a>
+
+                
+            </div>
+            <!--SACH THU 3-->
+            <div id="newbooks" class="about-newbooks">
+                <a class="list-book" href="#" onclick="viewBook(19)">
+                    <div class="content-book">
+                        <img class="book-horror" title="Tiền Bẩn Và Ngụy Khoa Học" src="./accests/sceince-img/tienbane1700643281311.webp" alt="anh sach" >
+                        <div class="action-cart">
+                            <button class="buy-btn-left" type="button">
+                                <i class="shopping-cart ti-shopping-cart"></i>
+                            </button>
+                            <button class="buy-btn-right">Mua Ngay</button>
+                        </div>
+
+                        <div class="info-book">
+                            <h3>Tiền Bẩn Và Ngụy Khoa Học, Thao Túng Khoa Học... </h3>
+                            <p>233.000 VND</p>
+                        </div>
+
+                    </div>
+                </a>  
+            </div>
+            <!--SACH THU 4-->
+            <div id="newbooks" class="about-newbooks">
+                
+                <a class="list-book" href="#" onclick="viewBook(20)">
+                    <div class="content-book">
+                        <img class="book-love" title="Tra Cứu Đến Nơi Truy Cập Đến Chốn" src="./accests/sceince-img/tra-cuu-den-noi-truy-cap-den-chon-01.webp" alt="anh sach">
+                        <div class="action-cart">
+                            <button class="buy-btn-left" type="button">
+                                <i class="shopping-cart ti-shopping-cart"></i>
+                            </button>
+                            <button class="buy-btn-right">Mua Ngay</button>
+                        </div>
+
+                        <div class="info-book">
+                            <h3>Tra Cứu Đến Nơi Truy Cập Đến Chốn</h3>
+                            <p>95.000 VND</p>
+                        </div>
+
+                    </div>
+                </a>
+            </div>
+        </div>
+        </div>
+
+        <div class="content-pagination">
+            <div class="paignation">
+                <a href="index.html"><button class="btn1"><</button></a>
+                <ul>
+                    <a href="index.html"><li class="link " value="1" onclick="activeLink()">1</li></a>
+                    <a href="page2.html"><li class="link active" value="2" onclick="activeLink()">2</li></a>
+                    <a href="page3.html"><li class="link" value="3" onclick="activeLink()">3</li></a>
+                </ul>
+                <a href="page3.html"><button class="btn2">></button></a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="first-col">
+                        <a href="#" class="logo">
+                            <img src="./accests/img/logo.webp" alt="">
+                        </a>
+                        <ul class="list-contact">
+                            <li>
+                                <p><i class="ti-location-pin"></i>Số 36, 120 Yên Lãng, Cao Bằng </p>
+                            </li>
+                            <li>
+                                <p><i class="ti-mobile"></i>Phone: +00 36363636</p>
+                            </li>
+                            <li>
+                                <p><i class="ti-mobile"></i>Phone: +00 18181818</p>
+                            </li>
+                            <li>
+                                <p><i class="ti-email"></i>Email: mail@gmail.com</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="second-col">
+                        <h4 class="title-menu">
+                            <span>Giới Thiệu</span>
+                        </h4>
+                        <ul class="list-menu">
+                            <li class="list-li">Về Chúng Tôi</li>
+                            <li class="list-li">Hệ Thống Giới Thiệu Sách</li>
+                            <li class="list-li">Tuyển Dụng</li>
+                            <li class="list-li">Liên Hệ Với Chúng Tôi</li>
+                        </ul>
+                    </div>
+                    <div class="third-col">
+                        <h4 class="title-menu">
+                            <span>Chính Sách</span>
+                        </h4>
+                        <ul class="list-menu">
+                            <li class="list-li">Chính Sách Bảo Mật</li>
+                            <li class="list-li">Chính Sách Đổi Trả/Hoàn Tiền</li>
+                            <li class="list-li">Chính Sách Thanh Toán/Vận Chuyển</li>
+                            <li class="list-li">Chính Sách Mới </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="social">
+                    <a href=""><i class="ti-facebook"></i></a>
+                    <a href=""><i class="ti-instagram"></i></a>
+                    <a href=""><i class="ti-twitter"></i></a>
+                    <a href=""><i class="ti-youtube"></i></a>
+                    <a href=""><i class="ti-skype"></i></a>
+                    <a href=""><i class="ti-pinterest"></i></a>
+                </div>
+                <div class="word-footer">
+                    <p class="copy-right">Powered by<a href=""> w3.css</a></p>
+                </div>
+            </div>
+        </div>
+
+    </div>   
+    <script src="index.js"></script> 
+</body> 
+</html>   

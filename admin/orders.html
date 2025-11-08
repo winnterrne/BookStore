@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Quản lý đơn hàng</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <div class="custom-header">
+    <div class="dashboard-title">DASHBOARD</div>
+    <nav class="admin-nav-inline">
+      <ul>
+        <li><a href="dashboard.html">TỔNG QUAN</a></li>
+        <li><a href="users.html">NGƯỜI DÙNG</a></li>
+        <li><a href="categories.html">LOẠI SP</a></li>
+        <li><a href="products.html">SẢN PHẨM</a></li>
+        <li><a href="import.html">NHẬP HÀNG</a></li>
+        <li><a href="pricing.html">GIÁ BÁN</a></li>
+        <li><a href="orders.html" class="active">ĐƠN HÀNG</a></li>
+        <li><a href="inventory.html">TỒN KHO</a></li>
+        <li><a href="../index.html">THOÁT</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <main class="admin-content">
+    <div class="page-title">
+      <a href="dashboard.html">Quay lại Dashboard</a>
+      Quản lý đơn hàng
+    </div>
+
+    <div class="action-bar">
+      <form class="orders-search-grid">
+        <div class="input-with-label">
+          <label>Từ ngày:</label>
+          <input type="text" placeholder="dd/mm/yyyy" 
+             onfocus="(this.type='date')" 
+             onblur="if(!this.value) this.type='text'">
+        </div>
+        <div class="input-with-label">
+          <label>Đến ngày:</label>
+          <input type="text" placeholder="dd/mm/yyyy" 
+             onfocus="(this.type='date')" 
+             onblur="if(!this.value) this.type='text'">
+        </div>
+        <div class="input-with-label full-width">
+          <label>Tình trạng đơn:</label>
+          <select>
+            <option>Tất cả</option>
+            <option>Chờ xác nhận</option>
+            <option>Đã xác nhận</option>
+            <option>Đang giao</option>
+            <option>Hoàn thành</option>
+            <option>Đã hủy</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-add">Tìm kiếm</button>
+      </form>
+    </div>
+
+    <div class="content-box">
+      <h2 style="margin: 0 0 16px; color: #2e7d32; font-size: 20px;">Danh sách đơn hàng</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Khách hàng</th>
+            <th>Ngày đặt</th>
+            <th>Tình trạng</th>
+            <th>Hành động</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>DH001</td>
+            <td>Nguyễn Văn A</td>
+            <td>2025-10-01</td>
+            <td>Mới đặt</td>
+            <td>
+              <button class="btn-small btn-reset">Xem</button>
+              <button class="btn-small" style="background: #2e7d32; color: #fff;">Cập nhật</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+</body>
+</html>

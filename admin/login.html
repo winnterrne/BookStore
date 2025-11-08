@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login</title>
+  <link rel="stylesheet" href="../accests/sytle.css">
+  <link rel="stylesheet" href="../themify-icons/themify-icons.css">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <div class="custom-header">
+    <div class="dashboard-title">ADMIN LOGIN</div>
+  </div>
+
+  <div class="admin-content" style="display: flex; justify-content: center; align-items: center; min-height: 70vh;">
+    <div class="dashboard-box">
+      <h2>Đăng nhập Admin</h2>
+      <form id="fakeLoginForm">
+        <label>Tên đăng nhập:</label>
+        <input type="text" placeholder="Nhập gì cũng được" style="margin-bottom: 16px;">
+        
+        <label>Mật khẩu:</label>
+        <input type="password" placeholder="Nhập gì cũng được" style="margin-bottom: 20px;">
+        
+        <button type="submit" class="submit-btn" 
+                style="width: 100%; padding: 12px; border-radius: 12px; font-weight: 600; font-size: 15px; margin-top: 8px;">
+          Đăng nhập
+        </button>
+      </form>
+
+      <a href="../index.html" class="back-btn btn" style="margin-top: 16px; display: block; text-align: center; padding: 10px; border-radius: 12px;">
+        Quay lại trang chủ
+      </a>
+    </div>
+  </div>
+  <script>
+    document.getElementById('fakeLoginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      sessionStorage.setItem('adminLoggedIn', 'true');
+      sessionStorage.setItem('adminName', 'Admin');
+      window.location.href = 'dashboard.html';
+    });
+  </script>
+
+</body>
+</html>

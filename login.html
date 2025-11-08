@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./accests/sytle.css">
+    <link rel="stylesheet" href="./themify-icons/themify-icons.css">
+    
+    <title>LOGIN</title>
+</head>
+
+<body>
+    <div id="main">
+        <div id="header">
+            <!--                 HEAD OF PROJECT                     -->
+            <!-- Begin: Nav -->
+            <div class="logo">
+                <img src="./accests/img/logo.webp" alt="anh logo">
+            </div>
+
+            <div class="menu">
+                <ul id="nav">
+                <li><a href="index.html">Trang Chủ</a></li>
+                <li><a href="#intro">Giới Thiệu</a></li>
+                <li><a href="#contact">Liên Hệ</a></li>
+                <li><a href="#athor">Tác giả</a></li>
+                <li>
+                    <a href="">
+                        Thể Loại
+                        <i class="nav-arrow-down ti-music-alt down"></i>
+                    </a>
+                    <ul class="subnav">
+                        <li><a href="">Thiếu Nhi</a></li>
+                        <li><a href="">Lịch Sử</a></li>
+                        <li><a href="">Trinh Thám</a></li>
+                        <li><a href="">Văn Học</a></li>
+                        <li><a href="">Khoa Học</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- End: Nav -->
+            </div>
+        
+            <!-- Begin: Search button -->
+            <div class="search-button">
+                <input class="input-box" type="text" placeholder=" Search...">
+                <i class="search-search ti-search"></i>
+                <i class="search-shopping ti-shopping-cart-full"></i>
+
+                <div class="book-user"> 
+                    <i class="search-book ti-user"></i>
+                    <div class="hover-text">
+                        <a href="register.html">Đăng Ký</a>
+                        <a href="login.html">Đăng Nhập</a>
+                    </div>
+                </div>
+            </div>
+            <!-- End: Search button -->
+        </div>
+
+        <!--LOGIN : BEGIN-->
+
+        <div class="container-log">
+                <h2 id="formTitle">Đăng nhập</h2>
+            <div id="loginForm">
+                <input type="email" id="email" placeholder="Email" />
+                <input type="password" id="password" placeholder="Mật khẩu" />
+                <a href="index.html"><button class="btn-primary" id="loginBtn">Đăng nhập</button></a>
+                <p style="margin-top: 10px">
+                Chưa có tài khoản? <a href="register.html">Đăng ký</a>
+                </p>
+                <p id="error" style="color: red; display: none"></p>
+            </div>
+
+        </div>
+
+        <!--LOGIN : END -->
+                <!--FOOTERR--> 
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="first-col">
+                        <a href="#" class="logo">
+                            <img src="./accests/img/logo.webp" alt="">
+                        </a>
+                        <ul class="list-contact">
+                            <li>
+                                <p><i class="ti-location-pin"></i>Số 36, 120 Yên Lãng, Cao Bằng </p>
+                            </li>
+                            <li>
+                                <p><i class="ti-mobile"></i>Phone: +00 36363636</p>
+                            </li>
+                            <li>
+                                <p><i class="ti-mobile"></i>Phone: +00 18181818</p>
+                            </li>
+                            <li>
+                                <p><i class="ti-email"></i>Email: mail@gmail.com</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="second-col">
+                        <h4 class="title-menu">
+                            <span>Giới Thiệu</span>
+                        </h4>
+                        <ul class="list-menu">
+                            <li class="list-li">Về Chúng Tôi</li>
+                            <li class="list-li">Hệ Thống Giới Thiệu Sách</li>
+                            <li class="list-li">Tuyển Dụng</li>
+                            <li class="list-li">Liên Hệ Với Chúng Tôi</li>
+                        </ul>
+                    </div>
+                    <div class="third-col">
+                        <h4 class="title-menu">
+                            <span>Chính Sách</span>
+                        </h4>
+                        <ul class="list-menu">
+                            <li class="list-li">Chính Sách Bảo Mật</li>
+                            <li class="list-li">Chính Sách Đổi Trả/Hoàn Tiền</li>
+                            <li class="list-li">Chính Sách Thanh Toán/Vận Chuyển</li>
+                            <li class="list-li">Chính Sách Mới </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="social">
+                    <a href=""><i class="ti-facebook"></i></a>
+                    <a href=""><i class="ti-instagram"></i></a>
+                    <a href=""><i class="ti-twitter"></i></a>
+                    <a href=""><i class="ti-youtube"></i></a>
+                    <a href=""><i class="ti-skype"></i></a>
+                    <a href=""><i class="ti-pinterest"></i></a>
+                </div>
+                <div class="word-footer">
+                    <p class="copy-right">Powered by<a href=""> w3.css</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>

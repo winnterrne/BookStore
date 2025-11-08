@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard Admin</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <script>
+    if (!sessionStorage.getItem('adminLoggedIn')) {
+      sessionStorage.setItem('adminLoggedIn', 'true');
+      sessionStorage.setItem('adminName', 'Admin');
+    }
+
+  </script>
+  <div class="custom-header">
+    <div class="dashboard-title">DASHBOARD</div>
+    <nav class="admin-nav-inline">
+      <ul>
+        <li><a href="users.html">NGƯỜI DÙNG</a></li>
+        <li><a href="categories.html">LOẠI SP</a></li>
+        <li><a href="products.html">SẢN PHẨM</a></li>
+        <li><a href="import.html">NHẬP HÀNG</a></li>
+        <li><a href="pricing.html">GIÁ BÁN</a></li>
+        <li><a href="orders.html">ĐƠN HÀNG</a></li>
+        <li><a href="inventory.html">TỒN KHO</a></li>
+        <li><a href="javascript:logout()">THOÁT</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <main class="admin-content dashboard-page">
+    <div class="dashboard-box">
+      <h2>Xin chào, <span id="adminName">Admin</span>!</h2>
+      <p>Chọn chức năng từ menu. Hôm nay là:</p>
+      <p id="current-time"></p>
+    </div>
+  </main>
+
+  <script>
+    // Hiển thị tên
+    document.getElementById('adminName').textContent = 
+      sessionStorage.getItem('adminName') || 'Admin';
+
+    // Cập nhật giờ
+    function updateTime() {
+      const now = new Date();
+      const time = now.toLocaleTimeString('vi-VN');
+      const date = now.toLocaleDateString('vi-VN');
+      document.getElementById('current-time').textContent = `${time} - ${date}`;
+    }
+    updateTime();
+    setInterval(updateTime, 1000);
+
+    // Đăng xuất
+    function logout() {
+      sessionStorage.clear();
+      window.location.href = 'login.html';
+    }
+  </script>
+
+</body>
+</html>
+</html>
+</html>

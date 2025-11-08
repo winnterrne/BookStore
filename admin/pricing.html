@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Quản lý giá bán</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <div class="custom-header">
+    <div class="dashboard-title">DASHBOARD</div>
+    <nav class="admin-nav-inline">
+      <ul>
+        <li><a href="dashboard.html">TỔNG QUAN</a></li>
+        <li><a href="users.html">NGƯỜI DÙNG</a></li>
+        <li><a href="categories.html">LOẠI SP</a></li>
+        <li><a href="products.html">SẢN PHẨM</a></li>
+        <li><a href="import.html">NHẬP HÀNG</a></li>
+        <li><a href="pricing.html" class="active">GIÁ BÁN</a></li>
+        <li><a href="orders.html">ĐƠN HÀNG</a></li>
+        <li><a href="inventory.html">TỒN KHO</a></li>
+        <li><a href="../index.html">THOÁT</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <main class="admin-content">
+    <div class="page-title">
+      <a href="dashboard.html">Quay lại Dashboard</a>
+      Quản lý giá bán
+    </div>
+
+    <div class="content-box">
+      <h2 style="margin: 0 0 16px; color: #2e7d32; font-size: 20px;">Bảng giá sản phẩm</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Mã SP</th>
+            <th>Tên SP</th>
+            <th>Giá cũ</th>
+            <th>Giá bán</th>
+            <th>Giảm giá (%)</th>
+            <th>Số lượng</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Dữ liệu sẽ được load tự động -->
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <script src="../data-book.js"></script>
+<script>
+  const tbody = document.querySelector(".table tbody");
+
+  tbody.innerHTML = books.map(b => `
+    <tr>
+      <td>${b.id}</td>
+      <td>${b.title}</td>
+      <td>${b.oldPrice.toLocaleString()}đ</td>
+      <td>${b.price.toLocaleString()}đ</td>
+      <td>${b.discount}%</td>
+      <td>${b.stock}</td>
+    </tr>
+  `).join('');
+</script>
+
+</body>
+</html>

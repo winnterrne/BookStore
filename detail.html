@@ -1,0 +1,29 @@
+<script src="../data-book.js"></script>
+<script>
+  const url = new URLSearchParams(window.location.search);
+  const id = url.get("id");
+  const book = books.find(b => b.id == id);
+  if (!book) {
+    document.body.innerHTML = "<h1>Sách không tồn tại!</h1>";
+    return;
+  }
+
+  document.querySelector(".img-book img").src = `../${book.image}`;
+  document.querySelector(".namebook h1").innerText = book.title;
+  document.querySelector(".author .sytle-author").innerText = " " + book.author;
+
+  document.querySelector(".prodcut-price").innerText = book.price.toLocaleString() + " VND";
+  document.querySelector(".old-price").innerText = book.oldPrice.toLocaleString() + " VND";
+  document.querySelector(".sale-price").innerText = book.discount + "%";
+
+  document.querySelector("#description .content-book").innerHTML =
+    `<p style="white-space: pre-line; line-height: 29px">${book.description}</p>`;
+
+  const spans = document.querySelectorAll("#details li span:last-child");
+  spans[0].innerText = book.author;
+  spans[1].innerText = book.translator;
+  spans[2].innerText = book.publisher;
+  spans[3].innerText = book.size;
+  spans[4].innerText = book.pages;
+  spans[5].innerText = book.published_year;
+</script>
