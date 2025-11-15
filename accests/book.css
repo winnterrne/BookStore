@@ -124,6 +124,7 @@ html {
     position: relative;
     margin-right: 100px;
     
+    
 }
 
 #header .input-box {
@@ -162,12 +163,13 @@ html {
 
 .book-user {
     position: relative;
+
     display: inline-block;
 }
 
 .hover-text {
-    width: 100px;
-    height: 55px;
+    min-width: 140px;
+    height: 100px;
     position: absolute;
     top: 20px;
     display: none;
@@ -445,6 +447,124 @@ html {
     font-size: 16px;
     color: #757575;
 }
+
+/* Nền modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    visibility: hidden;
+    padding-top: 80px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+
+/* Khi modal mở */
+.modal.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Khung modal */
+.modal-container {
+    background: #fff;
+    width: 400px;
+    max-width: 90%;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    position: relative;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Close button */
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #333;
+    transition: all 0.3s;
+}
+.modal-close:hover {
+    color: forestgreen;
+}
+
+/* Header */
+.modal-header h2 {
+    margin: 0 0 20px 0;
+    font-size: 22px;
+    text-align: center;
+    color: forestgreen;
+}
+
+/* Body form */
+.modal-body label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: 500;
+}
+
+.modal-body input[type="text"],
+.modal-body input[type="number"],
+.modal-body select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+/* Hai input số cạnh nhau */
+.price-inputs {
+    display: flex;
+    gap: 10px;
+}
+.price-inputs input {
+    flex: 1;
+}
+
+/* Nút tìm kiếm */
+.btn-search {
+    width: 100%;
+    padding: 12px;
+    background: forestgreen;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.btn-search:hover {
+    background: #2e7d32;
+}
+
+/* Animation modal */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+    .modal-container {
+        width: 90%;
+        padding: 20px;
+    }
+}
+
 
 
 

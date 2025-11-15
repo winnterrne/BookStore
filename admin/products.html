@@ -7,6 +7,10 @@
 </head>
 <body>
 
+  <!-- THÔNG BÁO -->
+  <div id="alertBox" class="alert">Đã thêm sản phẩm mới!</div>
+
+  <!-- HEADER -->
   <div class="custom-header">
     <div class="dashboard-title">DASHBOARD</div>
     <nav class="admin-nav-inline">
@@ -30,19 +34,21 @@
       Quản lý sản phẩm
     </div>
 
+    <!-- FORM THÊM -->
     <div class="action-bar">
-      <form class="products-form-grid">
-        <input type="text" placeholder="Mã sản phẩm">
-        <input type="text" placeholder="Tên sản phẩm">
-        <input type="text" placeholder="Loại sản phẩm">
-        <textarea placeholder="Mô tả sản phẩm"></textarea>
-        <input type="file" accept="image/*">
+      <form class="products-form-grid" onsubmit="addProduct(); return false;">
+        <input type="text" id="addCode" placeholder="Mã sản phẩm" required>
+        <input type="text" id="addName" placeholder="Tên sản phẩm" required>
+        <input type="text" id="addType" placeholder="Loại sản phẩm">
+        <textarea id="addDesc" placeholder="Mô tả sản phẩm"></textarea>
+        <input type="file" id="addImage" accept="image/*">
         <button type="submit" class="btn-add">Thêm sản phẩm</button>
       </form>
     </div>
 
+    <!-- BẢNG -->
     <div class="content-box">
-      <h2 style="margin: 0 0 16px; color: #2e7d32; font-size: 20px;">Danh sách sản phẩm</h2>
+      <h2 class="section-title">Danh sách sản phẩm</h2>
       <table class="table">
         <thead>
           <tr>
@@ -50,43 +56,181 @@
             <th>Tên</th>
             <th>Tác giả</th>
             <th>Loại</th>
-            <th>Hình</th>
+            <th>Hình/Mô tả</th>
             <th>Hành động</th>
           </tr>
         </thead>
-        <tbody>
-          <!-- Dữ liệu sẽ được thêm tự động -->
-        </tbody>
+        <tbody id="productBody"></tbody>
       </table>
+      <!-- PHÂN TRANG -->
+      <div class="content-pagination">
+        <div class="pagination">
+          <button class="prev">&lt;</button>
+          <button class="page active">1</button>
+          <button class="page">2</button>
+          <button class="page">3</button>
+          <button class="page">4</button>
+          <button class="page">5</button>
+          <button class="page">6</button>
+          <button class="next">&gt;</button>
+        </div>
+      </div>
     </div>
   </main>
 
+  <!-- JS -->
   <script src="../data-book.js"></script>
-<script>
-  const tbody = document.querySelector(".table tbody");
+  <script>
+    const tbody = document.getElementById("productBody");
 
-  // Gán loại theo thư mục ảnh
-  books.forEach(b => {
-    if (b.image.includes("history-img")) b.type = "Lịch sử";
-    else if (b.image.includes("sceince-img")) b.type = "Khoa học";
-    else if (b.image.includes("poem-img")) b.type = "Thơ";
-    else if (b.image.includes("everypic-img")) b.type = "Văn học nước ngoài";
-    else b.type = "Văn học Việt Nam";
+    /* ---------- GÁN LOẠI ---------- */
+    books.forEach(b => {
+      if (b.image.includes("history-img")) b.type = "Lịch sử";
+      else if (b.image.includes("sceince-img")) b.type = "Khoa học";
+      else if (b.image.includes("poem-img")) b.type = "Thơ";
+      else if (b.image.includes("everypic-img")) b.type = "Văn học nước ngoài";
+      else b.type = "Văn học Việt Nam";
+    });
+
+    /* ---------- RENDER + MODAL ---------- */
+    function render() {
+      tbody.innerHTML = books.map((b, i) => `
+        <tr>
+          <td>${b.id}</td>
+          <td>${b.title}</td>
+          <td>${b.author}</td>
+          <td>${b.type}</td>
+          <td><a href="#viewModal-${i}"><img src="../${b.image}" width="50" class="thumb-img"></a></td>
+          <td>
+            <a href="#editModal-${i}" class="btn-small btn-reset">Sửa</a>
+            <a href="#deleteModal-${i}" class="btn-small btn-lock">Xóa</a>
+          </td>
+        </tr>
+      `).join('');
+
+      const modals = document.createElement('div');
+      books.forEach((b, i) => {
+        /* ---- VIEW MODAL ---- */
+        modals.innerHTML += `
+          <div id="viewModal-${i}" class="modal">
+            <div class="modal-content product-detail-modal">
+              <div class="modal-header">
+                <div class="modal-title">Chi tiết sản phẩm</div>
+                <a href="#" class="modal-close">×</a>
+              </div>
+              <div class="detail-layout">
+                <img src="../${b.image}" class="detail-img" alt="${b.title}">
+                <div class="detail-info">
+                  <h3 class="detail-title">${b.title}</h3>
+                  <div class="detail-type"><strong>Loại:</strong> ${b.type}</div>
+                  <div class="detail-author"><strong>Tác giả:</strong> ${b.author}</div>
+                  <div class="detail-desc"><strong>Mô tả:</strong><br>${b.description.replace(/<br>/g, '<br>')}</div>
+                </div>
+              </div>
+              <div class="modal-actions modal-actions-right">
+                <a href="#" class="btn-cancel">Đóng</a>
+              </div>
+            </div>
+          </div>
+        `;
+
+        /* ---- EDIT MODAL ---- */
+        modals.innerHTML += `
+          <div id="editModal-${i}" class="modal">
+            <div class="modal-content">
+              <div class="modal-header">
+                <div class="modal-title">Sửa sản phẩm</div>
+                <a href="#" class="modal-close">×</a>
+              </div>
+              <form class="modal-form">
+                <div><label>Mã</label><input type="text" value="${b.id}" disabled></div>
+                <div><label>Tên</label><input type="text" value="${b.title}"></div>
+                <div><label>Tác giả</label><input type="text" value="${b.author}"></div>
+                <div><label>Loại</label><input type="text" value="${b.type}"></div>
+                <div><label>Mô tả</label>
+                  <textarea class="edit-desc-textarea"></textarea>
+                </div>
+                <div class="modal-actions">
+                  <a href="#" class="btn-save" onclick="showAlert('Đã lưu thay đổi!')">Lưu</a>
+                  <a href="#" class="btn-cancel">Hủy</a>
+                </div>
+              </form>
+            </div>
+          </div>
+        `;
+
+        /* ---- DELETE MODAL ---- */
+        modals.innerHTML += `
+          <div id="deleteModal-${i}" class="modal">
+            <div class="modal-content">
+              <div class="modal-header">
+                <div class="modal-title">Xác nhận xóa</div>
+                <a href="#" class="modal-close">×</a>
+              </div>
+              <div class="confirm-delete">
+                <p>Bạn có chắc muốn xóa <strong>${b.title}</strong> không?</p>
+                <div class="modal-actions">
+                  <a href="#" class="btn-save" style="background:#d32f2f;" onclick="showAlert('Đã xóa sản phẩm!')">Xóa</a>
+                  <a href="#" class="btn-cancel">Hủy</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+      document.body.appendChild(modals);
+    }
+
+    /* ---------- ALERT ---------- */
+    function showAlert(msg) {
+      const alert = document.getElementById('alertBox');
+      alert.textContent = msg;
+      alert.classList.add('show');
+      setTimeout(() => alert.classList.remove('show'), 3000);
+    }
+
+    /* ---------- THÊM SẢN PHẨM ---------- */
+    function addProduct() {
+      const code = document.getElementById('addCode').value.trim();
+      const name = document.getElementById('addName').value.trim();
+      if (!code || !name) return showAlert('Vui lòng nhập Mã và Tên!');
+      showAlert('Đã thêm sản phẩm mới!');
+      document.querySelector('.products-form-grid').reset();
+    }
+
+    render();
+  </script>
+
+  <script>
+  // PHÂN TRANG NHƯNG CHỈ NHẢY MÀU
+  document.addEventListener("DOMContentLoaded", () => {
+    const pages = document.querySelectorAll('.pagination .page');
+    const prevBtn = document.querySelector('.pagination .prev');
+    const nextBtn = document.querySelector('.pagination .next');
+
+    function setActive(index) {
+      pages.forEach(p => p.classList.remove('active'));
+      pages[index].classList.add('active');
+      prevBtn.disabled = index === 0;
+      nextBtn.disabled = index === pages.length - 1;
+    }
+
+    pages.forEach((btn, idx) => {
+      btn.addEventListener('click', () => setActive(idx));
+    });
+
+    prevBtn.addEventListener('click', () => {
+      let current = [...pages].findIndex(p => p.classList.contains('active'));
+      if (current > 0) setActive(current - 1);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      let current = [...pages].findIndex(p => p.classList.contains('active'));
+      if (current < pages.length - 1) setActive(current + 1);
+    });
+
+    setActive(0); // Trang 1 được chọn ban đầu
   });
-
-  tbody.innerHTML = books.map(b => `
-    <tr>
-      <td>${b.id}</td>
-      <td>${b.title}</td>
-      <td>${b.author}</td>
-      <td>${b.type}</td>
-      <td><img src="../${b.image}" width="50" style="border-radius:4px;"></td>
-      <td>
-        <button class="btn-small btn-reset">Sửa</button>
-        <button class="btn-small btn-lock">Xóa</button>
-      </td>
-    </tr>
-  `).join('');
 </script>
 
 </body>

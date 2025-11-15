@@ -60,7 +60,7 @@
     </div>
 
     <div class="content-box">
-      <h2 style="margin: 0 0 16px; color: #2e7d32; font-size: 20px;">Danh sách đơn hàng</h2>
+      <h2 class="section-title">Danh sách đơn hàng</h2>
       <table class="table">
         <thead>
           <tr>
@@ -76,16 +76,463 @@
             <td>DH001</td>
             <td>Nguyễn Văn A</td>
             <td>2025-10-01</td>
-            <td>Mới đặt</td>
+            <td>Hoàn thành</td> <!-- Thay đổi thành Hoàn thành -->
             <td>
-              <button class="btn-small btn-reset">Xem</button>
-              <button class="btn-small" style="background: #2e7d32; color: #fff;">Cập nhật</button>
+              <a href="#viewModal-DH001" class="btn-small btn-reset">Xem</a>
+              <a href="#editModal-DH001" class="btn-small" style="background: #2e7d32; color: #fff;">Cập nhật</a>
+              <a href="#deleteModal-DH001" class="btn-small btn-lock">Xóa</a>
+            </td>
+          </tr>
+          <tr>
+            <td>DH002</td>
+            <td>Trần Thị B</td>
+            <td>2025-10-05</td>
+            <td>Đang giao</td> <!-- Thêm Đang giao -->
+            <td>
+              <a href="#viewModal-DH002" class="btn-small btn-reset">Xem</a>
+              <a href="#editModal-DH002" class="btn-small" style="background: #2e7d32; color: #fff;">Cập nhật</a>
+              <a href="#deleteModal-DH002" class="btn-small btn-lock">Xóa</a>
+            </td>
+          </tr>
+          <tr>
+            <td>DH003</td>
+            <td>Lê Văn C</td>
+            <td>2025-10-10</td>
+            <td>Hoàn thành</td> <!-- Thêm Hoàn thành -->
+            <td>
+              <a href="#viewModal-DH003" class="btn-small btn-reset">Xem</a>
+              <a href="#editModal-DH003" class="btn-small" style="background: #2e7d32; color: #fff;">Cập nhật</a>
+              <a href="#deleteModal-DH003" class="btn-small btn-lock">Xóa</a>
             </td>
           </tr>
         </tbody>
       </table>
+
+      <!-- PHÂN TRANG -->
+      <div class="content-pagination">
+        <div class="pagination">
+          <button class="prev">&lt;</button>
+          <button class="page active">1</button>
+          <button class="page">2</button>
+          <button class="page">3</button>
+          <button class="next">&gt;</button>
+        </div>
+      </div>
     </div>
   </main>
+
+  <!-- Modals (Interface-only, no real save/delete) -->
+  <!-- View Modal -->
+<div id="viewModal-DH001" class="modal">
+  <div class="modal-content order-detail-modal"> <!-- Thêm class order-detail-modal để tùy chỉnh rộng hơn -->
+    <div class="modal-header">
+      <div class="modal-title">Chi tiết đơn hàng</div>
+      <a href="#" class="modal-close">×</a>
+    </div>
+    <div class="order-detail-layout"> <!-- Layout 2 cột mới -->
+      <!-- Bên trái: Thông tin cơ bản -->
+      <div class="order-basic-info">
+        <p><strong>ID:</strong> DH001</p>
+        <p><strong>Khách hàng:</strong> Nguyễn Văn A</p>
+        <p><strong>Ngày đặt:</strong> 2025-10-01</p>
+        <p><strong>Tình trạng:</strong> Mới đặt</p>
+      </div>
+      <!-- Bên phải: Danh sách sách mua và tổng tiền -->
+      <div class="order-items">
+        <h4>Danh sách sách mua</h4>
+        <table class="order-items-table">
+          <thead>
+            <tr>
+              <th>Sách</th>
+              <th>Số lượng</th>
+              <th>Giá</th>
+              <th>Thành tiền</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Dữ liệu mẫu, bạn có thể thay bằng JS động -->
+            <tr>
+              <td>Một Họa Sĩ Chết Rồi Thành Danh Trở Lại</td>
+              <td>2</td>
+              <td>233.000đ</td>
+              <td>466.000đ</td>
+            </tr>
+            <tr>
+              <td>Nhóc Nicolas 3</td>
+              <td>1</td>
+              <td>150.000đ</td>
+              <td>150.000đ</td>
+            </tr>
+            <!-- Thêm hàng khác nếu cần -->
+          </tbody>
+        </table>
+        <p class="order-total"><strong>Tổng tiền:</strong> 616.000đ</p>
+      </div>
+    </div>
+    <div class="modal-actions modal-actions-right">
+      <a href="#" class="btn-cancel">Đóng</a>
+    </div>
+  </div>
+</div>
+
+  <!-- Edit Modal -->
+  <div id="editModal-DH001" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">Cập nhật đơn hàng</div>
+        <a href="#" class="modal-close">×</a>
+      </div>
+      <form class="modal-form">
+        <div><label>ID</label><input type="text" value="DH001" disabled></div>
+        <div><label>Khách hàng</label><input type="text" value="Nguyễn Văn A"></div>
+        <div><label>Ngày đặt</label><input type="date" value="2025-10-01"></div>
+        <div><label>Tình trạng</label>
+          <select>
+            <option>Mới đặt</option>
+            <option>Chờ xác nhận</option>
+            <option>Đã xác nhận</option>
+            <option>Đang giao</option>
+            <option>Hoàn thành</option>
+            <option>Đã hủy</option>
+          </select>
+        </div>
+        <div class="modal-actions">
+          <a href="#" class="btn-save" onclick="alert('Đã cập nhật!')">Lưu</a>
+          <a href="#" class="btn-cancel">Hủy</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Delete Modal -->
+  <div id="deleteModal-DH001" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">Xác nhận xóa</div>
+        <a href="#" class="modal-close">×</a>
+      </div>
+      <div class="confirm-delete">
+        <p>Bạn có chắc muốn xóa đơn hàng <strong>DH001</strong> không?</p>
+        <div class="modal-actions">
+          <a href="#" class="btn-save" style="background:#d32f2f;" onclick="alert('Đã xóa!')">Xóa</a>
+          <a href="#" class="btn-cancel">Hủy</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- View Modal -->
+<div id="viewModal-DH001" class="modal">
+  <div class="modal-content order-detail-modal">
+    <div class="modal-header">
+      <div class="modal-title">Chi tiết đơn hàng</div>
+      <a href="#" class="modal-close">×</a>
+    </div>
+    <div class="order-detail-layout">
+      <div class="order-basic-info">
+        <p><strong>ID:</strong> DH001</p>
+        <p><strong>Khách hàng:</strong> Nguyễn Văn A</p>
+        <p><strong>Ngày đặt:</strong> 2025-10-01</p>
+        <p><strong>Tình trạng:</strong> Hoàn thành</p>
+      </div>
+      <div class="order-items">
+        <h4>Danh sách sách mua</h4>
+        <table class="order-items-table">
+          <thead>
+            <tr>
+              <th>Sách</th>
+              <th>Số lượng</th>
+              <th>Giá</th>
+              <th>Thành tiền</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Một Họa Sĩ Chết Rồi Thành Danh Trở Lại</td>
+              <td>2</td>
+              <td>233.000đ</td>
+              <td>466.000đ</td>
+            </tr>
+            <tr>
+              <td>Nhóc Nicolas 3</td>
+              <td>1</td>
+              <td>150.000đ</td>
+              <td>150.000đ</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="order-total"><strong>Tổng tiền:</strong> 616.000đ</p>
+      </div>
+    </div>
+    <div class="modal-actions modal-actions-right">
+      <a href="#" class="btn-cancel">Đóng</a>
+    </div>
+  </div>
+</div>
+
+<!-- View Modal DH002 -->
+<div id="viewModal-DH002" class="modal">
+  <div class="modal-content order-detail-modal">
+    <div class="modal-header">
+      <div class="modal-title">Chi tiết đơn hàng</div>
+      <a href="#" class="modal-close">×</a>
+    </div>
+    <div class="order-detail-layout">
+      <div class="order-basic-info">
+        <p><strong>ID:</strong> DH002</p>
+        <p><strong>Khách hàng:</strong> Trần Thị B</p>
+        <p><strong>Ngày đặt:</strong> 2025-10-05</p>
+        <p><strong>Tình trạng:</strong> Đang giao</p>
+      </div>
+      <div class="order-items">
+        <h4>Danh sách sách mua</h4>
+        <table class="order-items-table">
+          <thead>
+            <tr>
+              <th>Sách</th>
+              <th>Số lượng</th>
+              <th>Giá</th>
+              <th>Thành tiền</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Kafka Bên Bờ Biển</td>
+              <td>1</td>
+              <td>180.000đ</td>
+              <td>180.000đ</td>
+            </tr>
+            <tr>
+              <td>Đừng Bao Giờ Buông Dao</td>
+              <td>2</td>
+              <td>166.600đ</td>
+              <td>333.200đ</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="order-total"><strong>Tổng tiền:</strong> 513.200đ</p>
+      </div>
+    </div>
+    <div class="modal-actions modal-actions-right">
+      <a href="#" class="btn-cancel">Đóng</a>
+    </div>
+  </div>
+</div>
+
+<!-- View Modal DH003 -->
+<div id="viewModal-DH003" class="modal">
+  <div class="modal-content order-detail-modal">
+    <div class="modal-header">
+      <div class="modal-title">Chi tiết đơn hàng</div>
+      <a href="#" class="modal-close">×</a>
+    </div>
+    <div class="order-detail-layout">
+      <div class="order-basic-info">
+        <p><strong>ID:</strong> DH003</p>
+        <p><strong>Khách hàng:</strong> Lê Văn C</p>
+        <p><strong>Ngày đặt:</strong> 2025-10-10</p>
+        <p><strong>Tình trạng:</strong> Hoàn thành</p>
+      </div>
+      <div class="order-items">
+        <h4>Danh sách sách mua</h4>
+        <table class="order-items-table">
+          <thead>
+            <tr>
+              <th>Sách</th>
+              <th>Số lượng</th>
+              <th>Giá</th>
+              <th>Thành tiền</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Nhóc Nicolas 3</td>
+              <td>1</td>
+              <td>150.000đ</td>
+              <td>150.000đ</td>
+            </tr>
+            <tr>
+              <td>Kafka Bên Bờ Biển</td>
+              <td>1</td>
+              <td>180.000đ</td>
+              <td>180.000đ</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="order-total"><strong>Tổng tiền:</strong> 330.000đ</p>
+      </div>
+    </div>
+    <div class="modal-actions modal-actions-right">
+      <a href="#" class="btn-cancel">Đóng</a>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Modal -->
+<div id="editModal-DH001" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="modal-title">Cập nhật đơn hàng</div>
+      <a href="#" class="modal-close">×</a>
+    </div>
+    <form class="modal-form">
+      <div><label>ID</label><input type="text" value="DH001" disabled></div>
+      <div><label>Khách hàng</label><input type="text" value="Nguyễn Văn A"></div>
+      <div><label>Ngày đặt</label><input type="date" value="2025-10-01"></div>
+      <div><label>Tình trạng</label>
+        <select>
+          <option>Hoàn thành</option> <!-- Mặc định là Hoàn thành -->
+          <option>Chờ xác nhận</option>
+          <option>Đã xác nhận</option>
+          <option>Đang giao</option>
+          <option>Đã hủy</option>
+        </select>
+      </div>
+      <div class="modal-actions">
+        <a href="#" class="btn-save" onclick="alert('Đã cập nhật!')">Lưu</a>
+        <a href="#" class="btn-cancel">Hủy</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Edit Modal DH002 -->
+<div id="editModal-DH002" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="modal-title">Cập nhật đơn hàng</div>
+      <a href="#" class="modal-close">×</a>
+    </div>
+    <form class="modal-form">
+      <div><label>ID</label><input type="text" value="DH002" disabled></div>
+      <div><label>Khách hàng</label><input type="text" value="Trần Thị B"></div>
+      <div><label>Ngày đặt</label><input type="date" value="2025-10-05"></div>
+      <div><label>Tình trạng</label>
+        <select>
+          <option>Đang giao</option> <!-- Mặc định là Đang giao -->
+          <option>Chờ xác nhận</option>
+          <option>Đã xác nhận</option>
+          <option>Hoàn thành</option>
+          <option>Đã hủy</option>
+        </select>
+      </div>
+      <div class="modal-actions">
+        <a href="#" class="btn-save" onclick="alert('Đã cập nhật!')">Lưu</a>
+        <a href="#" class="btn-cancel">Hủy</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Edit Modal DH003 -->
+<div id="editModal-DH003" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="modal-title">Cập nhật đơn hàng</div>
+      <a href="#" class="modal-close">×</a>
+    </div>
+    <form class="modal-form">
+      <div><label>ID</label><input type="text" value="DH003" disabled></div>
+      <div><label>Khách hàng</label><input type="text" value="Lê Văn C"></div>
+      <div><label>Ngày đặt</label><input type="date" value="2025-10-10"></div>
+      <div><label>Tình trạng</label>
+        <select>
+          <option>Hoàn thành</option> <!-- Mặc định là Hoàn thành -->
+          <option>Chờ xác nhận</option>
+          <option>Đã xác nhận</option>
+          <option>Đang giao</option>
+          <option>Đã hủy</option>
+        </select>
+      </div>
+      <div class="modal-actions">
+        <a href="#" class="btn-save" onclick="alert('Đã cập nhật!')">Lưu</a>
+        <a href="#" class="btn-cancel">Hủy</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Delete Modal -->
+<div id="deleteModal-DH001" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="modal-title">Xác nhận xóa</div>
+      <a href="#" class="modal-close">×</a>
+    </div>
+    <div class="confirm-delete">
+      <p>Bạn có chắc muốn xóa đơn hàng <strong>DH001</strong> không?</p>
+      <div class="modal-actions">
+        <a href="#" class="btn-save" style="background:#d32f2f;" onclick="alert('Đã xóa!')">Xóa</a>
+        <a href="#" class="btn-cancel">Hủy</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Modal DH002 -->
+<div id="deleteModal-DH002" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="modal-title">Xác nhận xóa</div>
+      <a href="#" class="modal-close">×</a>
+    </div>
+    <div class="confirm-delete">
+      <p>Bạn có chắc muốn xóa đơn hàng <strong>DH002</strong> không?</p>
+      <div class="modal-actions">
+        <a href="#" class="btn-save" style="background:#d32f2f;" onclick="alert('Đã xóa!')">Xóa</a>
+        <a href="#" class="btn-cancel">Hủy</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Modal DH003 -->
+<div id="deleteModal-DH003" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="modal-title">Xác nhận xóa</div>
+      <a href="#" class="modal-close">×</a>
+    </div>
+    <div class="confirm-delete">
+      <p>Bạn có chắc muốn xóa đơn hàng <strong>DH003</strong> không?</p>
+      <div class="modal-actions">
+        <a href="#" class="btn-save" style="background:#d32f2f;" onclick="alert('Đã xóa!')">Xóa</a>
+        <a href="#" class="btn-cancel">Hủy</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // PHÂN TRANG NHƯNG CHỈ NHẢY MÀU
+  document.addEventListener("DOMContentLoaded", () => {
+    const pages = document.querySelectorAll('.pagination .page');
+    const prevBtn = document.querySelector('.pagination .prev');
+    const nextBtn = document.querySelector('.pagination .next');
+
+    function setActive(index) {
+      pages.forEach(p => p.classList.remove('active'));
+      pages[index].classList.add('active');
+      prevBtn.disabled = index === 0;
+      nextBtn.disabled = index === pages.length - 1;
+    }
+
+    pages.forEach((btn, idx) => {
+      btn.addEventListener('click', () => setActive(idx));
+    });
+
+    prevBtn.addEventListener('click', () => {
+      let current = [...pages].findIndex(p => p.classList.contains('active'));
+      if (current > 0) setActive(current - 1);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      let current = [...pages].findIndex(p => p.classList.contains('active'));
+      if (current < pages.length - 1) setActive(current + 1);
+    });
+
+    setActive(0); // Trang 1 được chọn ban đầu
+  });
+</script>
 
 </body>
 </html>

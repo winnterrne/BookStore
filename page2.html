@@ -30,12 +30,13 @@
                         <i class="nav-arrow-down ti-music-alt down"></i>
                     </a>
                     <ul class="subnav">
-                        <li><a href="index.html">Thiếu Nhi</a></li>
-                        <li><a href="index.html">Lịch Sử</a></li>
-                        <li><a href="index.html">Trinh Thám</a></li>
+                        <li><a href="page2.html">Thiếu Nhi</a></li>
+                        <li><a href="page2.html">Lịch Sử</a></li>
+                        <li><a href="page2.html">Trinh Thám</a></li>
                         <li><a href="page2.html">Văn Học</a></li>
                         <li><a href="page2.html">Khoa Học</a></li>
                     </ul>
+                    
                 </li>
             </ul>
             <!-- End: Nav -->
@@ -43,39 +44,35 @@
         
             <!-- Begin: Search button -->
             <div class="search-button">
-                <input class="input-box" type="text" placeholder=" Search...">
+                
+                <input id="searchInput" class="input-box" type="text" placeholder=" Search...">
                 <i class="search-search ti-search"></i>
-                <a href="history.html" style="text-decoration: none; color: black;"><i class="search-shopping ti-shopping-cart-full"></i></a>
+                <a href="history.html" style="text-decoration: none; color: black;"><i class="search-shopping ti-shopping-cart-full" style="font-size: 24px;"></i></a>
+                <!-- Nút mở modal -->
+                <i class="ti-filter open-modal-btn" style="cursor:pointer; font-size:24px;"></i>
+
 
                 <div class="book-user"> 
-                    <i class="search-book ti-user"></i>
+                    <i class="search-book ti-user " style="font-size: 24px;""></i>
                     <div class="hover-text">
                         <a href="register.html">Đăng Ký</a>
                         <a href="login.html">Đăng Nhập</a>
                     </div>
                 </div>
             </div>
+            
             <!-- End: Search button -->
-        </div>
+        </div>         
+
+        
 
         <!--                 BODY OF PROJECT                     -->
                 <!--         CONTENT                  -->
                            <!--Slider : Begin-->
         <div class="slider-content">
-            <div class="mySlides">
-                <img src="./accests/img/ms_banner_img1.jpg" alt="">
-                <div class="text-content">Sách là ngọn đèn soi sáng trí tuệ con người</div>
-            </div>
-
-            <div class="mySlides">
-                <img src="./accests/img/ms_banner_img2.jpg" alt="">
-                <div class="text-content">Càng đọc nhiều, bạn càng biết ít</div>
-            </div>
-
-            <div class="mySlides">
-                <img src="./accests/img/ms_banner_img3.jpg" alt="">
-                <div class="text-content">Ai biết đọc mà không đọc thì chẳng hơn gì người mù.</div>
-            </div>
+           <div>
+            <h2 style="color: forestgreen;">Kết quả tìm kiếm cho "Thơ"</h2>
+           </div>
         </div>                        
                      <!--Slider : End-->
 
@@ -84,7 +81,7 @@
         <div id="content-newbooks">
                 <!--TITTLE: BEGIN-->
             <div class="title-header">
-                <h3>Tản Văn - Thơ</h3>
+                <h3></h3>
             </div>
                  <!--TITTLE: END-->
               
@@ -180,7 +177,7 @@
         <div id="content-newbooks">
                 <!--TITTLE: BEGIN-->
             <div class="title-header">
-                <h3>Sách Mới</h3>
+                <h3></h3>
             </div>
                  <!--TITTLE: END-->
               
@@ -270,19 +267,114 @@
                 </a>
             </div>
         </div>
+
+        
         </div>
 
-        <div class="content-pagination">
-            <div class="paignation">
-                <a href="index.html"><button class="btn1"><</button></a>
-                <ul>
-                    <a href="index.html"><li class="link " value="1" onclick="activeLink()">1</li></a>
-                    <a href="page2.html"><li class="link active" value="2" onclick="activeLink()">2</li></a>
-                    <a href="page3.html"><li class="link" value="3" onclick="activeLink()">3</li></a>
-                </ul>
-                <a href="page3.html"><button class="btn2">></button></a>
+        <div id="content-newbooks">
+                <!--TITTLE: BEGIN-->
+            <div class="title-header">
+                <h3></h3>
+            </div>
+                 <!--TITTLE: END-->
+              
+        <div class="list-book">
+                             <!--SACH THU 1-->
+            <div id="newbooks" class="about-newbooks">
+                
+                <a class="link-book" href="#"  onclick="viewBook(21)">
+                    <div class="content-book">
+                        <img class="book-child" title="Lâu Đài Bay Của Pháp Sư HOWL" src="./accests/everypic-img/laudaibaycuaphapsuhowl03.webp" alt="anh sach">
+                        <div class="action-cart">
+                            <button class="buy-btn-left" type="button">
+                                <i class="shopping-cart ti-shopping-cart"></i>
+                            </button>
+                            <button class="buy-btn-right">Mua Ngay</button>
+                        </div>
+
+                        <div class="info-book">
+                            <h3>Lâu Đài Bay Của Pháp Sư HOWL</h3>
+                            <p>167.700 VND</p>
+                        </div>
+
+                    </div>
+                </a>
+                
+            </div>
+            <!--SACH THU 2-->
+            <div id="newbooks" class="about-newbooks">
+                <a class="list-book" href="#" onclick="viewBook(22)">
+                    <div class="content-book">
+                        <img class="book-history" title="Chúa Tể Của Những Chiếc Nhẫn" src="./accests/everypic-img/nhavuatrovenew01.webp" alt="anh sach">
+                        <div class="action-cart">
+                            <button class="buy-btn-left" type="button">
+                                <i class="shopping-cart ti-shopping-cart"></i>
+                            </button>
+                            <button class="buy-btn-right">Mua Ngay</button>
+                        </div>
+
+                        <div class="info-book">
+                            <h3>Chúa Tể Của Những Chiếc Nhẫn 1</h3>
+                            <p>120.000 VND</p>
+                        </div>
+                    </div>
+                </a>
+
+                
+            </div>
+            <!--SACH THU 3-->
+            <div id="newbooks" class="about-newbooks">
+                <a class="list-book" href="#" onclick="viewBook(23)">
+                    <div class="content-book">
+                        <img class="book-horror" title="Không Màu Và Những Năm Tháng Hành Hương" src="./accests/everypic-img/tazakitsukurukhongmauvanhungna.webp" alt="anh sach" >
+                        <div class="action-cart">
+                            <button class="buy-btn-left" type="button">
+                                <i class="shopping-cart ti-shopping-cart"></i>
+                            </button>
+                            <button class="buy-btn-right">Mua Ngay</button>
+                        </div>
+
+                        <div class="info-book">
+                            <h3>Không Màu Và Những Năm Tháng Hành Hương</h3>
+                            <p>122.700 VND</p>
+                        </div>
+
+                    </div>
+                </a>  
+            </div>
+            <!--SACH THU 4-->
+            <div id="newbooks" class="about-newbooks">
+                
+                <a class="list-book" href="#" onclick="viewBook(24)">
+                    <div class="content-book">
+                        <img class="book-love" title="Trẻ Đặc Biệt Của Cô Peregrine" src="./accests/everypic-img/traitredacbietcuacoperegrine01.webp" alt="anh sach">
+                        <div class="action-cart">
+                            <button class="buy-btn-left" type="button">
+                                <i class="shopping-cart ti-shopping-cart"></i>
+                            </button>
+                            <button class="buy-btn-right">Mua Ngay</button>
+                        </div>
+
+                        <div class="info-book">
+                            <h3>Trẻ Đặc Biệt Của Cô Peregrine</h3>
+                            <p>145.000 VND</p>
+                        </div>
+
+                    </div>
+                </a>
             </div>
         </div>
+        </div>
+
+         <div class="content-pagination">
+  <div class="pagination">
+    <button class="prev"><</button>
+    <button class="page active">1</button>
+    <button class="page">2</button>
+    <button class="page">3</button>
+    <button class="next">></button>
+  </div>
+</div> 
 
         <div class="footer">
             <div class="container">
@@ -344,6 +436,40 @@
         </div>
 
     </div>   
+
+<!-- Modal tìm kiếm nâng cao -->
+<div class="modal js-modal">
+    <div class="modal-container">
+        <div class="modal-close js-modal-close">×</div>
+
+        <header class="modal-header">
+            <h2>Tìm kiếm nâng cao</h2>
+        </header>
+
+        <div class="modal-body">
+            <label for="book-name">Tên sách:</label>
+            <input type="text" id="book-name" placeholder="Nhập tên sách...">
+
+            <label>Giá:</label>
+            <div class="price-inputs">
+                <input type="number" placeholder="Tối thiểu">
+                <input type="number" placeholder="Tối đa">
+            </div>
+
+            <label>Thể loại:</label>
+            <select>
+                <option value="">-- Chọn thể loại --</option>
+                <option>Thiếu nhi</option>
+                <option>Lịch sử</option>
+                <option>Trinh thám</option>
+                <option>Văn học</option>
+                <option>Khoa học</option>
+            </select>
+
+            <button class="btn-search">Tìm kiếm</button>
+        </div>
+    </div>
+</div>
     <script src="index.js"></script> 
 </body> 
 </html>   

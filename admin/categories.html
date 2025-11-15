@@ -32,8 +32,9 @@
       Quản lý loại sản phẩm
     </div>
 
+    <!-- FORM THÊM -->
     <div class="action-bar">
-      <form class="categories-form">
+      <form class="categories-form" onsubmit="event.preventDefault(); alert('Đã thêm loại mới!');">
         <input type="text" placeholder="Tên loại sản phẩm">
         <button type="submit" class="btn-add">Thêm</button>
       </form>
@@ -50,9 +51,20 @@
           </tr>
         </thead>
         <tbody id="categoriesBody">
-          <!-- JS sẽ tự động điền -->
+          <!-- JS sinh bảng -->
         </tbody>
       </table>
+      <!-- PHÂN TRANG -->
+      <div class="content-pagination">
+        <div class="pagination">
+          <button class="prev">&lt;</button>
+          <button class="page active">1</button>
+          <button class="page">2</button>
+          <button class="page">3</button>
+          <button class="page">4</button>
+          <button class="next">&gt;</button>
+        </div>
+      </div>
     </div>
   </main>
 
@@ -77,16 +89,107 @@
       })
     )];
 
-    tbody.innerHTML = categories.map((name, index) => `
-      <tr>
-        <td>${index + 1}</td>
-        <td>${name}</td>
-        <td>
-          <button class="btn-small btn-reset">Sửa</button>
-          <button class="btn-small btn-lock">Xóa</button>
-        </td>
-      </tr>
-    `).join('');
+    tbody.innerHTML = categories.map((name, index) => {
+      const id = String(index + 1).padStart(3, '0');
+      return `
+        <tr>
+          <td>${id}</td>
+          <td>${name}</td>
+          <td>
+            <a href="#editModal-${id}" class="btn-small btn-reset">Sửa</a>
+            <a href="#deleteModal-${id}" class="btn-small btn-lock">Xóa</a>
+          </td>
+        </tr>
+      `;
+    }).join('');
+  </script>
+
+  <!-- MODAL SỬA & XÓA CHO TỪNG LOẠI (TỰ ĐỘNG TỪ JS) -->
+  <script>
+    // Tạo modal cho từng loại
+    const modalsContainer = document.createElement('div');
+    document.body.appendChild(modalsContainer);
+
+    const categoriesList = [...new Set(
+      books.map(b => {
+        for (const [folder, name] of Object.entries(typeMap)) {
+          if (b.image.includes(folder)) return name;
+        }
+        return "Văn học Việt Nam";
+      })
+    )];
+
+    categoriesList.forEach((name, index) => {
+      const id = String(index + 1).padStart(3, '0');
+      modalsContainer.innerHTML += `
+        <!-- SỬA ${id} -->
+        <div id="editModal-${id}" class="modal">
+          <div class="modal-content">
+            <div class="modal-header">
+              <div class="modal-title">Sửa loại sản phẩm</div>
+              <a href="#" class="modal-close">×</a>
+            </div>
+            <form class="modal-form">
+              <div><label>ID</label><input type="text" value="${id}" disabled></div>
+              <div><label>Tên loại</label><input type="text" value="${name}"></div>
+              <div class="modal-actions">
+                <a href="#" class="btn-save" onclick="alert('Đã lưu!')">Lưu</a>
+                <a href="#" class="btn-cancel">Hủy</a>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- XÓA ${id} -->
+        <div id="deleteModal-${id}" class="modal">
+          <div class="modal-content">
+            <div class="modal-header">
+              <div class="modal-title">Xác nhận xóa</div>
+              <a href="#" class="modal-close">×</a>
+            </div>
+            <div class="confirm-delete">
+              <p>Bạn có chắc muốn xóa <strong>${name}</strong> không?</p>
+              <div class="modal-actions">
+                <a href="#" class="btn-save" style="background:#d32f2f;" onclick="alert('Đã xóa!')">Xóa</a>
+                <a href="#" class="btn-cancel">Hủy</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+  </script>
+
+  <script>
+    // PHÂN TRANG NHƯNG CHỈ NHẢY MÀU
+    document.addEventListener("DOMContentLoaded", () => {
+      const pages = document.querySelectorAll('.pagination .page');
+      const prevBtn = document.querySelector('.pagination .prev');
+      const nextBtn = document.querySelector('.pagination .next');
+
+      function setActive(index) {
+        pages.forEach(p => p.classList.remove('active'));
+        pages[index].classList.add('active');
+        prevBtn.disabled = index === 0;
+        nextBtn.disabled = index === pages.length - 1;
+      }
+
+      pages.forEach((btn, idx) => {
+        btn.addEventListener('click', () => setActive(idx));
+      });
+
+      prevBtn.addEventListener('click', () => {
+        let current = [...pages].findIndex(p => p.classList.contains('active'));
+        if (current > 0) setActive(current - 1);
+      });
+
+      nextBtn.addEventListener('click', () => {
+        let current = [...pages].findIndex(p => p.classList.contains('active'));
+        if (current < pages.length - 1) setActive(current + 1);
+      });
+
+      setActive(0); // Trang 1 được chọn ban đầu
+    });
   </script>
 
 </body>

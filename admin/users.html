@@ -2,6 +2,7 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quản lý người dùng</title>
   <link rel="stylesheet" href="admin.css">
 </head>
@@ -30,24 +31,20 @@
       Quản lý người dùng
     </div>
 
+    <!-- TÌM KIẾM -->
     <div class="action-bar">
-      <form class="users-form-grid">
-        <input type="text" placeholder="Tên đăng nhập">
-        <input type="email" placeholder="Email">
-        <input type="password" placeholder="Mật khẩu">
-        <select>
-          <option value="">Chọn vai trò</option>
-          <option value="admin">Quản trị viên</option>
-          <option value="staff">Nhân viên</option>
-          <option value="user">Người dùng</option>
-        </select>
-        <button type="submit" class="btn-add">Thêm người dùng</button>
+      <form class="search-form" onsubmit="return false;">
+        <input 
+          type="text" 
+          id="searchInput" 
+          placeholder="Nhập Tên hoặc ID cần tìm..." 
+          autocomplete="off">
       </form>
     </div>
 
     <div class="content-box">
-      <h2 style="margin: 0 0 16px; color: #2e7d32; font-size: 20px;">Danh sách người dùng</h2>
-      <table class="table">
+      <h2 class="section-title">Danh sách người dùng</h2>
+      <table class="table" id="userTable">
         <thead>
           <tr>
             <th>ID</th>
@@ -64,8 +61,8 @@
             <td>admin@shop.com</td>
             <td>Quản trị viên</td>
             <td>
-              <button class="btn-small btn-reset">Sửa</button>
-              <button class="btn-small btn-lock">Xóa</button>
+              <a href="#editModal-001" class="btn-small btn-reset">Sửa</a>
+              <a href="#deleteModal-001" class="btn-small btn-lock">Xóa</a>
             </td>
           </tr>
           <tr>
@@ -74,8 +71,8 @@
             <td>tranvietduc@shop.com</td>
             <td>Người dùng</td>
             <td>
-              <button class="btn-small btn-reset">Sửa</button>
-              <button class="btn-small btn-lock">Xóa</button>
+              <a href="#editModal-002" class="btn-small btn-reset">Sửa</a>
+              <a href="#deleteModal-002" class="btn-small btn-lock">Xóa</a>
             </td>
           </tr>
           <tr>
@@ -84,18 +81,18 @@
             <td>lethehao@shop.com</td>
             <td>Người dùng</td>
             <td>
-              <button class="btn-small btn-reset">Sửa</button>
-              <button class="btn-small btn-lock">Xóa</button>
+              <a href="#editModal-003" class="btn-small btn-reset">Sửa</a>
+              <a href="#deleteModal-003" class="btn-small btn-lock">Xóa</a>
             </td>
           </tr>
           <tr>
             <td>004</td>
             <td>TranYenVy</td>
-            <td>tranyenvy@shop.com</td>
+            <td>tranyenvi@shop.com</td>
             <td>Người dùng</td>
             <td>
-              <button class="btn-small btn-reset">Sửa</button>
-              <button class="btn-small btn-lock">Xóa</button>
+              <a href="#editModal-004" class="btn-small btn-reset">Sửa</a>
+              <a href="#deleteModal-004" class="btn-small btn-lock">Xóa</a>
             </td>
           </tr>
           <tr>
@@ -104,14 +101,217 @@
             <td>trandienkha@shop.com</td>
             <td>Người dùng</td>
             <td>
-              <button class="btn-small btn-reset">Sửa</button>
-              <button class="btn-small btn-lock">Xóa</button>
+              <a href="#editModal-005" class="btn-small btn-reset">Sửa</a>
+              <a href="#deleteModal-005" class="btn-small btn-lock">Xóa</a>
             </td>
           </tr>
         </tbody>
       </table>
+      <!-- PHÂN TRANG -->
+      <div class="content-pagination">
+        <div class="pagination">
+          <button class="prev">&lt;</button>
+          <button class="page active">1</button>
+          <button class="page">2</button>
+          <button class="page">3</button>
+          <button class="page">4</button>
+          <button class="next">&gt;</button>
+        </div>
+      </div>
     </div>
   </main>
 
+  <!-- Modal cho Sửa và Xóa (giữ nguyên) -->
+  <!-- 001 -->
+  <div id="editModal-001" class="modal">
+    <div class="modal-content">
+      <div class="modal-header"><div class="modal-title">Sửa người dùng</div><a href="#" class="modal-close">×</a></div>
+      <form class="modal-form">
+        <div class="form-group"><label>ID</label><input type="text" value="001" disabled></div>
+        <div class="form-group"><label>Tên đăng nhập</label><input type="text" value="admin"></div>
+        <div class="form-group"><label>Email</label><input type="email" value="admin@shop.com"></div>
+        <div class="form-group"><label>Vai trò</label>
+          <select><option selected>Quản trị viên</option><option>Nhân viên</option><option>Người dùng</option></select>
+        </div>
+        <div class="modal-actions">
+          <a href="#" class="btn-save" onclick="alert('Đã lưu!')">Lưu</a>
+          <a href="#" class="btn-cancel">Hủy</a>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div id="deleteModal-001" class="modal">
+    <div class="modal-content">
+      <div class="modal-header"><div class="modal-title">Xác nhận xóa</div><a href="#" class="modal-close">×</a></div>
+      <div class="confirm-delete" style="text-align: center;">
+        <p>Bạn có chắc muốn xóa <strong>admin</strong> không?</p>
+        <div class="modal-actions">
+          <a href="#" class="btn-save" style="background:#d32f2f;" onclick="alert('Đã xóa!')">Xóa</a>
+          <a href="#" class="btn-cancel">Hủy</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 002 -->
+  <div id="editModal-002" class="modal">
+    <div class="modal-content">
+      <div class="modal-header"><div class="modal-title">Sửa người dùng</div><a href="#" class="modal-close">×</a></div>
+      <form class="modal-form">
+        <div class="form-group"><label>ID</label><input type="text" value="002" disabled></div>
+        <div class="form-group"><label>Tên đăng nhập</label><input type="text" value="TranVietDuc"></div>
+        <div class="form-group"><label>Email</label><input type="email" value="tranvietduc@shop.com"></div>
+        <div class="form-group"><label>Vai trò</label>
+          <select><option>Quản trị viên</option><option>Nhân viên</option><option selected>Người dùng</option></select>
+        </div>
+        <div class="modal-actions">
+          <a href="#" class="btn-save" onclick="alert('Đã lưu!')">Lưu</a>
+          <a href="#" class="btn-cancel">Hủy</a>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div id="deleteModal-002" class="modal">
+    <div class="modal-content">
+      <div class="modal-header"><div class="modal-title">Xác nhận xóa</div><a href="#" class="modal-close">×</a></div>
+      <div class="confirm-delete" style="text-align: center;">
+        <p>Bạn có chắc muốn xóa <strong>TranVietDuc</strong> không?</p>
+        <div class="modal-actions">
+          <a href="#" class="btn-save" style="background:#d32f2f;" onclick="alert('Đã xóa!')">Xóa</a>
+          <a href="#" class="btn-cancel">Hủy</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 003 -->
+  <div id="editModal-003" class="modal">
+    <div class="modal-content">
+      <div class="modal-header"><div class="modal-title">Sửa người dùng</div><a href="#" class="modal-close">×</a></div>
+      <form class="modal-form">
+        <div class="form-group"><label>ID</label><input type="text" value="003" disabled></div>
+        <div class="form-group"><label>Tên đăng nhập</label><input type="text" value="LeTheHao"></div>
+        <div class="form-group"><label>Email</label><input type="email" value="lethehao@shop.com"></div>
+        <div class="form-group"><label>Vai trò</label>
+          <select><option>Quản trị viên</option><option>Nhân viên</option><option selected>Người dùng</option></select>
+        </div>
+        <div class="modal-actions">
+          <a href="#" class="btn-save" onclick="alert('Đã lưu!')">Lưu</a>
+          <a href="#" class="btn-cancel">Hủy</a>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div id="deleteModal-003" class="modal">
+    <div class="modal-content">
+      <div class="modal-header"><div class="modal-title">Xác nhận xóa</div><a href="#" class="modal-close">×</a></div>
+      <div class="confirm-delete" style="text-align: center;">
+        <p>Bạn có chắc muốn xóa <strong>LeTheHao</strong> không?</p>
+        <div class="modal-actions">
+          <a href="#" class="btn-save" style="background:#d32f2f;" onclick="alert('Đã xóa!')">Xóa</a>
+          <a href="#" class="btn-cancel">Hủy</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 004 -->
+  <div id="editModal-004" class="modal">
+    <div class="modal-content">
+      <div class="modal-header"><div class="modal-title">Sửa người dùng</div><a href="#" class="modal-close">×</a></div>
+      <form class="modal-form">
+        <div class="form-group"><label>ID</label><input type="text" value="004" disabled></div>
+        <div class="form-group"><label>Tên đăng nhập</label><input type="text" value="TranYenVy"></div>
+        <div class="form-group"><label>Email</label><input type="email" value="tranyenvi@shop.com"></div>
+        <div class="form-group"><label>Vai trò</label>
+          <select><option>Quản trị viên</option><option>Nhân viên</option><option selected>Người dùng</option></select>
+        </div>
+        <div class="modal-actions">
+          <a href="#" class="btn-save" onclick="alert('Đã lưu!')">Lưu</a>
+          <a href="#" class="btn-cancel">Hủy</a>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div id="deleteModal-004" class="modal">
+    <div class="modal-content">
+      <div class="modal-header"><div class="modal-title">Xác nhận xóa</div><a href="#" class="modal-close">×</a></div>
+      <div class="confirm-delete" style="text-align: center;">
+        <p>Bạn có chắc muốn xóa <strong>TranYenVy</strong> không?</p>
+        <div class="modal-actions">
+          <a href="#" class="btn-save" style="background:#d32f2f;" onclick="alert('Đã xóa!')">Xóa</a>
+          <a href="#" class="btn-cancel">Hủy</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 005 -->
+  <div id="editModal-005" class="modal">
+    <div class="modal-content">
+      <div class="modal-header"><div class="modal-title">Sửa người dùng</div><a href="#" class="modal-close">×</a></div>
+      <form class="modal-form">
+        <div class="form-group"><label>ID</label><input type="text" value="005" disabled></div>
+        <div class="form-group"><label>Tên đăng nhập</label><input type="text" value="TranDienKha"></div>
+        <div class="form-group"><label>Email</label><input type="email" value="trandienkha@shop.com"></div>
+        <div class="form-group"><label>Vai trò</label>
+          <select><option>Quản trị viên</option><option>Nhân viên</option><option selected>Người dùng</option></select>
+        </div>
+        <div class="modal-actions">
+          <a href="#" class="btn-save" onclick="alert('Đã lưu!')">Lưu</a>
+          <a href="#" class="btn-cancel">Hủy</a>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div id="deleteModal-005" class="modal">
+    <div class="modal-content">
+      <div class="modal-header"><div class="modal-title">Xác nhận xóa</div><a href="#" class="modal-close">×</a></div>
+      <div class="confirm-delete" style="text-align: center;">
+        <p>Bạn có chắc muốn xóa <strong>TranDienKha</strong> không?</p>
+        <div class="modal-actions">
+          <a href="#" class="btn-save" style="background:#d32f2f;" onclick="alert('Đã xóa!')">Xóa</a>
+          <a href="#" class="btn-cancel">Hủy</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // PHÂN TRANG NHƯNG CHỈ NHẢY MÀU
+    document.addEventListener("DOMContentLoaded", () => {
+      const pages = document.querySelectorAll('.pagination .page');
+      const prevBtn = document.querySelector('.pagination .prev');
+      const nextBtn = document.querySelector('.pagination .next');
+
+      function setActive(index) {
+        pages.forEach(p => p.classList.remove('active'));
+        pages[index].classList.add('active');
+        // Quản lý trạng thái disabled
+        prevBtn.disabled = index === 0;
+        nextBtn.disabled = index === pages.length - 1;
+      }
+
+      // Click trực tiếp số trang
+      pages.forEach((btn, idx) => {
+        btn.addEventListener('click', () => setActive(idx));
+      });
+
+      // Click <
+      prevBtn.addEventListener('click', () => {
+        let current = [...pages].findIndex(p => p.classList.contains('active'));
+        if (current > 0) setActive(current - 1);
+      });
+
+      // Click >
+      nextBtn.addEventListener('click', () => {
+        let current = [...pages].findIndex(p => p.classList.contains('active'));
+        if (current < pages.length - 1) setActive(current + 1);
+      });
+
+      // Khởi tạo trạng thái ban đầu
+      setActive(0); // Trang 1 được chọn ban đầu
+    });
+  </script>
 </body>
 </html>

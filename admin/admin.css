@@ -327,6 +327,7 @@ form {
   flex-direction: column;
   gap: 14px;
   width: 320px;
+  margin: 0 auto;
 }
 
 form label {
@@ -369,9 +370,6 @@ form input {
   background: #2e7d32;
 }
 
-/* =============================
-   FIX FORM LAYOUT – TOÀN HỆ THỐNG
-============================= */
 /* =============================
    ACTION BAR FORM – NHỎ GỌN, ĐỒNG BỘ, RESPONSIVE
 ============================= */
@@ -819,4 +817,664 @@ form input {
     width: 100% !important;
     min-width: auto !important;
   }
+}
+
+/* =============================
+   MODAL – DÙNG :target (không cần JS)
+============================= */
+.modal {
+  display: flex;
+  position: fixed;
+  inset: 0;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+}
+
+
+.modal:target {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+  max-width: 500px;
+  width: 90%;
+}
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #eee;
+}
+.modal-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #2e7d32;
+}
+.modal-close {
+  color: #aaa;
+  font-size: 28px;
+  font-weight: bold;
+  text-decoration: none;
+}
+.modal-close:hover { color: #000; }
+.modal-form { display: flex; flex-direction: column; gap: 14px; }
+.modal-form label { font-weight: 600; color: #333; font-size: 14px; }
+.modal-form input,
+.modal-form select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1.5px solid #ccc;
+  border-radius: 10px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+.modal-actions { display: flex; gap: 12px; margin-top: 16px; }
+.modal-actions a,
+.modal-actions button {
+  flex: 1; padding: 12px; border: none; border-radius: 10px;
+  font-weight: 600; font-size: 15px; text-align: center; text-decoration: none;
+}
+.btn-save { background: #2e7d32; color: #fff; }
+.btn-cancel { background: #eee; color: #333; }
+.confirm-delete p { text-align: center; font-size: 16px; color: #d32f2f; margin: 20px 0; }
+@keyframes fadeIn { from {opacity:0} to {opacity:1} }
+@keyframes slideDown { from {transform:translateY(-50px);opacity:0} to {transform:translateY(0);opacity:1} }
+
+/* =============================
+   SEARCH BAR – Ô TÌM KIẾM ĐẸP, RỘNG, CHUYÊN NGHIỆP
+============================= */
+.action-bar .search-form {
+  display: flex !important;
+  justify-content: center !important;
+  padding: 20px 0 !important;
+  background: #f8fff8 !important;
+  border-radius: 16px !important;
+  margin-bottom: 24px !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important;
+  border: 1px solid #e0f2e1 !important;
+}
+
+.action-bar .search-form input {
+  width: 100% !important;
+  max-width: 520px !important;
+  min-width: 300px !important;
+  padding: 16px 20px !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  border: 2px solid #ddd !important;
+  border-radius: 16px !important;
+  outline: none !important;
+  background: #fff !important;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08) !important;
+  transition: all 0.25s ease !important;
+  color: #333 !important;
+}
+
+.action-bar .search-form input::placeholder {
+  color: #999 !important;
+  font-style: italic !important;
+}
+
+.action-bar .search-form input:focus {
+  border-color: #2e7d32 !important;
+  box-shadow: 0 0 0 4px rgba(46, 125, 50, 0.18) !important;
+  transform: translateY(-1px) !important;
+  background: #fff !important;
+}
+
+/* =============================
+   THÔNG BÁO TRÊN ĐẦU (ALERT) – CHỈ THÊM PHẦN NÀY
+============================= */
+.alert {
+  position: fixed !important;
+  top: 100px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  background: #2e7d32 !important;
+  color: #fff !important;
+  padding: 14px 32px !important;
+  border-radius: 12px !important;
+  font-weight: 600 !important;
+  font-size: 15px !important;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2) !important;
+  z-index: 10000 !important;
+  opacity: 0 !important;
+  transition: all 0.3s ease !important;
+  pointer-events: none !important;
+}
+.alert.show {
+  opacity: 1 !important;
+}
+
+/* ==============================================================
+   CHI TIẾT SẢN PHẨM
+================================================================ */
+
+/* Layout 2 cột – Tăng bề ngang cột hình ảnh lên 220px */
+.detail-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;  /* Tăng từ 180px lên 220px để rộng hơn */
+  gap: 24px;
+  align-items: start;
+}
+.detail-img {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.1);
+}
+.detail-info h3.detail-title {
+  margin: 0 0 8px;
+  font-size: 1.35rem;
+  color: #2e7d32;
+}
+.detail-info .detail-type {
+  margin-bottom: 16px;
+  font-size: .95rem;
+  color: #555;
+}
+.detail-info .detail-author {
+  margin-bottom: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.detail-info .detail-desc {
+  line-height: 1.5;
+  font-size: .95rem;
+  color: #333;
+}
+
+/* Modal chi tiết – Tăng bề ngang lên 800px */
+.product-detail-modal {
+  max-width: 800px;  /* Tăng từ 680px lên 800px để rộng hơn một chút */
+}
+
+/* Nút Đóng ở bên phải */
+.modal-actions-right {
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+/* Hình thumbnail trong bảng */
+.thumb-img {
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Textarea mô tả khi sửa */
+.edit-desc-textarea {
+  width: 100%;
+  height: 150px;
+  resize: vertical;
+  padding: 10px;
+  border: 1.5px solid #ccc;
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+/* Section title (để thay thế inline style) */
+.section-title {
+  margin: 0 0 16px;
+  color: #2e7d32;
+  font-size: 20px;
+}
+
+/* Responsive – Điều chỉnh cho mobile để vẫn rộng hơn */
+@media (max-width: 600px) {
+  .detail-layout { grid-template-columns: 1fr; }
+  .detail-img { max-width: 220px; margin: 0 auto; }  /* Giữ đồng bộ với thay đổi */
+  .product-detail-modal { max-width: 95%; }  /* Trên mobile, chiếm gần full màn hình */
+}
+/* ==============================================================
+   IMPORT PAGE – DỌN STYLE TỪ INLINE
+================================================================ */
+.import-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr auto;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.import-form-grid input,
+.import-form-grid button {
+  height: 42px;
+  font-size: 14px;
+}
+.ellipsis {
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+}
+.status-pending { color: #f57c00; font-weight: 600; }
+.status-completed { color: #2e7d32; font-weight: 600; }
+.btn-complete {
+  background: #2e7d32;
+  color: #fff;
+  padding: 5px 10px;
+  font-size: 13px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.btn-complete:hover {
+  background: #1b5e20;
+}
+
+.btn-undo:hover { background: #e65100; }
+
+/* Nút Hoàn thành & Hoàn tác */
+.btn-complete {
+  background: #2e7d32;
+  color: #fff;
+  padding: 5px 10px;
+  font-size: 13px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.btn-complete:hover { background: #1b5e20; }
+
+.btn-undo {
+  background: #f57c00;
+  color: #fff;
+  padding: 5px 10px;
+  font-size: 13px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.btn-undo:hover { background: #e65100; }
+
+/* =============================
+   FINAL FIX — MODAL CĂN GIỮA CHUẨN XÁC
+============================= */
+.modal {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: rgba(0, 0, 0, 0.45) !important;
+  display: none !important;
+  justify-content: center !important;
+  align-items: center !important;
+  flex-direction: column !important;  /* Thêm: đảm bảo center vertical nếu có nhiều child */
+  z-index: 9999 !important;
+}
+
+.modal:target {
+  display: flex !important;
+}
+
+.modal-content {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
+  margin: auto !important;  /* Sửa: thay margin: 0 bằng auto để center nếu flex fail */
+  background: #fff !important;
+  border-radius: 16px !important;
+  padding: 24px !important;
+  max-width: 480px !important;
+  width: 90% !important;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important;
+  animation: fadeIn 0.25s ease !important;
+}
+
+.modal-header,
+.modal-form {
+  text-align: left !important;  /* Giữ nguyên, nhưng nếu bạn muốn center text bên trong, thay bằng center !important; */
+}
+
+.modal-close {
+  margin-left: 8px !important;
+}
+
+.modal-form {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;  /* Thêm: center các field/input horizontally */
+  gap: 16px !important;
+}
+.form-group {
+  width: 100% !important;  /* Đảm bảo mỗi group full width */
+  max-width: 400px !important;  /* Giới hạn để không quá rộng, center tốt hơn */
+  margin: 0 auto !important;  /* Center mỗi group */
+}
+
+.form-group {
+  text-align: center !important;  /* Center text bên trong nếu cần */
+}
+.form-group input, .form-group select {
+  margin: 0 auto !important;  /* Center input nếu flex fail */
+  display: block !important;
+}
+
+/* =============================
+   MODAL – CĂN GIỮA CHUẨN XÁC VÀ ĐỒNG BỘ
+============================= */
+.modal {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: rgba(0, 0, 0, 0.45) !important;
+  display: none !important;
+  justify-content: center !important;
+  align-items: center !important;
+  z-index: 9999 !important;
+}
+
+.modal:target {
+  display: flex !important;
+}
+
+.modal-content {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
+  margin: auto !important;
+  background: #fff !important;
+  border-radius: 16px !important;
+  padding: 24px !important;
+  max-width: 480px !important;
+  width: 90% !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+  animation: fadeIn 0.25s ease !important;
+  display: flex !important; /* Thêm: để center nội dung bên trong */
+  flex-direction: column !important;
+  align-items: center !important; /* Center toàn bộ nội dung modal */
+}
+
+.modal-header {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin-bottom: 16px !important;
+  padding-bottom: 12px !important;
+  border-bottom: 1px solid #eee !important;
+  width: 100% !important; /* Full width để header center */
+  text-align: center !important; /* Center tiêu đề nếu cần */
+}
+
+.modal-title {
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  color: #2e7d32 !important;
+  margin: 0 auto !important; /* Center tiêu đề */
+}
+
+.modal-close {
+  color: #aaa !important;
+  font-size: 28px !important;
+  font-weight: bold !important;
+  text-decoration: none !important;
+}
+
+.modal-close:hover {
+  color: #000 !important;
+}
+
+.modal-form {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 16px !important;
+  text-align: center !important; /* Đảm bảo toàn bộ form center */
+  width: 100% !important;
+}
+
+.form-group {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+  margin-bottom: 16px !important;
+  width: 100% !important;
+  max-width: 400px !important;
+  align-items: center !important; /* Center label và input trong group */
+  text-align: center !important; /* Center text bên trong */
+}
+
+.form-group label {
+  font-weight: 600 !important;
+  color: #333 !important;
+  font-size: 14px !important;
+  width: 100% !important; /* Full width để center text */
+  text-align: center !important; /* Center text của label */
+}
+
+.form-group input,
+.form-group select {
+  width: 100% !important; /* Đảm bảo full width trong form-group */
+  max-width: 100% !important; /* Không vượt quá giới hạn */
+  padding: 10px 12px !important;
+  border: 1.5px solid #ccc !important;
+  border-radius: 10px !important;
+  font-size: 14px !important;
+  background: #fff !important;
+  box-sizing: border-box !important;
+  margin: 0 auto !important; /* Center mỗi input */
+  display: block !important; /* Đảm bảo block để margin auto hoạt động */
+}
+
+.form-group input:focus {
+  outline: none !important;
+  border-color: #2e7d32 !important;
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.15) !important;
+}
+
+.form-group select {
+  appearance: none !important;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%232e7d32' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E") no-repeat right 12px center !important;
+  background-size: 12px !important;
+  padding-right: 36px !important;
+}
+
+.modal-actions {
+  display: flex !important;
+  gap: 12px !important;
+  margin-top: 16px !important;
+  width: 100% !important;
+  justify-content: center !important; /* Center nút Lưu/Hủy */
+}
+
+.modal-actions a,
+.modal-actions button {
+  flex: 1 !important;
+  padding: 12px !important;
+  border: none !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+  font-size: 15px !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  max-width: 150px !important; /* Giới hạn width nút để center đẹp */
+}
+
+.btn-save {
+  background: #2e7d32 !important;
+  color: #fff !important;
+}
+
+.btn-cancel {
+  background: #eee !important;
+  color: #333 !important;
+}
+
+.confirm-delete p {
+  text-align: center !important;
+  font-size: 16px !important;
+  color: #d32f2f !important;
+  margin: 20px 0 !important;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ==============================================================
+   CHI TIẾT SẢN PHẨM
+================================================================ */
+
+/* Modal chi tiết sản phẩm – Tăng bề ngang và padding */
+.product-detail-modal {
+  max-width: 900px !important; /* Tăng lên 900px để rộng hơn */
+  width: 95% !important;
+  padding: 30px !important;
+}
+
+/* Layout 2 cột – Sử dụng flex thay grid, tăng kích thước hình ảnh */
+.detail-layout {
+  display: flex !important;
+  gap: 30px !important; /* Tăng khoảng cách giữa cột */
+  align-items: flex-start !important;
+  width: 100% !important;
+  margin-bottom: 20px !important;
+}
+
+.detail-img {
+  width: 250px !important; /* Tăng kích thước hình ảnh */
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+  object-fit: cover !important;
+}
+
+.detail-info {
+  flex: 1 !important;
+}
+
+.detail-info h3.detail-title {
+  margin: 0 0 12px !important;
+  font-size: 1.5rem !important;
+  color: #2e7d32 !important;
+}
+
+.detail-info .detail-type {
+  margin-bottom: 16px !important;
+  font-size: 1rem !important;
+  color: #555 !important;
+}
+
+.detail-info .detail-author {
+  margin-bottom: 12px !important;
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+}
+
+.detail-info .detail-desc {
+  line-height: 1.6 !important;
+  font-size: 1rem !important;
+  color: #333 !important;
+}
+
+/* Nút Đóng và hành động */
+.modal-actions-right {
+  justify-content: flex-end !important;
+  margin-top: 20px !important;
+}
+
+/* Hình thumbnail trong bảng */
+.thumb-img {
+  border-radius: 4px !important;
+  cursor: pointer !important;
+}
+
+/* Textarea mô tả khi sửa */
+.edit-desc-textarea {
+  width: 100% !important;
+  height: 150px !important;
+  resize: vertical !important;
+  padding: 10px !important;
+  border: 1.5px solid #ccc !important;
+  border-radius: 10px !important;
+  font-size: 14px !important;
+  font-family: inherit !important;
+}
+
+/* Section title (để thay thế inline style) */
+.section-title {
+  margin: 0 0 16px !important;
+  color: #2e7d32 !important;
+  font-size: 20px !important;
+}
+
+/* Responsive – Điều chỉnh cho mobile */
+@media (max-width: 600px) {
+  .detail-layout {
+    flex-direction: column !important;
+  }
+  .detail-img {
+    max-width: 250px !important; /* Giữ kích thước hình ảnh */
+    margin: 0 auto 20px !important;
+  }
+  .product-detail-modal {
+    width: 90% !important;
+    padding: 20px !important;
+  }
+}
+/* =============================
+   PAGINATION
+============================= */
+.content-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px !important;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  color: #383838;
+  padding: 10px 40px;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.pagination button {
+  padding: 8px 14px;
+  border: 1px solid #aaa;
+  background: #f2f2f2;
+  border-radius: 5px;
+  margin: 0 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.pagination button:hover {
+  background: #e0e0e0;
+}
+
+.pagination button.active {
+  background: forestgreen;
+  color: white;
+  border-color: forestgreen;
+}
+
+.pagination button:disabled {
+  background: #f5f5f5;
+  color: #ccc;
+  border-color: #ddd;
+  cursor: not-allowed;
 }

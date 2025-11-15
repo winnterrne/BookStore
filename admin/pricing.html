@@ -31,7 +31,7 @@
     </div>
 
     <div class="content-box">
-      <h2 style="margin: 0 0 16px; color: #2e7d32; font-size: 20px;">Bảng giá sản phẩm</h2>
+      <h2 class="section-title">Bảng giá sản phẩm</h2>
       <table class="table">
         <thead>
           <tr>
@@ -41,30 +41,128 @@
             <th>Giá bán</th>
             <th>Giảm giá (%)</th>
             <th>Số lượng</th>
+            <th>Hành động</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="pricingBody">
           <!-- Dữ liệu sẽ được load tự động -->
         </tbody>
       </table>
+
+      <!-- PHÂN TRANG -->
+      <div class="content-pagination">
+        <div class="pagination">
+          <button class="prev">&lt;</button>
+          <button class="page active">1</button>
+          <button class="page">2</button>
+          <button class="page">3</button>
+          <button class="page">4</button>
+          <button class="next">&gt;</button>
+        </div>
+      </div>
     </div>
   </main>
 
   <script src="../data-book.js"></script>
 <script>
-  const tbody = document.querySelector(".table tbody");
+  const tbody = document.getElementById("pricingBody");
+  const modalsContainer = document.createElement('div');
+  document.body.appendChild(modalsContainer);
 
-  tbody.innerHTML = books.map(b => `
-    <tr>
-      <td>${b.id}</td>
-      <td>${b.title}</td>
-      <td>${b.oldPrice.toLocaleString()}đ</td>
-      <td>${b.price.toLocaleString()}đ</td>
-      <td>${b.discount}%</td>
-      <td>${b.stock}</td>
-    </tr>
-  `).join('');
+  tbody.innerHTML = books.map(b => {
+    const row = `
+      <tr>
+        <td>${b.id}</td>
+        <td>${b.title}</td>
+        <td>${b.oldPrice.toLocaleString()}đ</td>
+        <td>${b.price.toLocaleString()}đ</td>
+        <td>${b.discount}%</td>
+        <td>${b.stock}</td>
+        <td>
+          <a href="#editModal-${b.id}" class="btn-small btn-reset">Sửa</a>
+          <a href="#deleteModal-${b.id}" class="btn-small btn-lock">Xóa</a>
+        </td>
+      </tr>
+    `;
+
+    // Generate modals
+    modalsContainer.innerHTML += `
+      <!-- Edit Modal for ${b.id} -->
+      <div id="editModal-${b.id}" class="modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="modal-title">Sửa giá bán</div>
+            <a href="#" class="modal-close">×</a>
+          </div>
+          <form class="modal-form">
+            <div><label>Mã SP</label><input type="text" value="${b.id}" disabled></div>
+            <div><label>Tên SP</label><input type="text" value="${b.title}" disabled></div>
+            <div><label>Giá cũ</label><input type="number" value="${b.oldPrice}"></div>
+            <div><label>Giá bán</label><input type="number" value="${b.price}"></div>
+            <div><label>Giảm giá (%)</label><input type="number" value="${b.discount}"></div>
+            <div class="modal-actions">
+              <a href="#" class="btn-save" onclick="alert('Đã lưu!')">Lưu</a>
+              <a href="#" class="btn-cancel">Hủy</a>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Delete Modal for ${b.id} -->
+      <div id="deleteModal-${b.id}" class="modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="modal-title">Xác nhận xóa</div>
+            <a href="#" class="modal-close">×</a>
+          </div>
+          <div class="confirm-delete">
+            <p>Bạn có chắc muốn xóa <strong>${b.title}</strong> không?</p>
+            <div class="modal-actions">
+              <a href="#" class="btn-save" style="background:#d32f2f;" onclick="alert('Đã xóa!')">Xóa</a>
+              <a href="#" class="btn-cancel">Hủy</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+
+    return row;
+  }).join('');
 </script>
+
+
+<script>
+  // PHÂN TRANG NHƯNG CHỈ NHẢY MÀU
+  document.addEventListener("DOMContentLoaded", () => {
+    const pages = document.querySelectorAll('.pagination .page');
+    const prevBtn = document.querySelector('.pagination .prev');
+    const nextBtn = document.querySelector('.pagination .next');
+
+    function setActive(index) {
+      pages.forEach(p => p.classList.remove('active'));
+      pages[index].classList.add('active');
+      prevBtn.disabled = index === 0;
+      nextBtn.disabled = index === pages.length - 1;
+    }
+
+    pages.forEach((btn, idx) => {
+      btn.addEventListener('click', () => setActive(idx));
+    });
+
+    prevBtn.addEventListener('click', () => {
+      let current = [...pages].findIndex(p => p.classList.contains('active'));
+      if (current > 0) setActive(current - 1);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      let current = [...pages].findIndex(p => p.classList.contains('active'));
+      if (current < pages.length - 1) setActive(current + 1);
+    });
+
+    setActive(0); // Trang 1 được chọn ban đầu
+  });
+</script>
+
 
 </body>
 </html>

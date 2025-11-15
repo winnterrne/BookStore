@@ -6,7 +6,75 @@
     <link rel="stylesheet" href="./accests/sytle.css">
     <link rel="stylesheet" href="./themify-icons/themify-icons.css">
     
-    <title>BOOKSTORE</title>
+    <title></title>
+        <style>
+      body {
+        background-color: #f8f9fa; /* Thêm màu nền cho body */
+      }
+
+      #main {
+        padding-top: 100px; /* Thêm khoảng cách phía trên để nội dung không bị che */
+      }
+
+      .profile-container {
+        max-width: 900px;
+        margin: 40px auto;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+      }
+
+      .profile-container h2 {
+        font-size: 28px;
+        color: forestgreen;
+        border-bottom: 2px solid forestgreen;
+        padding-bottom: 10px;
+        font-weight: 600;
+      }
+
+      .profile-group {
+        margin-bottom: 18px;
+      }
+
+      .profile-group label {
+        display: block;
+        font-size: 17px;
+        margin-bottom: 6px;
+        color: #333;
+      }
+
+      .profile-group input {
+        width: 100%;
+        height: 48px;
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #ddd;
+        font-size: 16px;
+        transition: all 0.3s;
+      }
+
+      #saveProfile {
+        width: 180px;
+        height: 48px;
+        background: forestgreen;
+        border: none;
+        border-radius: 6px;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 17px;
+        margin-top: 20px;
+        transition: all 0.3s;
+      }
+
+      #saveProfile:hover {
+        background: white;
+        color: forestgreen;
+        border: 1px solid forestgreen;
+        box-shadow: 0 2px 5px rgba(34, 139, 34, 0.3);
+      }
+    </style>
 </head>
 
 <body>
@@ -30,11 +98,11 @@
                         <i class="nav-arrow-down ti-music-alt down"></i>
                     </a>
                     <ul class="subnav">
-                        <li><a href="index.html">Thiếu Nhi</a></li>
-                        <li><a href="index.html">Lịch Sử</a></li>
-                        <li><a href="page3.html">Trinh Thám</a></li>
-                        <li><a href="page2.html">Văn Học</a></li>
-                        <li><a href="page2.html">Khoa Học</a></li>
+                        <li><a href="">Thiếu Nhi</a></li>
+                        <li><a href="">Lịch Sử</a></li>
+                        <li><a href="">Trinh Thám</a></li>
+                        <li><a href="">Văn Học</a></li>
+                        <li><a href="">Khoa Học</a></li>
                     </ul>
                 </li>
             </ul>
@@ -43,126 +111,53 @@
         
             <!-- Begin: Search button -->
             <div class="search-button">
-                <a href="page2.html"><input class="input-box" type="text" placeholder=" Search..."></a>
+                <input class="input-box" type="text" placeholder=" Search...">
                 <i class="search-search ti-search"></i>
                 <i class="search-shopping ti-shopping-cart-full"></i>
-                
+                <i class="ti-filter open-modal-btn" style="cursor:pointer; font-size:22px;"></i>
 
                 <div class="book-user"> 
                     <i class="search-book ti-user"></i>
                     <div class="hover-text">
                         <a href="register.html">Đăng Ký</a>
-                        <a href="login.html">Đăng Nhập</a>
+                        <a href="login.html" id="btn-loginn">Đăng Nhập</a>
                     </div>
                 </div>
             </div>
             <!-- End: Search button -->
+
         </div>
 
-    <div class="cart-container">
-        <h2>Giỏ hàng của bạn</h2>
+        <div class="profile-container">
+        <h2>Thông Tin Cá Nhân</h2>
 
-        <div class="cart-content">
-            <div class="cart-left">
-                <table class="cart-table">
-                    <thead>
-                    <tr>
-                        <th>Thông tin sản phẩm</th>
-                        <th>Đơn giá</th>
-                        <th>Số lượng</th>
-                        <th>Thành tiền</th>
-                    </tr>
-                    </thead>
-                    <tbody id="cartItems">
-                        <!-- Sách 1 -->
-    <tr>
-        <td class="cart-product">
-            <img src="./accests/everypic-img/caycamngotcuatoi01.webp" alt="">
-            <div>
-                <strong>Cây Cam Ngọt Của Tôi</strong>
-            </div>
-        </td>
-        <td class="price">233,000đ</td>
-        <td class="qty">
-            <button>-</button>
-            <span>1</span>
-            <button>+</button>
-        </td>
-        <td class="subtotal">233,000đ</td>
-    </tr>
-
-    <!-- Sách 2 -->
-    <tr>
-        <td class="cart-product">
-            <img src="./accests/everypic-img/laudaibaycuaphapsuhowl03.webp" alt="">
-            <div>
-                <strong>Lâu Đài Bay Của Pháp Sư Howl</strong>
-            </div>
-        </td>
-        <td class="price">169,150đ</td>
-        <td class="qty">
-            <button>-</button>
-            <span>1</span>
-            <button>+</button>
-        </td>
-        <td class="subtotal">169,150đ</td>
-    </tr>
-
-    <!-- Sách 3 -->
-    <tr>
-        <td class="cart-product">
-            <img src="./accests/everypic-img/kafkabenbobien001-6108c87f-c331-4b10-af5b-81e54f4b1bde.webp" alt="">
-            <div>
-                <strong>Kafka bên bờ biển</strong>
-            </div>
-        </td>
-        <td class="price">64,500đ</td>
-        <td class="qty">
-            <button>-</button>
-            <span>1</span>
-            <button>+</button>
-        </td>
-        <td class="subtotal">64,500đ</td>
-    </tr>
-                    </tbody>
-                </table>
-                <div class="cart-total">
-                    <strong>Tổng tiền: </strong><span id="cartTotal">487.231đ</span>
-                </div>
-            </div>
-
-            <div class="cart-right"> 
-                <h3>Thông tin người đặt</h3>
-                <form id="orderForm">
-                    <input type="text" id="name" value="Trần Việt Đức" placeholder="Họ và tên" />
-                    <input type="tel" id="phone" placeholder="Số điện thoại" value="036361818" />
-                    <input type="email" id="email" placeholder="Email" value="ronaldoooo@gmail.com"/>
-                    <input
-                    type="text"
-                    id="address"
-                    placeholder="Địa chỉ giao hàng"
-                    value="120 Yên Lãng Cao Bằng"
-                    />
-                    <textarea
-                    id="note"
-                    rows="3"
-                    placeholder="Ghi chú (nếu có)"
-                    ></textarea>
-                
-                     <div class="payment-method">
-                        <p>Chọn phương thức thanh toán:</p>
-                        <div class="payment-option selected" data-value="cash">Tiền mặt</div>
-                        <div class="payment-option" data-value="bank">Chuyển khoản</div>
-                    </div>
-
-                    
-                    <a href="chitiet.html" class="btn-chitiet" style="text-decoration: none;" >Thanh toán</a>
-                
-                </form>
-            </div>
+        <div class="profile-group">
+          <label>Họ và tên</label>
+          <input type="text" id="profileName" value="Trần Việt Đức" />
         </div>
-    </div>
 
+        <div class="profile-group">
+          <label>Email</label>
+          <input type="email" id="profileEmail" value="winnerrne@gmail.com" />
+        </div>
+
+        <div class="profile-group">
+          <label>Số điện thoại</label>
+          <input type="text" id="profilePhone" value="036363636" />
+        </div>
+
+        <div class="profile-group">
+          <label>Địa chỉ</label>
+          <input
+            type="text"
+            id="profileAddress"
+            value="120 Yên Lãng Cao Bằng"
+          />
+        </div>
+
+        <button id="saveProfile">Lưu Thay Đổi</button>
+      </div>
+        
                 <!--FOOTERR--> 
         <div class="footer">
             <div class="container">
@@ -223,6 +218,40 @@
             </div>
         </div>
     </div>
-    <script src="index.js"></script>
+
+        <!-- Modal tìm kiếm nâng cao -->
+<div class="modal js-modal">
+    <div class="modal-container">
+        <div class="modal-close js-modal-close">×</div>
+
+        <header class="modal-header">
+            <h2>Tìm kiếm nâng cao</h2>
+        </header>
+
+        <div class="modal-body">
+            <label for="book-name">Tên sách:</label>
+            <input type="text" id="book-name" placeholder="Nhập tên sách...">
+
+            <label>Giá:</label>
+            <div class="price-inputs">
+                <input type="number" placeholder="Tối thiểu">
+                <input type="number" placeholder="Tối đa">
+            </div>
+
+            <label>Thể loại:</label>
+            <select>
+                <option value="">-- Chọn thể loại --</option>
+                <option>Thiếu nhi</option>
+                <option>Lịch sử</option>
+                <option>Trinh thám</option>
+                <option>Văn học</option>
+                <option>Khoa học</option>
+            </select>
+
+            <button class="btn-search">Tìm kiếm</button>
+        </div>
+    </div>
+</div>
+    <script src="index.js" ></script>
 </body>
 </html>

@@ -30,9 +30,9 @@
                         <i class="nav-arrow-down ti-music-alt down"></i>
                     </a>
                     <ul class="subnav">
-                        <li><a href="#content-newbooks">Thiếu Nhi</a></li>
-                        <li><a href="#historyy">Lịch Sử</a></li>
-                        <li><a href="#horror">Trinh Thám</a></li>
+                        <li><a href="page2.html">Thiếu Nhi</a></li>
+                        <li><a href="page2.html">Lịch Sử</a></li>
+                        <li><a href="page2.html">Trinh Thám</a></li>
                         <li><a href="page2.html">Văn Học</a></li>
                         <li><a href="page2.html">Khoa Học</a></li>
                     </ul>
@@ -43,16 +43,15 @@
         
             <!-- Begin: Search button -->
             <div class="search-button">
-                <a href="page2.html"><input id="searchInput" class="input-box" type="text" placeholder=" Search..."></a>
+                <input id="searchInput" class="input-box" type="text" placeholder=" Search...">
                 <i class="search-search ti-search"></i>
                 <a href="history.html" style="text-decoration: none; color: black;"><i class="search-shopping ti-shopping-cart-full"></i></a>
-
+                 <i class="ti-filter open-modal-btn" style="cursor:pointer; font-size:22px;"></i>
+                
                 <div class="book-user"> 
                     <i class="search-book ti-user"></i>
                     <div class="hover-text">
-                        <a href="register.html">Đăng Ký</a>
-                        <a href="login.html">Đăng Nhập</a>
-    
+
                     </div>
                 </div>
 
@@ -478,17 +477,15 @@
         </div>   
                   <!--HISTORY: END--> 
                                       <!--PAGINATION-->
-        <div class="content-pagination">
-            <div class="paignation">
-                <a href="index.html"><button class="btn1"><</button></a>
-                <ul>
-                    <a href="index.html"><li class="link active" value="1" onclick="activeLink()">1</li></a>
-                    <a href="page2.html"><li class="link" value="2" onclick="activeLink()">2</li></a>
-                    <a href="page3.html"><li class="link" value="3" onclick="activeLink()">3</li></a>
-                </ul> 
-                <a href="page2.html"><button class="btn2">></button></a>
-            </div>
-        </div>                               
+       <div class="content-pagination">
+  <div class="pagination">
+    <button class="prev"><</button>
+    <button class="page active">1</button>
+    <button class="page">2</button>
+    <button class="page">3</button>
+    <button class="next">></button>
+  </div>
+</div>                             
             
          
         <!--FOOTERR--> 
@@ -551,9 +548,43 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal tìm kiếm nâng cao -->
+<div class="modal js-modal">
+    <div class="modal-container">
+        <div class="modal-close js-modal-close">×</div>
+
+        <header class="modal-header">
+            <h2>Tìm kiếm nâng cao</h2>
+        </header>
+
+        <div class="modal-body">
+            <label for="book-name">Tên sách:</label>
+            <input type="text" id="book-name" placeholder="Nhập tên sách...">
+
+            <label>Giá:</label>
+            <div class="price-inputs">
+                <input type="number" placeholder="Tối thiểu">
+                <input type="number" placeholder="Tối đa">
+            </div>
+
+            <label>Thể loại:</label>
+            <select>
+                <option value="">-- Chọn thể loại --</option>
+                <option>Thiếu nhi</option>
+                <option>Lịch sử</option>
+                <option>Trinh thám</option>
+                <option>Văn học</option>
+                <option>Khoa học</option>
+            </select>
+
+            <button class="btn-search">Tìm kiếm</button>
+        </div>
+    </div>
+</div>
     
-    <script src="data-book.js"></script>
-    <script src="index.js"></script>
+    
+    <script  src="index.js" ></script>
 
 </body>
 

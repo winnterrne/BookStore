@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./accests/sytle.css" />
+    <link rel="stylesheet" href="./themify-icons/themify-icons.css" />
+    <title>Xác nhận đơn hàng - BOOKSTORE</title>
+    <style>
+      .order-confirmation-container {
+        max-width: 1000px;
+        margin: 40px auto;
+        padding: 30px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .order-header {
+        text-align: center;
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 2px solid forestgreen;
+      }
+
+      .order-header h2 {
+        color: #4a6fa5;
+        margin-bottom: 10px;
+      }
+
+      .order-info {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        margin-bottom: 30px;
+      }
+
+      .info-section {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 6px;
+      }
+
+      .info-section h3 {
+        margin-bottom: 15px;
+        color: #343a40;
+      }
+
+      .info-item {
+        margin-bottom: 10px;
+        display: flex;
+      }
+
+      .info-label {
+        font-weight: bold;
+        min-width: 150px;
+      }
+
+      .status-badge {
+        display: inline-block;
+        padding: 4px 12px;
+        background: #fff3cd;
+        color: #856404;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+
+      .order-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 30px;
+      }
+
+      .order-table th {
+        background: #f8f9fa;
+        padding: 12px 15px;
+        text-align: left;
+        font-weight: 600;
+        border-bottom: 2px solid #dee2e6;
+      }
+
+      .order-table td {
+        padding: 12px 15px;
+        border-bottom: 1px solid #dee2e6;
+      }
+
+      .product-image {
+        width: 60px;
+        height: 80px;
+        background: #f8f9fa;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #6c757d;
+      }
+
+      .order-summary {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 6px;
+        margin-bottom: 30px;
+      }
+
+      .summary-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        padding: 5px 0;
+      }
+
+      .summary-row.total {
+        border-top: 1px solid #dee2e6;
+        padding-top: 15px;
+        margin-top: 10px;
+        font-weight: 600;
+        font-size: 1.1rem;
+      }
+
+      .order-actions {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+      }
+
+      .btn-confirmm {
+        background: #28a745;
+        color: white;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1rem;
+      }
+
+      .btn-back {
+        background: #6c757d;
+        color: white;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1rem;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      @media (max-width: 768px) {
+        .order-info {
+          grid-template-columns: 1fr;
+        }
+
+        .order-actions {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="main">
+      <div id="header">
+        <!-- HEADER GIỐNG NHƯ TRANG CHỦ -->
+        <div class="logo">
+          <img src="./accests/img/logo.webp" alt="anh logo" />
+        </div>
+
+        <div class="menu">
+          <ul id="nav">
+            <li><a href="index.html">Trang Chủ</a></li>
+            <li><a href="#intro">Giới Thiệu</a></li>
+            <li><a href="#contact">Liên Hệ</a></li>
+            <li><a href="#athor">Tác giả</a></li>
+            <li>
+              <a href="">
+                Thể Loại
+                <i class="nav-arrow-down ti-music-alt down"></i>
+              </a>
+              <ul class="subnav">
+                <li><a href="index.html">Thiếu Nhi</a></li>
+                <li><a href="index.html">Lịch Sử</a></li>
+                <li><a href="page2.html">Trinh Thám</a></li>
+                <li><a href="page2.html">Văn Học</a></li>
+                <li><a href="page3.html">Khoa Học</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <div class="search-button">
+          <input class="input-box" type="text" placeholder=" Search..." />
+          <i class="search-search ti-search"></i>
+          <a href="history.html"
+            ><i style="color: black; text-decoration: none;" class="search-shopping ti-shopping-cart-full"></i
+          ></a>
+
+          <div class="book-user">
+            <i class="search-book ti-user"></i>
+            <div class="hover-text">
+              <a href="register.html">Đăng Ký</a>
+              <a href="login.html">Đăng Nhập</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NỘI DUNG XÁC NHẬN ĐƠN HÀNG -->
+      <div class="order-confirmation-container">
+        <div class="order-header">
+          <h2 style="color: forestgreen;" >Thông Tin Chi Tiết </h2>
+        </div>
+
+        <div class="order-info">
+          <div class="info-section">
+            <h3>Thông tin đơn hàng</h3>
+            <div class="info-item">
+              <span class="info-label">Mã đơn hàng:</span>
+              <span class="info-value">DH001</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Ngày đặt:</span>
+              <span class="info-value">05/01/2022 12:30</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Trạng thái:</span>
+              <span class="status-badge">Đang xử lý</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Phương thức thanh toán:</span>
+              <span class="info-value">Tiền Mặt</span>
+            </div>
+          </div>
+
+          <div class="info-section">
+            <h3>Thông tin khách hàng</h3>
+            <div class="info-item">
+              <span class="info-label">Họ tên:</span>
+              <span class="info-value">Trần Việt Đức</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Email:</span>
+              <span class="info-value">winnterrne@gmail.com</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Số điện thoại:</span>
+              <span class="info-value">036363636</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Địa chỉ:</span>
+              <span class="info-value"
+                >120 Yên Lãng Cao Bằng</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <table class="order-table">
+          <thead>
+            <tr>
+              <th>Sản phẩm</th>
+              <th>Hình ảnh</th>
+              <th>Đơn giá</th>
+              <th>Số lượng</th>
+              <th>Thành tiền</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Cây Cam Ngọt Của Tôi</td>
+              <td>
+                <div class="product-image">
+                   <img src="./accests/everypic-img/caycamngotcuatoi01.webp" alt="">
+                </div>
+              </td>
+              <td>110.000đ</td>
+              <td>2</td>
+              <td>220.000đ</td>
+            </tr>
+            <tr>
+              <td>Lâu Đài Bay Của Pháp Sư Howl</td>
+              <td>
+                <div class="product-image">
+                  <img src="./accests/everypic-img/laudaibaycuaphapsuhowl03.webp" alt="">
+                </div>
+              </td>
+              <td>99.000đ</td>
+              <td>1</td>
+              <td>99.000đ</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="order-summary">
+          <div class="summary-row">
+            <span class="summary-label">Tiền hàng:</span>
+            <span class="summary-value">539000đ</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">Phí vận chuyển:</span>
+            <span class="summary-value">10.000đ</span>
+          </div>
+          <div class="summary-row total">
+            <span class="summary-label">Tổng cộng:</span>
+            <span class="summary-value">549.000đ</span>
+          </div>
+        </div>
+
+        <div class="order-actions">
+          <a href="index.html"><button class="btn-confirmm">Xác nhận</button></a>
+          <a href="index.html" class="btn-back">Quay về</a>
+        </div>
+      </div>
+
+      <!-- FOOTER GIỐNG NHƯ TRANG CHỦ -->
+      <div class="footer">
+        <div class="container">
+          <div class="row">
+            <div class="first-col">
+              <a href="#" class="logo">
+                <img src="./accests/img/logo.webp" alt="" />
+              </a>
+              <ul class="list-contact">
+                <li>
+                  <p>
+                    <i class="ti-location-pin"></i>Số 36, 120 Yên Lãng, Cao Bằng
+                  </p>
+                </li>
+                <li>
+                  <p><i class="ti-mobile"></i>Phone: +00 36363636</p>
+                </li>
+                <li>
+                  <p><i class="ti-mobile"></i>Phone: +00 18181818</p>
+                </li>
+                <li>
+                  <p><i class="ti-email"></i>Email: mail@gmail.com</p>
+                </li>
+              </ul>
+            </div>
+            <div class="second-col">
+              <h4 class="title-menu">
+                <span>Giới Thiệu</span>
+              </h4>
+              <ul class="list-menu">
+                <li class="list-li">Về Chúng Tôi</li>
+                <li class="list-li">Hệ Thống Giới Thiệu Sách</li>
+                <li class="list-li">Tuyển Dụng</li>
+                <li class="list-li">Liên Hệ Với Chúng Tôi</li>
+              </ul>
+            </div>
+            <div class="third-col">
+              <h4 class="title-menu">
+                <span>Chính Sách</span>
+              </h4>
+              <ul class="list-menu">
+                <li class="list-li">Chính Sách Bảo Mật</li>
+                <li class="list-li">Chính Sách Đổi Trả/Hoàn Tiền</li>
+                <li class="list-li">Chính Sách Thanh Toán/Vận Chuyển</li>
+                <li class="list-li">Chính Sách Mới</li>
+              </ul>
+            </div>
+          </div>
+          <div class="social">
+            <a href=""><i class="ti-facebook"></i></a>
+            <a href=""><i class="ti-instagram"></i></a>
+            <a href=""><i class="ti-twitter"></i></a>
+            <a href=""><i class="ti-youtube"></i></a>
+            <a href=""><i class="ti-skype"></i></a>
+            <a href=""><i class="ti-pinterest"></i></a>
+          </div>
+          <div class="word-footer">
+            <p class="copy-right">Powered by<a href=""> w3.css</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>

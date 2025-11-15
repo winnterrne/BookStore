@@ -4,19 +4,13 @@
   <meta charset="UTF-8">
   <title>Quản lý nhập hàng</title>
   <link rel="stylesheet" href="admin.css">
-  <style>
-    .import-form-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr auto; gap: 10px; margin-bottom: 20px; }
-    .import-form-grid input, .import-form-grid button { height: 42px; font-size: 14px; }
-    .table { font-size: 14px; }
-    .table th, .table td { padding: 10px 8px; }
-    .ellipsis { max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: inline-block; }
-    .status-pending { color: #f57c00; font-weight: 600; }
-    .status-completed { color: #2e7d32; font-weight: 600; }
-    .btn-small { padding: 5px 10px; font-size: 13px; }
-  </style>
 </head>
 <body>
 
+  <!-- THÔNG BÁO -->
+  <div id="alertBox" class="alert">Đã thêm phiếu nhập!</div>
+
+  <!-- HEADER -->
   <div class="custom-header">
     <div class="dashboard-title">DASHBOARD</div>
     <nav class="admin-nav-inline">
@@ -42,10 +36,10 @@
 
     <!-- FORM NHẬP -->
     <div class="action-bar">
-      <form id="importForm" class="import-form-grid">
-        <input type="text" placeholder="dd/mm/yyyy" 
-            onfocus="(this.type='date')" 
-            onblur="if(!this.value) this.type='text'">
+      <form id="importForm" class="import-form-grid" onsubmit="addImportPreview(); return false;">
+        <input type="text" id="importDateInput" placeholder="dd/mm/yyyy" 
+               onfocus="(this.type='date')" 
+               onblur="if(!this.value) this.type='text'">
         <input type="text" id="productCode" placeholder="Mã sản phẩm" required>
         <input type="number" id="quantity" placeholder="Số lượng" min="1" required>
         <input type="number" id="unitPrice" placeholder="Giá nhập/quyển" min="0" required>
@@ -55,7 +49,7 @@
 
     <!-- BẢNG PHIẾU NHẬP -->
     <div class="content-box">
-      <h2 style="margin: 0 0 16px; color: #2e7d32; font-size: 20px;">Danh mục phiếu nhập</h2>
+      <h2 class="section-title">Danh mục phiếu nhập</h2>
       <table class="table">
         <thead>
           <tr>
@@ -70,59 +64,69 @@
         </thead>
         <tbody id="importBody"></tbody>
       </table>
+
+      <!-- PHÂN TRANG -->
+      <div class="content-pagination">
+        <div class="pagination">
+          <button class="prev">&lt;</button>
+          <button class="page active">1</button>
+          <button class="page">2</button>
+          <button class="page">3</button>
+          <button class="next">&gt;</button>
+        </div>
+      </div>
     </div>
   </main>
 
   <!-- DỮ LIỆU SÁCH -->
   <script src="../data-book.js"></script>
   <script>
-    // === KHỞI TẠO totalImported NẾU CHƯA CÓ ===
-    books.forEach(b => {
-      if (!b.totalImported) b.totalImported = b.stock + 100;
+    // === KHỞI TẠO totalImport (chỉ giao diện) ===
+    let booksCopy = JSON.parse(JSON.stringify(books)); // Sao chép để không ảnh hưởng gốc
+    booksCopy.forEach(b => {
+      if (!b.totalImport) b.totalImport = b.stock + 100;
     });
 
-    // === TỰ ĐỘNG TẠO PHIẾU NHẬP CHO SÁCH SẮP HẾT (stock <= 10) ===
-    let imports = JSON.parse(localStorage.getItem('bookImports') || '[]');
-    let nextId = imports.length ? Math.max(...imports.map(i => parseInt(i.id.replace('PN', '')))) + 1 : 1;
-
+    // === TẢI / KHỞI TẠO PHIẾU NHẬP (chỉ trong session, không lưu) ===
+    let imports = []; // Reset mỗi lần load, không dùng localStorage
+    let nextId = 1;
     const today = new Date().toISOString().split('T')[0];
 
-    // Tìm sách sắp hết
-    const lowStockBooks = books.filter(b => b.stock <= 10);
-
-    // Tạo phiếu nhập nếu chưa có
+    // Tạo phiếu tự động cho sách sắp hết (chỉ giao diện)
+    const lowStockBooks = booksCopy.filter(b => b.stock <= 10);
     lowStockBooks.forEach(book => {
       const exists = imports.some(i => i.productId == book.id && !i.completed);
       if (!exists) {
-        const unitPrice = Math.round(book.oldPrice * 0.7); // 70% oldPrice
-        const newImport = {
+        const unitPrice = Math.round(book.oldPrice * 0.7);
+        imports.push({
           id: 'PN' + String(nextId++).padStart(3, '0'),
           date: today,
           productId: book.id,
           quantity: 50,
           unitPrice: unitPrice,
           completed: false
-        };
-        imports.push(newImport);
+        });
       }
     });
-
-    // Lưu lại
-    localStorage.setItem('bookImports', JSON.stringify(imports));
 
     const tbody = document.getElementById('importBody');
     const form = document.getElementById('importForm');
 
-    // === HIỂN THỊ BẢNG ===
+    // === RENDER BẢNG + MODAL ===
     function render() {
       tbody.innerHTML = '';
+      const modalContainer = document.createElement('div');
+      modalContainer.id = 'importModals';
+
       imports.forEach(imp => {
-        const book = books.find(b => b.id == imp.productId);
+        const book = booksCopy.find(b => b.id == imp.productId);
+        if (!book) return;
+
         const row = document.createElement('tr');
         row.innerHTML = `
           <td><strong>${imp.id}</strong></td>
           <td>${imp.date}</td>
-          <td class="ellipsis" title="${book?.title || '—'}">${book?.title || '—'}</td>
+          <td class="ellipsis" title="${book.title}">${book.title}</td>
           <td><strong>${imp.quantity}</strong></td>
           <td>${imp.unitPrice.toLocaleString()}đ</td>
           <td>
@@ -131,63 +135,171 @@
             </span>
           </td>
           <td>
-            <button class="btn-small btn-reset" onclick="edit('${imp.id}')">Sửa</button>
-            ${!imp.completed 
-              ? `<button class="btn-small" style="background:#2e7d32;color:#fff;" onclick="complete('${imp.id}')">Hoàn thành</button>`
-              : `<button class="btn-small" style="background:gray;color:#fff;" disabled>Đã xong</button>`
+            <a href="#editImportModal-${imp.id}" class="btn-small btn-reset">Sửa</a>
+            ${imp.completed 
+              ? `<button class="btn-small btn-undo" onclick="undoComplete('${imp.id}')">Hoàn tác</button>`
+              : `<button class="btn-small btn-complete" onclick="completeImport('${imp.id}')">Hoàn thành</button>`
             }
           </td>
         `;
         tbody.appendChild(row);
+
+        // === MODAL SỬA – CĂN GIỮA, ĐẸP ===
+        const [year, month, day] = imp.date.split('-');
+        const displayDate = `${year}-${month}-${day}`;
+
+        modalContainer.innerHTML += `
+          <div id="editImportModal-${imp.id}" class="modal">
+            <div class="modal-content modal-centered">
+              <div class="modal-header">
+                <div class="modal-title">Sửa phiếu nhập #${imp.id}</div>
+                <a href="#" class="modal-close">×</a>
+              </div>
+              <form class="modal-form" onsubmit="event.preventDefault(); saveImportEdit('${imp.id}');">
+                <div class="form-group">
+                  <label>Mã phiếu</label>
+                  <input type="text" value="${imp.id}" disabled>
+                </div>
+                <div class="form-group">
+                  <label>Sản phẩm</label>
+                  <input type="text" value="${book.title}" disabled>
+                </div>
+                <div class="form-group">
+                  <label>Ngày nhập</label>
+                  <input type="date" value="${displayDate}" id="editDate-${imp.id}" required>
+                </div>
+                <div class="form-group">
+                  <label>Số lượng</label>
+                  <input type="number" value="${imp.quantity}" min="1" id="editQty-${imp.id}" required>
+                </div>
+                <div class="form-group">
+                  <label>Giá nhập/quyển</label>
+                  <input type="number" value="${imp.unitPrice}" min="0" id="editPrice-${imp.id}" required>
+                </div>
+                <div class="modal-actions">
+                  <button type="submit" class="btn-save">Lưu</button>
+                  <a href="#" class="btn-cancel">Hủy</a>
+                </div>
+              </form>
+            </div>
+          </div>
+        `;
       });
+
+      // Xóa modal cũ
+      const oldModals = document.getElementById('importModals');
+      if (oldModals) oldModals.remove();
+      document.body.appendChild(modalContainer);
     }
 
-    // === THÊM PHIẾU THỦ CÔNG ===
-    form.addEventListener('submit', e => {
-      e.preventDefault();
+    // === THÊM PHIẾU (CHỈ GIAO DIỆN, KHÔNG LƯU THAY ĐỔI) ===
+    function addImportPreview() {
       const code = document.getElementById('productCode').value.trim();
-      const book = books.find(b => b.id == code);
-      if (!book) return alert('Không tìm thấy mã sản phẩm: ' + code);
+      const book = booksCopy.find(b => b.id == code);
+      if (!book) return showAlert('Không tìm thấy mã sản phẩm: ' + code);
 
-      const newImport = {
-        id: 'PN' + String(nextId++).padStart(3, '0'),
-        date: document.getElementById('importDate').value || today,
-        productId: book.id,
-        quantity: +document.getElementById('quantity').value,
-        unitPrice: +document.getElementById('unitPrice').value,
-        completed: false
-      };
+      const date = document.getElementById('importDateInput').value || today;
+      const qty = +document.getElementById('quantity').value;
+      const price = +document.getElementById('unitPrice').value;
 
-      imports.push(newImport);
-      localStorage.setItem('bookImports', JSON.stringify(imports));
+      if (qty < 1 || price < 0) return showAlert('Số lượng và giá phải hợp lệ!');
+
+      showAlert('Đã thêm phiếu nhập mới!');
       form.reset();
-      render();
-    });
+      // Không push vào imports, không render lại để bảng không thay đổi
+      window.location.hash = ''; // Đóng nếu cần, nhưng không thay đổi bảng
+    };
 
-    // === HOÀN THÀNH → CẬP NHẬT TỒN KHO ===
-    window.complete = function(id) {
+    // === SỬA PHIẾU (CHỈ HIỆN THÔNG BÁO, KHÔNG LƯU THAY ĐỔI) ===
+    window.saveImportEdit = function(id) {
+      const imp = imports.find(i => i.id === id);
+      if (!imp || imp.completed) {
+        showAlert('Không thể sửa phiếu đã hoàn thành!');
+        return;
+      }
+
+      const date = document.getElementById(`editDate-${id}`).value;
+      const qty = +document.getElementById(`editQty-${id}`).value;
+      const price = +document.getElementById(`editPrice-${id}`).value;
+
+      if (!date || qty < 1 || price < 0) {
+        showAlert('Vui lòng nhập đầy đủ và hợp lệ!');
+        return;
+      }
+
+      showAlert('Đã lưu thay đổi phiếu nhập!');
+      window.location.hash = '';
+    };
+
+    window.completeImport = function(id) {
       const imp = imports.find(i => i.id === id);
       if (!imp || imp.completed) return;
 
-      const book = books.find(b => b.id == imp.productId);
-      if (book) {
-        book.stock += imp.quantity;
-        book.totalImported += imp.quantity;
-      }
-
-      imp.completed = true;
-      localStorage.setItem('bookImports', JSON.stringify(imports));
-      render();
-      alert(`Đã nhập thành công ${imp.quantity} cuốn "${book.title}"!`);
+      showAlert(`Nhập hàng thành công!`);
+      window.location.hash = '';
     };
 
-    window.edit = function(id) {
-      alert('Chức năng sửa đang phát triển...');
+    window.undoComplete = function(id) {
+      const imp = imports.find(i => i.id === id);
+      if (!imp || !imp.completed) return;
+
+      showAlert(`Đã hoàn tác phiếu nhập #${id}!`);
+      window.location.hash = '';
     };
 
+    function showAlert(msg) {
+      const alert = document.getElementById('alertBox');
+      alert.textContent = msg;
+      alert.classList.add('show');
+      setTimeout(() => alert.classList.remove('show'), 3000);
+    }
+
+    function addImportPreview() {
+      const code = document.getElementById('productCode').value.trim();
+      const date = document.getElementById('importDateInput').value || today;
+      const qty = +document.getElementById('quantity').value;
+      const price = +document.getElementById('unitPrice').value;
+
+      if (qty < 1 || price < 0) return showAlert('Số lượng và giá phải hợp lệ!');
+
+      showAlert('Đã thêm phiếu nhập mới!');
+      form.reset();
+      window.location.hash = '';
+    }
     // === KHỞI CHẠY ===
     render();
   </script>
 
+<script>
+  // PHÂN TRANG NHƯNG CHỈ NHẢY MÀU
+  document.addEventListener("DOMContentLoaded", () => {
+    const pages = document.querySelectorAll('.pagination .page');
+    const prevBtn = document.querySelector('.pagination .prev');
+    const nextBtn = document.querySelector('.pagination .next');
+
+    function setActive(index) {
+      pages.forEach(p => p.classList.remove('active'));
+      pages[index].classList.add('active');
+      prevBtn.disabled = index === 0;
+      nextBtn.disabled = index === pages.length - 1;
+    }
+
+    pages.forEach((btn, idx) => {
+      btn.addEventListener('click', () => setActive(idx));
+    });
+
+    prevBtn.addEventListener('click', () => {
+      let current = [...pages].findIndex(p => p.classList.contains('active'));
+      if (current > 0) setActive(current - 1);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      let current = [...pages].findIndex(p => p.classList.contains('active'));
+      if (current < pages.length - 1) setActive(current + 1);
+    });
+
+    setActive(0); // Trang 1 được chọn ban đầu
+  });
+</script>
 </body>
 </html>

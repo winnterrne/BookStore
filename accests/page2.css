@@ -1,473 +1,276 @@
+/* Reset cơ bản */
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
-#main {
-    padding-top: 80px;
-}
 
-html {
+body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-weight: 400px;
     color: #212529;
     scroll-behavior: smooth;
-}
-body {
-    opacity: 0;
-    transform: translateY(40px);
-    animation: fadeSlideUp 1s ease-out forwards;
-}
-@keyframes fadeSlideUp {
-    from {
-        opacity: 0;
-        transform: translateY(40px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0px);
-    }
+    background: #f9f9f9;
 }
 
-/*
-1. Vị trí
-2. Kích thước (width, heigth)
-3. Màu sắc
-4. Kiểu dáng
-*/
-
-                        /* HEADER: BEGIN */
-
+/* HEADER */
 #header {
     height: 85px;
     position: fixed;
-    background-color: #fff;
     top: 0;
     left: 0;
     right: 0;
-    border-bottom: solid;
-    border-color: green;
-    border-bottom-width: 1.6px;
+    background-color: #fff;
+    border-bottom: 1.6px solid green;
     display: flex;
     align-items: center;
     justify-content: space-between;
     z-index: 999;
 }
-
-#header .menu {
-    width: 100%;
-    max-width: 1200px;
-    flex: 1;
-    align-items: center;
-    text-align: center;
-    position: relative;
+#header .logo img {
+    width: 120px;
+    margin-left: 50px;
 }
-
-#header .logo {
-    margin-left: 100px;
-}
-
-#nav, .subnav {
+#header .menu ul {
     list-style: none;
+    display: flex;
 }
-
-#nav {
-    display: inline-block;
-}
-
-#nav > li {
-    display: inline-block;
-}
-
-#nav li {
+#header .menu li {
     position: relative;
 }
-
-#nav > li > a {    
+#header .menu li a {
+    display: block;
+    padding: 0 20px;
+    line-height: 85px;
+    text-decoration: none;
     color: black;
     text-transform: uppercase;
 }
-
-#nav li a {
-    text-decoration: none;
-    line-height: 46px;
-    padding-left: 24px;
-    padding-right: 24px;
+#header .menu li:hover .subnav {
     display: block;
 }
-
-#nav li:hover .subnav{
-    display: block;
-}
-
-#nav li a::after {
-    content: " ";
+.subnav {
     position: absolute;
-    bottom: 0;
+    top: 85px;
     left: 0;
-    width: 100%;
-    height: 2px;
-    transform: scale(0);
-    background-color: black;
-    transition: transform 0.5s;
-}
-#nav li a:hover::after {
-    transform: scale(1);
-}
-
-
-#nav .subnav a {
-    color: black;
-    padding: 0px 16px;
-}
-
-
-#nav .subnav {
-    position: absolute;
     display: none;
-    top: 100%;
-    background-color: #fff;
-    box-shadow: 0 0  10px rgba(0,0,0,0.3);
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
     min-width: 160px;
-    
+}
+.subnav li a {
+    padding: 10px 15px;
+    line-height: normal;
 }
 
-#nav .nav-arrow-down {
-    font-size: 14px;
-}
-
-#header .search-button {
-    float: right;
-    padding: 0 21px;
+/* Search & user */
+.search-button {
     display: flex;
     align-items: center;
+    margin-right: 50px;
     position: relative;
-    margin-right: 100px;
-    
 }
-
-#header .input-box {
+.search-button .input-box {
     width: 200px;
     height: 35px;
-    border-width: 1px;
     border-radius: 15px;
     padding-left: 10px;
-    
+    border: 1px solid #ccc;
 }
-
-#header .search-button:hover {
+.search-button i {
+    margin-left: 10px;
+    font-size: 20px;
     cursor: pointer;
 }
-
-#header .search-search {
-    position: absolute;
-    margin-top: 10px;
-    font-weight: bold;
-    font-size: 15px;
-    margin-left: 170px;
-    padding-bottom: 10px;
-    
-}
-
-#header .search-book {
-    margin-left: 10px;
-    font-size: larger;
-}
-
-.search-shopping {
-    margin-left: 10px;
-    font-size: larger;
-
-}
-
 .book-user {
     position: relative;
-    display: inline-block;
+    margin-left: 15px;
 }
-
 .hover-text {
-    width: 120px;
-    height: 55px;
     position: absolute;
-    top: 20px;
+    top: 35px;
+    left: 0;
     display: none;
-    background-color: #fff;
+    background: #fff;
     border: 1px solid #ddd;
     border-radius: 6px;
-    padding: 6px 12px;
-    font-size: 14px;
+    padding: 10px;
+    width: 120px;
+    text-align: center;
 }
-
-.book-user:hover .hover-text{
+.book-user:hover .hover-text {
     display: block;
 }
-
 .hover-text a {
-  margin: 0 5px;
-  text-decoration: none;
-  color: #333;
-}
-
-.hover-text a:hover {
-  color: #007BFF;
-}
-
-                      /* HEADER: END */
-
-                      /* CONTENT-SLIDER: BEGIN */
-.slider-content {
-  padding-top: 36px;
-  overflow: hidden;
-  text-align: center;
-  position: relative;
-}
-.mySlides {
-    display: none;
-}
-.mySlides img {
-    width: 100%;
-    object-fit: cover;
-    height: auto;
-}
-.mySlides:first-child {
     display: block;
+    text-decoration: none;
+    color: #333;
+    margin: 4px 0;
 }
-.mySlides .text-content {
-  text-align: center;
-  font-style: italic;
-  font-size: 24px;
-  margin-top: 10px;
-}
-
-#content-newbooks {
-    padding-left: 85px;
-    padding-right: 85px;
-    margin-top: 20px;
-}
-.title-header {
-    border-top: solid 1.6px forestgreen;
-    padding-top: 20px;
-    padding-bottom: 22px;
-}
-/* CAC TITLE HEADER CUA TUNG CONTENT*/
-.title-header h5,
-.title-header h4,
-.title-header h3 {
-    font-size: 25px;
+.hover-text a:hover {
     color: forestgreen;
-    margin: 0;
 }
 
-                      /* CONTENT-NEWBOOKS : BEGIN */
-
-.list-book {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 30px;
+/* CART */
+.cart-container {
+    max-width: 1200px;
+    margin: 100px auto 50px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
 }
-.about-newbooks {
-    display: flex;
-    align-items: flex-start;  
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-.content-book {
-    position: relative; 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.cart-container h2 {
     text-align: center;
-    width: 250px;
     margin-bottom: 20px;
+    color: forestgreen;
 }
 
-.content-book img {
-    width: 90%;
-    height: 330px;
+/* Table */
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.cart-table th,
+.cart-table td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+.cart-product {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.cart-product img {
+    width: 60px;
+    height: 90px;
     object-fit: cover;
-    border-radius: 1px;
-    transition: transform 0.3s ease;
+    border-radius: 3px;
 }
-.content-book .book-child {
-    align-items: center; 
-}
-.content-book:hover .book-love,
-.content-book:hover .book-horror,
-.content-book:hover .book-history,
-.content-book:hover .book-child {
-    transform: scale(1.08);
-}
-
-    /* NUT MUA HANG*/
-.content-book .action-cart {
-    display: flex;
-    cursor: grab;
-    height: 45px;
-    justify-content: space-between;
-    position: absolute;
-    bottom: 20%;
-    visibility:hidden;
-    transform: translateY(40px);
-    transition: all 0.8s ease;
-}
-.content-book:hover .action-cart {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-#newbooks .buy-btn-left {
-    align-items: center;
-    background-color: white;
-    width: 44px;
-    height: 46px;
+.qty button {
+    padding: 5px 10px;
+    margin: 0 5px;
+    cursor: pointer;
     border: 1px solid forestgreen;
-    border-radius: 4px;
+    background: white;
     color: forestgreen;
-    font-size: large;
-    margin-right: 2px;
-    cursor: pointer;
-    transition: background-color 1s;
-     color: 1s;
+    border-radius: 4px;
+    transition: 0.3s;
 }
-
-#newbooks .buy-btn-left:hover {
-    background-color: forestgreen;
+.qty button:hover {
+    background: forestgreen;
     color: white;
 }
-#newbooks .buy-btn-right {
-    height: 46px;
-    width: 160px;
-    background-color: forestgreen;
-    border: 1px solid;
-    border-radius: 4px;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 1s;
-     color: 1s;
-}
-#newbooks .buy-btn-right:hover {
-    background-color: white;
-    color: forestgreen;
-}
 
-/*  THONG TIN SACH  */
-#newbooks .info-book {
-    text-align: center;
-    margin-top: 15px;
-    color: #333; 
-}
-#newbooks .info-book p,
-#newbooks .info-book h3  {
-    display: inline-block;  
-}
-
-.content-pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.paignation {
-    display: flex;
-    align-items: center;
-    background-color: #fff;
-    color: #383838;
-    padding: 10px 40px;
-    border-radius: 6px;
-}
-.paignation ul {
-    margin: 20px 30px;
-}
-.paignation ul li {
-    display: inline-block;
-    margin: 0px 10px;
-    background: #ccc;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    text-align: center;
-    font-size: 16px;
-    font-weight: 400px;
-    line-height: 30px;
-    cursor: pointer;
-}
-.paignation .btn2,
-.paignation .btn1 {
-    display: inline-flex;
-    align-items: center;
-    font-size: 17px;
-    font-weight: 400px;
-    color: #383838;
-    background: transparent;
-    outline: none;
-    border: none;
-    cursor: pointer;
-}
-.paignation ul li.active {
-    color: #fff;
-    background-image: linear-gradient(#ff4568,#ff4568);
-    background-repeat: no-repeat;
-}
-.container {
-    border-top: solid;
-    border-top-width: 1.6px;
-    border-color: forestgreen;
-}
-.row {
-    display: flex;
-
-}
-.first-col {
-    margin-top: 35px;
-    margin-bottom: 35px;
-    margin-left: 100px;
+/* Cart total */
+.cart-total {
+    text-align: right;
     font-size: 18px;
-    line-height: 50px;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #333;
 }
-.list-menu,
-.list-contact {
-    list-style-type: none;
+
+/* Cart right: form */
+.cart-right {
+    margin-top: 30px;
+    padding: 20px;
+    background: #f4f4f4;
+    border-radius: 8px;
 }
-.first-col img {
+.cart-right h3 {
+    color: forestgreen;
+    margin-bottom: 15px;
+}
+.cart-right input,
+.cart-right textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 6px 0 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+.cart-right textarea {
+    resize: none;
+}
+.btn-chitiet {
+    display: inline-block;
+    text-align: center;
+    padding: 10px 20px;
+    background: forestgreen;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+.btn-chitiet:hover {
+    background: white;
+    color: forestgreen;
+    border: 1px solid forestgreen;
+}
+
+/* FOOTER */
+.footer {
+    background: #fff;
+    padding: 40px 0 20px;
+    border-top: 2px solid forestgreen;
+}
+.footer .container {
+    max-width: 1200px;
+    margin: auto;
+}
+.footer .row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.footer .first-col img {
     width: 70px;
 }
-.first-col i {
-    color: forestgreen;
-    margin-right: 5px;
+.footer .list-contact,
+.footer .list-menu {
+    list-style: none;
+    padding: 0;
 }
-.third-col,
-.second-col {
-    margin-left: 280px;
-    margin-top: 70px;
-    font-size: 18px;
-    line-height: 50px;
-}
-.title-menu {
-    font-size: larger;
-    color: forestgreen;
-}
-.social {
-    font-size: 35px;
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-}
-.social a {
-    color: #757575;
-    text-decoration: none;
-}
-.social a:hover {
-    opacity: 0.5;
-}
-.word-footer {
-    font-size: 17px;
-    display: flex;
-    justify-content: center;
-}
-.copy-right  a{
-    margin-top: 15px;
+.footer .list-contact li,
+.footer .list-menu li {
+    margin-bottom: 10px;
     font-size: 16px;
-    color: #757575;
 }
+.footer .social {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 15px 0;
+}
+.footer .social a {
+    color: #757575;
+    font-size: 30px;
+}
+.footer .social a:hover {
+    opacity: 0.7;
+}
+.footer .word-footer {
+    text-align: center;
+    font-size: 16px;
+}
+
+
+
+/* Responsive */
+@media (max-width: 768px) {
+    #header .menu {
+        display: none;
+    }
+    .cart-container {
+        margin: 120px 10px 20px;
+        padding: 15px;
+    }
+    .cart-right {
+        margin-top: 20px;
+        padding: 15px;
+    }
+    .cart-product {
+        flex-direction: column;
+    }
+}
+
