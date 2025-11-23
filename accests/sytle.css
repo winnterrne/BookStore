@@ -1,32 +1,33 @@
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 #main {
-    padding-top: 80px;
+  padding-top: 80px;
 }
 
 html {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-weight: 400px;
-    color: #212529;
-    scroll-behavior: smooth;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: 400px;
+  color: #212529;
+  scroll-behavior: smooth;
 }
 body {
-    opacity: 0;
-    transform: translateY(40px);
-    animation: fadeSlideUp 1s ease-out forwards;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeSlideUp 1s ease-out forwards;
 }
 @keyframes fadeSlideUp {
-    from {
-        opacity: 0;
-        transform: translateY(40px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0px);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
 }
 
 /*
@@ -36,236 +37,355 @@ body {
 4. Kiểu dáng
 */
 
-                        /* HEADER: BEGIN */
+/* HEADER: BEGIN */
 
 #header {
-    height: 85px;
-    position: fixed;
-    background-color: #fff;
-    top: 0;
-    left: 0;
-    right: 0;
-    border-bottom: solid;
-    border-color: green;
-    border-bottom-width: 1.6px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    z-index: 999;
+  height: 85px;
+  position: fixed;
+  background-color: #fff;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-bottom: solid;
+  border-color: green;
+  border-bottom-width: 1.6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 999;
 }
 
 #header .menu {
-    width: 100%;
-    max-width: 1200px;
-    flex: 1;
-    align-items: center;
-    text-align: center;
-    position: relative;
+  width: 100%;
+  max-width: 1200px;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #header .logo {
-    margin-left: 100px;
+  margin-left: 100px;
 }
 
-#nav, .subnav {
-    list-style: none;
+#nav,
+.subnav {
+  list-style: none;
 }
 
 #nav {
-    display: inline-block;
+  display: flex;
+  padding: 0;
+  margin: 0;
 }
 
 #nav > li {
-    display: inline-block;
+  list-style: none;
+}
+
+/* MEDIA QUERY: Dưới 1100px, thu nhỏ khoảng cách giữa các mục menu */
+@media (max-width: 1100px) {
+  /* Giảm lề hai bên của logo và search button */
+  #header .logo,
+  #header .search-button {
+    margin-left: 20px; /* Giảm từ 100px xuống */
+    margin-right: 20px; /* Giảm từ 100px xuống */
+  }
+
+  /* Giảm padding của các mục menu */
+  #nav li a {
+    padding-left: 10px; /* Giảm padding ngang */
+    padding-right: 10px; /* Giảm padding ngang */
+    line-height: normal;
+  }
+
+  /* Thu nhỏ khung tìm kiếm để tiết kiệm không gian */
+  #header .input-box {
+    width: 140px;
+  }
+  #header .searchIconn {
+    margin-left: 110px; /* Di chuyển icon theo input box */
+  }
+}
+
+/* MEDIA QUERY: Dưới 800px - Chuyển sang bố cục 2 dòng hoặc Menu Burger */
+@media (max-width: 800px) {
+  /* Bắt buộc header phải cho phép các mục con xuống dòng */
+  #header {
+    flex-wrap: wrap; /* CHO PHÉP XUỐNG DÒNG */
+    height: auto; /* Chiều cao tự động điều chỉnh */
+    padding: 10px 0; /* Thêm padding dọc */
+  }
+
+  /* Đặt menu chiếm toàn bộ chiều rộng, ở dòng mới */
+  #header .menu {
+    width: 100%;
+    max-width: none;
+    order: 1; /* Đặt menu ở dòng thứ 2 (dưới logo và search) */
+    justify-content: center; /* Căn giữa menu khi nó ở dòng riêng */
+    margin-top: 10px;
+  }
+
+  /* Đặt logo và search button ở dòng đầu tiên */
+  #header .logo {
+    margin-left: 20px;
+    order: 0; /* Đặt logo ở đầu */
+  }
+  #header .search-button {
+    margin-right: 20px;
+    order: 2; /* Đặt search ở cuối */
+  }
 }
 
 #nav li {
-    position: relative;
+  position: relative;
 }
 
-#nav > li > a {    
-    color: black;
-    text-transform: uppercase;
+#nav > li > a {
+  color: black;
+  text-transform: uppercase;
 }
 
 #nav li a {
-    text-decoration: none;
-    line-height: 46px;
-    padding-left: 24px;
-    padding-right: 24px;
-    display: block;
+  text-decoration: none;
+  line-height: 46px;
+  padding-left: 24px;
+  padding-right: 24px;
+  display: block;
 }
 
-#nav li:hover .subnav{
-    display: block;
+#nav li:hover .subnav {
+  display: block;
 }
 
 #nav li a::after {
-    content: " ";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    transform: scale(0);
-    background-color: black;
-    transition: transform 0.5s;
+  content: " ";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  transform: scale(0);
+  background-color: black;
+  transition: transform 0.5s;
 }
 #nav li a:hover::after {
-    transform: scale(1);
+  transform: scale(1);
 }
-
 
 #nav .subnav a {
-    color: black;
-    padding: 0px 16px;
+  color: black;
+  padding: 0px 16px;
 }
 
-
 #nav .subnav {
-    position: absolute;
-    display: none;
-    top: 100%;
-    background-color: #fff;
-    box-shadow: 0 0  10px rgba(0,0,0,0.3);
-    min-width: 160px;
-    
+  position: absolute;
+  display: none;
+  top: 100%;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  min-width: 160px;
 }
 
 #nav .nav-arrow-down {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 #header .search-button {
-    float: right;
-    padding: 0 21px;
-    display: flex;
-    align-items: center;
-    position: relative;
-    margin-right: 100px;
-    
+  float: right;
+  padding: 0 21px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-right: 100px;
+  padding-right: 0;
+  gap: 10px;
 }
 
 #header .input-box {
-    width: 200px;
-    height: 35px;
-    border-width: 1px;
-    border-radius: 15px;
-    padding-left: 10px;
-    
+  width: 200px;
+  height: 35px;
+  border-width: 1px solid #ccc;
+  border-radius: 20px;
+  padding-left: 15px;
+  padding-right: 40px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#header .input-box:focus {
+  outline: none; /* Xóa viền focus mặc định của trình duyệt */
+  border-color: forestgreen; /* Đổi màu viền khi người dùng click vào */
+  box-shadow: 0 0 5px rgba(34, 139, 34, 0.5); /* Thêm box-shadow màu xanh lá */
 }
 
 #header .search-button:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
-#header .search-search {
-    position: absolute;
-    margin-top: 10px;
-    font-weight: bold;
-    font-size: 15px;
-    margin-left: 170px;
-    padding-bottom: 10px;
-    
+#header .searchIconn {
+  position: absolute;
+  margin-top: 10px;
+  font-size: 15px;
+  margin-left: 170px;
+  padding-bottom: 10px;
 }
 
 #header .search-book {
-    margin-left: 10px;
-    font-size: larger;
+  margin-left: 10px;
+  font-size: larger;
 }
 
 .search-shopping {
-    margin-left: 10px;
-    font-size: larger;
-
+  margin-left: 15px;
+  margin-right: 10px;
+  font-size: larger;
 }
 
 .book-user {
-    position: relative;
-    display: inline-block;
+  cursor: pointer;
+  margin-left: 5px;
+  font-size: larger;
+  position: relative;
 }
 
 .hover-text {
-    min-width: 140px;
-    position: absolute;
-    top: 20px;
-    display: none;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    padding: 6px 12px;
-    font-size: 14px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  min-width: 200px;
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 8px 0;
+  font-size: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.2s ease-out;
+  margin-right: -10px;
+}
+
+/* Mục liên kết (các mục menu) */
+.hover-text a {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px; /* <--- Dùng giá trị này làm chuẩn (10px trên dưới, 15px trái phải) */
+  /* ... các thuộc tính khác ... */
+}
+
+/* Mục Xin Chào */
+.hover-text .user-greeting {
+  padding: 10px 15px; /* <--- PHẢI GIỐNG VỚI CÁC MỤC a */
+  font-weight: bold;
+  color: #1e7e34;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 5px; /* Giảm margin-bottom nếu cần */
+  font-style: italic;
+  cursor: default;
+
+  /* Đảm bảo chữ "Xin chào" cũng căn lề chuẩn */
+  text-align: left;
 }
 
 .book-user:hover .hover-text {
-    display: block;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
-
 .hover-text a {
-    display: block;
-    margin: 4px 0;
-    text-decoration: none;
-    color: #333;
-    white-space: nowrap;
-    text-align: left;
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  margin: 0;
+  text-decoration: none;
+  color: #333;
+  white-space: nowrap;
+  text-align: left;
+  transition: background-color 0.15s, color 0.15s;
+  font-weight: 500;
 }
 
 .hover-text a:hover {
-    color: #007BFF;
+  color: forestgreen;
+  background-color: #f0fff0;
 }
+
+.hover-text a i {
+  margin-right: 10px; /* Tăng khoảng cách giữa icon và chữ */
+  font-size: 18px; /* Tăng kích thước icon */
+  color: #666; /* Màu icon mặc định */
+  transition: color 0.15s;
+}
+
+/* Đổi màu icon khi hover */
+.hover-text a:hover i {
+  color: forestgreen;
+}
+
+/* Thêm kiểu dáng đặc biệt cho dòng "Xin chào" */
+.hover-text .user-greeting {
+  padding: 10px 15px;
+  font-weight: bold;
+  color: #1e7e34; /* Màu xanh đậm */
+  border-bottom: 1px solid #eee; /* Đường kẻ phân cách */
+  margin-bottom: 5px;
+  font-style: italic;
+  cursor: default;
+}
+
 /* Hộp kết quả */
 .search-results {
-    position: absolute;
-    background: #ffffff;
-    border-radius: 10px;
-    border: 1px solid #e2e2e2;
-    padding: 20px 10px;
-    width: 280px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
-    display: none;
-    max-height: 240px;
-    overflow-y: auto;
-    margin-top: 280px;
+  position: absolute;
+  background: #ffffff;
+  border-radius: 10px;
+  border: 1px solid #e2e2e2;
+  padding: 20px 10px;
+  width: 280px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+  display: none;
+  max-height: 240px;
+  overflow-y: auto;
+  margin-top: 280px;
 }
 
 /* Từng item trong kết quả */
 .search-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 8px 12px;
-    cursor: pointer;
-    transition: 0.2s;
-    border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: 0.2s;
+  border-radius: 6px;
 }
 
 /* Hover sáng lên */
 .search-item:hover {
-    background: #f3f6ff;
+  background: #f3f6ff;
 }
 
 /* Ảnh sách */
 .search-item img {
-    width: 40px;
-    height: 55px;
-    object-fit: cover;
-    border-radius: 4px;
+  width: 40px;
+  height: 55px;
+  object-fit: cover;
+  border-radius: 4px;
 }
 
 /* Chữ tiêu đề */
 .search-item span {
-    font-size: 14px;
-    color: #333;
-    line-height: 1.3;
-    font-weight: 500;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.3;
+  font-weight: 500;
 }
 
+/* HEADER: END */
 
-                      /* HEADER: END */
-
-                      /* CONTENT-SLIDER: BEGIN */
+/* CONTENT-SLIDER: BEGIN */
 .slider-content {
   padding-top: 36px;
   overflow: hidden;
@@ -273,15 +393,15 @@ body {
   position: relative;
 }
 .mySlides {
-    display: none;
+  display: none;
 }
 .mySlides img {
-    width: 100%;
-    object-fit: cover;
-    height: auto;
+  width: 100%;
+  object-fit: cover;
+  height: auto;
 }
 .mySlides:first-child {
-    display: block;
+  display: block;
 }
 .mySlides .text-content {
   text-align: center;
@@ -290,15 +410,13 @@ body {
   margin-top: 10px;
 }
 
-
-                    /* CONTENT-SLIDER: END */
-
+/* CONTENT-SLIDER: END */
 
 /*
 ===CSS LOGIN - LOGOUT : BEGIN===
 */
 
-.container-log{
+.container-log {
   max-width: 900px;
   height: 450px;
   margin: 40px auto;
@@ -308,8 +426,8 @@ body {
   padding: 24px;
 }
 .container-log h2 {
-    margin-bottom: 20px;
-    color: forestgreen;
+  margin-bottom: 20px;
+  color: forestgreen;
 }
 .container-log button {
   border: none;
@@ -341,294 +459,291 @@ body {
 /*
 ===CSS LOGIN - LOGOUT : END===
 */
-                    /* CONTENT-ABOUT US : BEGIN */
+/* CONTENT-ABOUT US : BEGIN */
 #content-contact,
 #content-newbooks,
 #content-author,
 #content {
-    padding-left: 85px;
-    padding-right: 85px;
-    margin-top: 20px;
+  padding-left: 85px;
+  padding-right: 85px;
+  margin-top: 20px;
 }
 
 .title-header {
-    border-top: solid 1.6px forestgreen;
-    padding-top: 20px;
-    padding-bottom: 22px;
+  border-top: solid 1.6px forestgreen;
+  padding-top: 20px;
+  padding-bottom: 22px;
 }
 /* CAC TITLE HEADER CUA TUNG CONTENT*/
 .title-header h5,
 .title-header h4,
 .title-header h3,
-.title-header h2  {
-    font-size: 25px;
-    color: forestgreen;
-    margin: 0;
+.title-header h2 {
+  font-size: 25px;
+  color: forestgreen;
+  margin: 0;
 }
 
 #content .about-content {
-    margin-top: 25px;
-    margin-bottom: 100px;
-    padding: 0px 55px;
-    display: flex;
-    align-items: flex-start;
+  margin-top: 25px;
+  margin-bottom: 100px;
+  padding: 0px 55px;
+  display: flex;
+  align-items: flex-start;
 }
 
 #about-us .content-section {
-    padding: 0 65px;
-    margin-bottom: 100px;
+  padding: 0 65px;
+  margin-bottom: 100px;
 }
 
 #about-us .section-spanhead {
-    font-size: 20px;
-    margin-bottom: 60px;
-    font-style: italic;
-    color: forestgreen;
-    line-height: 60px;
+  font-size: 20px;
+  margin-bottom: 60px;
+  font-style: italic;
+  color: forestgreen;
+  line-height: 60px;
 }
 
 #about-us .section-subheading {
-    font-size: 120%;
-    line-height: 30px;
+  font-size: 120%;
+  line-height: 30px;
 }
 
 #about-us .section-button {
-    width: 120px;
-    height: 45px;
-    font-weight: bold;
-    font-size: 16px;
-    margin-top: 30px;
-    background-color: forestgreen;
-    color: white;
-    border: none;
-    border-radius: 3px;
+  width: 120px;
+  height: 45px;
+  font-weight: bold;
+  font-size: 16px;
+  margin-top: 30px;
+  background-color: forestgreen;
+  color: white;
+  border: none;
+  border-radius: 3px;
 }
 
 #about-us .section-button:hover {
-    color: forestgreen;
-    background-color: white;
-    border: 1px forestgreen solid;
+  color: forestgreen;
+  background-color: white;
+  border: 1px forestgreen solid;
 }
 
 .content-img {
-    margin-left: 100px;
+  margin-left: 100px;
 }
 
-                     /* CONTENT-ABOUT US : END */
+/* CONTENT-ABOUT US : END */
 
-                      /* CONTENT-NEWBOOKS : BEGIN */
+/* CONTENT-NEWBOOKS : BEGIN */
 
 .list-book {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 30px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 30px;
 }
 .about-newbooks {
-    display: flex;
-    align-items: flex-start;  
-    justify-content: space-between;
-    flex-wrap: wrap;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 .content-book {
-    position: relative; 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    width: 250px;
-    margin-bottom: 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 250px;
+  margin-bottom: 20px;
 }
 
 .content-book img {
-    width: 90%;
-    height: 330px;
-    object-fit: cover;
-    border-radius: 1px;
-    transition: transform 0.3s ease;
+  width: 90%;
+  height: 330px;
+  object-fit: cover;
+  border-radius: 1px;
+  transition: transform 0.3s ease;
 }
 .content-book .book-child {
-    align-items: center; 
+  align-items: center;
 }
 .content-book:hover .book-love,
 .content-book:hover .book-horror,
 .content-book:hover .book-history,
 .content-book:hover .book-child {
-    transform: scale(1.08);
+  transform: scale(1.08);
 }
 
-    /* NUT MUA HANG*/
+/* NUT MUA HANG*/
 .content-book .action-cart {
-    display: flex;
-    cursor: grab;
-    height: 45px;
-    justify-content: space-between;
-    position: absolute;
-    bottom: 20%;
-    visibility:hidden;
-    transform: translateY(40px);
-    transition: all 0.2s ease;
+  display: flex;
+  cursor: grab;
+  height: 45px;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 20%;
+  visibility: hidden;
+  transform: translateY(40px);
+  transition: all 0.2s ease;
 }
 .content-book:hover .action-cart {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
 #newbooks .buy-btn-left {
-    align-items: center;
-    background-color: white;
-    width: 44px;
-    height: 46px;
-    border: 1px solid forestgreen;
-    border-radius: 4px;
-    color: forestgreen;
-    font-size: large;
-    margin-right: 2px;
-    cursor: pointer;
-    transition: background-color 1s;
-     color: 1s;
+  align-items: center;
+  background-color: white;
+  width: 44px;
+  height: 46px;
+  border: 1px solid forestgreen;
+  border-radius: 4px;
+  color: forestgreen;
+  font-size: large;
+  margin-right: 2px;
+  cursor: pointer;
+  transition: background-color 1s;
+  color: 1s;
 }
 
 #newbooks .buy-btn-left:hover {
-    background-color: forestgreen;
-    color: white;
+  background-color: forestgreen;
+  color: white;
 }
 #newbooks .buy-btn-right {
-    height: 46px;
-    width: 160px;
-    background-color: forestgreen;
-    border: 1px solid;
-    border-radius: 4px;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 1s;
-     color: 1s;
+  height: 46px;
+  width: 160px;
+  background-color: forestgreen;
+  border: 1px solid;
+  border-radius: 4px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 1s;
+  color: 1s;
 }
 #newbooks .buy-btn-right:hover {
-    background-color: white;
-    color: forestgreen;
+  background-color: white;
+  color: forestgreen;
 }
 
 /*  THONG TIN SACH  */
 #newbooks .info-book {
-    text-align: center;
-    margin-top: 15px;
-    color: #333; 
+  text-align: center;
+  margin-top: 15px;
+  color: #333;
 }
 #newbooks .info-book p,
-#newbooks .info-book h3  {
-    display: inline-block;  
+#newbooks .info-book h3 {
+  display: inline-block;
 }
 
+/* CONTENT-NEWBOOKS : END */
 
-
-               /* CONTENT-NEWBOOKS : END */
-
-              /* CONTENT-AUTHORS : BEGIN */
+/* CONTENT-AUTHORS : BEGIN */
 .list-author {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
-    margin-bottom: 50px;
-    
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 50px;
 }
 .author-item-base {
-    display: flex;
-    height: 180px;
-    width: 180px;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-    overflow: hidden;
-    background:#f4f4f4;
-    border-radius: 100px;
-    margin-top: 20px;
+  display: flex;
+  height: 180px;
+  width: 180px;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  overflow: hidden;
+  background: #f4f4f4;
+  border-radius: 100px;
+  margin-top: 20px;
 }
 .author-name {
-    font-size: 18px;
-    font-weight: bold;
-    text-align: center;
-    margin-top: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
 }
-       /* CONTENT AUTHOR: END */
+/* CONTENT AUTHOR: END */
 
-       /* CONTENT CONTACT: BEGIN */
+/* CONTENT CONTACT: BEGIN */
 .contact-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 200px;
 }
 .contact-row .box {
-    min-height: 300px;
-    display: flex;
-    text-align: left;
-    flex-direction: column;
+  min-height: 300px;
+  display: flex;
+  text-align: left;
+  flex-direction: column;
 }
 .box .last-box,
 .box .first-box {
-    width: 200px;
-    height: 55px;
-    background-color: white;
-    padding-right: 50px;
-    padding-top: 6px;
-    padding-bottom: 6px;
-    padding-left: 10px;
-    border-color: gray;
-    border-width: 1px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-right: 15px;
-    margin-bottom: 10px;
+  width: 200px;
+  height: 55px;
+  background-color: white;
+  padding-right: 50px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 10px;
+  border-color: gray;
+  border-width: 1px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 15px;
+  margin-bottom: 10px;
 }
 .box .mail-box {
-    width: 419px;
-    height: 70px;
-    background-color: white;
-    padding-right: 50px;
-    padding-top: 6px;
-    padding-bottom: 6px;
-    padding-left: 10px;
-    border-color: gray;
-    border-width: 1px;
-    font-size: 16px;
-    margin-bottom: 7px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-right: 15px;
+  width: 419px;
+  height: 70px;
+  background-color: white;
+  padding-right: 50px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 10px;
+  border-color: gray;
+  border-width: 1px;
+  font-size: 16px;
+  margin-bottom: 7px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 15px;
 }
 .box .sign-box {
-    width: 85px;
-    height: 50px;
-    font-weight: bold;
-    background-color: forestgreen;
-    color: white;
-    border: solid 1px black;
-    border-radius: 4px;
-    transition: all 0.9s ease;
+  width: 85px;
+  height: 50px;
+  font-weight: bold;
+  background-color: forestgreen;
+  color: white;
+  border: solid 1px black;
+  border-radius: 4px;
+  transition: all 0.9s ease;
 }
 .sign-box:hover {
-    transform: translateY(0);
-    background-color: white;
-    color: forestgreen;
-    border: forestgreen solid 1px;
+  transform: translateY(0);
+  background-color: white;
+  color: forestgreen;
+  border: forestgreen solid 1px;
 }
 .contact-list {
-    font-size: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 330px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    padding: 20px 6px;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 330px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 20px 6px;
 }
 .contact-list i::before {
-    margin-right: 5px;
+  margin-right: 5px;
 }
 /*
               PAGINATION
@@ -668,69 +783,65 @@ body {
 FOOTERR
 */
 .container {
-    border-top: solid;
-    border-top-width: 1.6px;
-    border-color: forestgreen;
+  border-top: solid;
+  border-top-width: 1.6px;
+  border-color: forestgreen;
 }
 .row {
-    display: flex;
-
+  display: flex;
 }
 .first-col {
-    margin-top: 35px;
-    margin-bottom: 25px;
-    margin-left: 100px;
-    font-size: 18px;
-    line-height: 40px;
+  margin-top: 35px;
+  margin-bottom: 25px;
+  margin-left: 100px;
+  font-size: 18px;
+  line-height: 40px;
 }
 .list-menu,
 .list-contact {
-    list-style-type: none;
+  list-style-type: none;
 }
 .first-col img {
-    width: 70px;
+  width: 70px;
 }
 .first-col i {
-    color: forestgreen;
-    margin-right: 5px;
+  color: forestgreen;
+  margin-right: 5px;
 }
 .third-col,
 .second-col {
-    margin-left: 280px;
-    margin-top: 50px;
-    font-size: 18px;
-    line-height: 40px;
-    
+  margin-left: 280px;
+  margin-top: 50px;
+  font-size: 18px;
+  line-height: 40px;
 }
 .title-menu {
-    font-size: larger;
-    color: forestgreen;
-    margin-bottom: 20px;
+  font-size: larger;
+  color: forestgreen;
+  margin-bottom: 20px;
 }
 .social {
-    font-size: 35px;
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-
-    
+  font-size: 35px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
 }
 .social a {
-    color: black;
-    text-decoration: none;
+  color: black;
+  text-decoration: none;
 }
 .social a:hover {
-    opacity: 0.5;
+  opacity: 0.5;
 }
 .word-footer {
-    font-size: 17px;
-    display: flex;
-    justify-content: center;
+  font-size: 17px;
+  display: flex;
+  justify-content: center;
 }
-.copy-right  a{
-    margin-top: 15px;
-    font-size: 16px;
-    color: #757575;
+.copy-right a {
+  margin-top: 15px;
+  font-size: 16px;
+  color: #757575;
 }
 
 /*  =========== HISTORY =========== */
@@ -835,190 +946,190 @@ FOOTERR
   border-radius: 6px;
 }
 .cart-right .btn-primary {
-    width: 125px;
-    height: 45px;
-    border: none;
-    font-weight: bold;
-    border-radius: 5px;
+  width: 125px;
+  height: 45px;
+  border: none;
+  font-weight: bold;
+  border-radius: 5px;
 }
 
 .product-image img {
-    width: 65px;
+  width: 65px;
 }
 
 .btn-chitiet {
-    background-color: forestgreen;
-    color: white;
-    font-weight: bold;
-    display: inline-block;
-    width: 120px;
-    text-align: center;
-    height: 40px;
-    align-content: center;
-    border-radius: 5px;
+  background-color: forestgreen;
+  color: white;
+  font-weight: bold;
+  display: inline-block;
+  width: 120px;
+  text-align: center;
+  height: 40px;
+  align-content: center;
+  border-radius: 5px;
 }
-
 
 .payment-method {
-    margin: 15px 0;
-    font-size: 16px;
+  margin: 15px 0;
+  font-size: 16px;
 }
 .payment-method p {
-    margin-bottom: 10px;
-    font-weight: bold;
-    color: forestgreen;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: forestgreen;
 }
 
 /* Hàng chứa 2 option */
 .payment-options-row {
-    display: flex;
-    gap: 10px; /* khoảng cách giữa 2 nút */
+  display: flex;
+  gap: 10px; /* khoảng cách giữa 2 nút */
 }
 
 /* Các button */
 .payment-option {
-    flex: 1; /* đều nhau */
-    padding: 13px 0;
-    margin-bottom: 10px;
-    border: 2px solid forestgreen;
-    border-radius: 8px;
-    text-align: center;
-    cursor: pointer;
-    background: #f9f9f9;
-    color: forestgreen;
-    font-weight: 500;
-    transition: all 0.3s;
+  flex: 1; /* đều nhau */
+  padding: 13px 0;
+  margin-bottom: 10px;
+  border: 2px solid forestgreen;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  background: #f9f9f9;
+  color: forestgreen;
+  font-weight: 500;
+  transition: all 0.3s;
 }
 
 /* Hover */
 .payment-option:hover {
-    background: #e0f2e9;
+  background: #e0f2e9;
 }
 
 /* Khi được chọn */
 .payment-option.selected {
-    background: forestgreen;
-    color: #fff;
+  background: forestgreen;
+  color: #fff;
 }
 
 /* Nền modal */
 .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.5);
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    visibility: hidden;
-    padding-top: 80px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  visibility: hidden;
+  padding-top: 80px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
 }
 
 /* Khi modal mở */
 .modal.show {
-    visibility: visible;
-    opacity: 1;
+  visibility: visible;
+  opacity: 1;
 }
 
 /* Khung modal */
 .modal-container {
-    background: #fff;
-    width: 400px;
-    max-width: 90%;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-    position: relative;
-    animation: fadeIn 0.3s ease-in-out;
+  background: #fff;
+  width: 400px;
+  max-width: 90%;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  position: relative;
+  animation: fadeIn 0.3s ease-in-out;
 }
 
 /* Close button */
 .modal-close {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    font-size: 24px;
-    font-weight: bold;
-    cursor: pointer;
-    color: #333;
-    transition: all 0.3s;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #333;
+  transition: all 0.3s;
 }
 .modal-close:hover {
-    color: forestgreen;
+  color: forestgreen;
 }
 
 /* Header */
 .modal-header h2 {
-    margin: 0 0 20px 0;
-    font-size: 22px;
-    text-align: center;
-    color: forestgreen;
+  margin: 0 0 20px 0;
+  font-size: 22px;
+  text-align: center;
+  color: forestgreen;
 }
 
 /* Body form */
 .modal-body label {
-    display: block;
-    margin: 10px 0 5px;
-    font-weight: 500;
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: 500;
 }
 
 .modal-body input[type="text"],
 .modal-body input[type="number"],
 .modal-body select {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 12px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 15px;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
 }
 
 /* Hai input số cạnh nhau */
 .price-inputs {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  gap: 10px;
 }
 .price-inputs input {
-    flex: 1;
+  flex: 1;
 }
 
 /* Nút tìm kiếm */
 .btn-search {
-    width: 100%;
-    padding: 12px;
-    background: forestgreen;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s;
+  width: 100%;
+  padding: 12px;
+  background: forestgreen;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
 }
 .btn-search:hover {
-    background: #2e7d32;
+  background: #2e7d32;
 }
 
 /* Animation modal */
 @keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.95); }
-    to { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 /* Responsive */
 @media (max-width: 500px) {
-    .modal-container {
-        width: 90%;
-        padding: 20px;
-    }
+  .modal-container {
+    width: 90%;
+    padding: 20px;
+  }
 }
-
-
-
-
-

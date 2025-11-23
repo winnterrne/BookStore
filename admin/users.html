@@ -37,7 +37,7 @@
         <input 
           type="text" 
           id="searchInput" 
-          placeholder="Nhập Tên hoặc ID cần tìm..." 
+          placeholder="Nhập tên hoặc ID cần tìm..." 
           autocomplete="off">
       </form>
     </div>
@@ -54,7 +54,8 @@
             <th>Hành động</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="userTableBody">
+          <!-- ADMIN -->
           <tr>
             <td>001</td>
             <td>admin</td>
@@ -63,8 +64,10 @@
             <td>
               <a href="#editModal-001" class="btn-small btn-reset">Sửa</a>
               <a href="#deleteModal-001" class="btn-small btn-lock">Xóa</a>
+              <!-- Không cho khóa admin -->
             </td>
           </tr>
+          <!-- USER 002 -->
           <tr>
             <td>002</td>
             <td>TranVietDuc</td>
@@ -72,9 +75,12 @@
             <td>Người dùng</td>
             <td>
               <a href="#editModal-002" class="btn-small btn-reset">Sửa</a>
+              <a href="#resetModal-002" class="btn-small" style="background:#ff9800;color:white;">Reset mật khẩu</a>
+              <a href="#lockModal-002" class="btn-small btn-lock">Khóa</a>
               <a href="#deleteModal-002" class="btn-small btn-lock">Xóa</a>
             </td>
           </tr>
+          <!-- USER 003 -->
           <tr>
             <td>003</td>
             <td>LeTheHao</td>
@@ -82,9 +88,12 @@
             <td>Người dùng</td>
             <td>
               <a href="#editModal-003" class="btn-small btn-reset">Sửa</a>
+              <a href="#resetModal-002" class="btn-small" style="background:#ff9800;color:white;">Reset mật khẩu</a>
+              <a href="#lockModal-003" class="btn-small btn-lock">Khóa</a>
               <a href="#deleteModal-003" class="btn-small btn-lock">Xóa</a>
             </td>
           </tr>
+          <!-- USER 004 -->
           <tr>
             <td>004</td>
             <td>TranYenVy</td>
@@ -92,9 +101,12 @@
             <td>Người dùng</td>
             <td>
               <a href="#editModal-004" class="btn-small btn-reset">Sửa</a>
+              <a href="#resetModal-002" class="btn-small" style="background:#ff9800;color:white;">Reset mật khẩu</a>
+              <a href="#lockModal-004" class="btn-small btn-lock">Khóa</a>
               <a href="#deleteModal-004" class="btn-small btn-lock">Xóa</a>
             </td>
           </tr>
+          <!-- USER 005 -->
           <tr>
             <td>005</td>
             <td>TranDienKha</td>
@@ -102,11 +114,14 @@
             <td>Người dùng</td>
             <td>
               <a href="#editModal-005" class="btn-small btn-reset">Sửa</a>
+              <a href="#resetModal-002" class="btn-small" style="background:#ff9800;color:white;">Reset mật khẩu</a>
+              <a href="#lockModal-005" class="btn-small btn-lock">Khóa</a>
               <a href="#deleteModal-005" class="btn-small btn-lock">Xóa</a>
             </td>
           </tr>
         </tbody>
       </table>
+
       <!-- PHÂN TRANG -->
       <div class="content-pagination">
         <div class="pagination">
@@ -121,8 +136,9 @@
     </div>
   </main>
 
-  <!-- Modal cho Sửa và Xóa (giữ nguyên) -->
-  <!-- 001 -->
+  <!-- ==================== CÁC MODAL (EDIT + DELETE + LOCK + RESET) ==================== -->
+
+  <!-- ADMIN (001) -->
   <div id="editModal-001" class="modal">
     <div class="modal-content">
       <div class="modal-header"><div class="modal-title">Sửa người dùng</div><a href="#" class="modal-close">×</a></div>
@@ -183,6 +199,19 @@
       </div>
     </div>
   </div>
+  <div id="resetModal-002" class="modal">
+  <div class="modal-content">
+    <div class="modal-header"><div class="modal-title">Reset mật khẩu</div><a href="#" class="modal-close">×</a></div>
+      <div class="confirm-delete" style="text-align:center;padding:20px;">
+        <p>Đặt lại mật khẩu cho <strong>TranVietDuc</strong> thành:</p>
+        <h3 style="color:#2e7d32;margin:15px 0;">12345678</h3>
+        <div class="modal-actions">
+          <a href="#" class="btn-save" style="background:#2e7d32;" onclick="alert('Đã reset mật khẩu thành 12345678!')">Xác nhận</a>
+          <a href="#" class="btn-cancel">Hủy</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- 003 -->
   <div id="editModal-003" class="modal">
@@ -209,6 +238,19 @@
         <p>Bạn có chắc muốn xóa <strong>LeTheHao</strong> không?</p>
         <div class="modal-actions">
           <a href="#" class="btn-save" style="background:#d32f2f;" onclick="alert('Đã xóa!')">Xóa</a>
+          <a href="#" class="btn-cancel">Hủy</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="resetModal-003" class="modal">
+    <div class="modal-content">
+      <div class="modal-header"><div class="modal-title">Reset mật khẩu</div><a href="#" class="modal-close">×</a></div>
+      <div class="confirm-delete" style="text-align:center;padding:20px;">
+        <p>Đặt lại mật khẩu cho <strong>LeTheHao</strong> thành:</p>
+        <h3 style="color:#2e7d32;margin:15px 0;">12345678</h3>
+        <div class="modal-actions">
+          <a href="#" class="btn-save" style="background:#2e7d32;" onclick="alert('Đã reset mật khẩu thành 12345678!')">Xác nhận</a>
           <a href="#" class="btn-cancel">Hủy</a>
         </div>
       </div>
@@ -245,6 +287,19 @@
       </div>
     </div>
   </div>
+  <div id="resetModal-004" class="modal">
+    <div class="modal-content">
+      <div class="modal-header"><div class="modal-title">Reset mật khẩu</div><a href="#" class="modal-close">×</a></div>
+        <div class="confirm-delete" style="text-align:center;padding:20px;">
+          <p>Đặt lại mật khẩu cho <strong>TranYenVy</strong> thành:</p>
+          <h3 style="color:#2e7d32;margin:15px 0;">12345678</h3>
+          <div class="modal-actions">
+            <a href="#" class="btn-save" style="background:#2e7d32;" onclick="alert('Đã reset mật khẩu thành 12345678!')">Xác nhận</a>
+            <a href="#" class="btn-cancel">Hủy</a>
+          </div>
+        </div>
+      </div>
+    </div>
 
   <!-- 005 -->
   <div id="editModal-005" class="modal">
@@ -276,9 +331,98 @@
       </div>
     </div>
   </div>
+  <div id="resetModal-005" class="modal">
+    <div class="modal-content">
+      <div class="modal-header"><div class="modal-title">Reset mật khẩu</div><a href="#" class="modal-close">×</a></div>
+      <div class="confirm-delete" style="text-align:center;padding:20px;">
+        <p>Đặt lại mật khẩu cho <strong>TranDienKha</strong> thành:</p>
+        <h3 style="color:#2e7d32;margin:15px 0;">12345678</h3>
+        <div class="modal-actions">
+          <a href="#" class="btn-save" style="background:#2e7d32;" onclick="alert('Đã reset mật khẩu thành 12345678!')">Xác nhận</a>
+          <a href="#" class="btn-cancel">Hủy</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <!-- LOCK MODAL CHO MỖI USER -->
+  <div id="lockModal-002" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">Khóa tài khoản</div>
+        <a href="#" class="modal-close">×</a>
+      </div>
+      <div class="lock-confirm">
+        <p>Xác nhận khóa tài khoản <strong>TranVietDuc</strong> ?</p>
+        <div class="modal-actions">
+          <a href="#" class="btn-save" style="background:#d32f2f;" onclick="alert('Tài khoản đã bị khóa!')">Khóa</a>
+          <a href="#" class="btn-cancel">Hủy</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="lockModal-003" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">Khóa tài khoản</div>
+        <a href="#" class="modal-close">×</a>
+      </div>
+      <div class="lock-confirm">
+        <p>Xác nhận khóa tài khoản <strong>LeTheHao</strong> ?</p>
+        <div class="modal-actions">
+          <a href="#" class="btn-save" style="background:#d32f2f;" onclick="alert('Tài khoản đã bị khóa!')">Khóa</a>
+          <a href="#" class="btn-cancel">Hủy</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="lockModal-004" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">Khóa tài khoản</div>
+        <a href="#" class="modal-close">×</a>
+      </div>
+      <div class="lock-confirm">
+        <p>Xác nhận khóa tài khoản <strong>TranYenVy</strong> ?</p>
+        <div class="modal-actions">
+          <a href="#" class="btn-save" style="background:#d32f2f;" onclick="alert('Tài khoản đã bị khóa!')">Khóa</a>
+          <a href="#" class="btn-cancel">Hủy</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="lockModal-005" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">Khóa tài khoản</div>
+        <a href="#" class="modal-close">×</a>
+      </div>
+      <div class="lock-confirm">
+        <p>Xác nhận khóa tài khoản <strong>TranDienKha</strong> ?</p>
+        <div class="modal-actions">
+          <a href="#" class="btn-save" style="background:#d32f2f;" onclick="alert('Tài khoản đã bị khóa!')">Khóa</a>
+          <a href="#" class="btn-cancel">Hủy</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tìm kiếm tức thì -->
   <script>
-    // PHÂN TRANG NHƯNG CHỈ NHẢY MÀU
+    document.getElementById('searchInput').addEventListener('input', function() {
+      const filter = this.value.toLowerCase();
+      const rows = document.querySelectorAll('#userTable tbody tr');
+
+      rows.forEach(row => {
+        const text = row.textContent.toLowerCase();
+        row.style.display = text.includes(filter) ? '' : 'none';
+      });
+    });
+
+    // Phân trang giữ nguyên như cũ
     document.addEventListener("DOMContentLoaded", () => {
       const pages = document.querySelectorAll('.pagination .page');
       const prevBtn = document.querySelector('.pagination .prev');
@@ -287,30 +431,20 @@
       function setActive(index) {
         pages.forEach(p => p.classList.remove('active'));
         pages[index].classList.add('active');
-        // Quản lý trạng thái disabled
         prevBtn.disabled = index === 0;
         nextBtn.disabled = index === pages.length - 1;
       }
 
-      // Click trực tiếp số trang
-      pages.forEach((btn, idx) => {
-        btn.addEventListener('click', () => setActive(idx));
-      });
-
-      // Click <
+      pages.forEach((btn, idx) => btn.addEventListener('click', () => setActive(idx)));
       prevBtn.addEventListener('click', () => {
         let current = [...pages].findIndex(p => p.classList.contains('active'));
         if (current > 0) setActive(current - 1);
       });
-
-      // Click >
       nextBtn.addEventListener('click', () => {
         let current = [...pages].findIndex(p => p.classList.contains('active'));
         if (current < pages.length - 1) setActive(current + 1);
       });
-
-      // Khởi tạo trạng thái ban đầu
-      setActive(0); // Trang 1 được chọn ban đầu
+      setActive(0);
     });
   </script>
 </body>

@@ -11,52 +11,64 @@
 
 <body>
     <div id="main">
-        <div id="header">
-            <!--                 HEAD OF PROJECT                     -->
-            <!-- Begin: Nav -->
-            <div class="logo">
-                <img src="./accests/img/logo.webp" alt="anh logo">
-            </div>
-
-            <div class="menu">
-                <ul id="nav">
-                <li><a href="index.html">Trang Chủ</a></li>
-                <li><a href="#intro">Giới Thiệu</a></li>
-                <li><a href="#contact">Liên Hệ</a></li>
-                <li><a href="#athor">Tác giả</a></li>
-                <li>
-                    <a href="">
-                        Thể Loại
-                        <i class="nav-arrow-down ti-music-alt down"></i>
-                    </a>
-                    <ul class="subnav">
-                        <li><a href="index.html">Thiếu Nhi</a></li>
-                        <li><a href="index.html">Lịch Sử</a></li>
-                        <li><a href="page2.html">Trinh Thám</a></li>
-                        <li><a href="page2.html">Văn Học</a></li>
-                        <li><a href="page3.html">Khoa Học</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <!-- End: Nav -->
-            </div>
-        
-            <!-- Begin: Search button -->
-            <div class="search-button">
-                <input class="input-box" type="text" placeholder=" Search...">
-                <i class="search-search ti-search"></i>
-                <i class="search-shopping ti-shopping-cart-full"></i>
-
-                <div class="book-user"> 
-                    <i class="search-book ti-user"></i>
-                    <div class="hover-text">
-                        <a href="register.html">Đăng Ký</a>
-                        <a href="login.html">Đăng Nhập</a>
-                    </div>
-                </div>
-            </div>
-            <!-- End: Search button -->
+      <div id="header">
+        <!--                 HEAD OF PROJECT                     -->
+        <!-- Begin: Nav -->
+        <div class="logo">
+          <img src="./accests/img/logo.webp" alt="anh logo" />
         </div>
+
+        <div class="menu">
+          <ul id="nav">
+            <li><a href="index.html">Trang Chủ</a></li>
+            <li><a href="#intro">Giới Thiệu</a></li>
+            <li><a href="#contact">Liên Hệ</a></li>
+            <li><a href="#athor">Tác giả</a></li>
+            <li>
+              <a href="">
+                Thể Loại
+                <i class="nav-arrow-down ti-music-alt down"></i>
+              </a>
+              <ul class="subnav">
+                <li><a href="page2.html">Thiếu Nhi</a></li>
+                <li><a href="page3.html">Lịch Sử</a></li>
+                <li><a href="page4.html">Trinh Thám</a></li>
+                <li><a href="page2.html">Văn Học</a></li>
+                <li><a href="page5.html">Khoa Học</a></li>
+              </ul>
+            </li>
+          </ul>
+          <!-- End: Nav -->
+        </div>
+
+        <!-- Begin: Search button -->
+        <div class="search-button">
+          <input
+            id="searchInput"
+            class="input-box"
+            type="text"
+            placeholder=" Search..."
+          />
+          <div class="searchIconn">
+            <a style="text-decoration: none; color: black" href="page2.html"
+              ><i class="search-search ti-search"></i
+            ></a>
+          </div>
+          <a href="history.html" style="text-decoration: none; color: black; font-size: 22px;"
+            ><i class="search-shopping ti-shopping-cart-full"></i
+          ></a>
+          <i
+            class="ti-filter open-modal-btn"
+            style="cursor: pointer; font-size: 22px"
+          ></i>
+
+          <div class="book-user">
+            <i class="search-book ti-user"></i>
+            <div class="hover-text"></div>
+          </div>
+        </div>
+        <!-- End: Search button -->
+      </div>
 
         <!--LOG-OUT : BEGIN-->
 
@@ -139,6 +151,40 @@
                 </div>
             </div>
         </div>
+    </div>
+    
+    <!-- Modal tìm kiếm nâng cao -->
+    <div class="modal js-modal">
+      <div class="modal-container">
+        <div class="modal-close js-modal-close">×</div>
+
+        <header class="modal-header">
+          <h2>Tìm kiếm nâng cao</h2>
+        </header>
+
+        <div class="modal-body">
+          <label for="book-name">Tên sách:</label>
+          <input type="text" id="book-name" placeholder="Nhập tên sách..." />
+
+          <label>Giá:</label>
+          <div class="price-inputs">
+            <input type="number" placeholder="Tối thiểu" />
+            <input type="number" placeholder="Tối đa" />
+          </div>
+
+          <label>Thể loại:</label>
+          <select>
+            <option value="">-- Chọn thể loại --</option>
+            <option>Thiếu nhi</option>
+            <option>Lịch sử</option>
+            <option>Trinh thám</option>
+            <option>Văn học</option>
+            <option>Khoa học</option>
+          </select>
+
+          <button class="btn-search">Tìm kiếm</button>
+        </div>
+      </div>
     </div>
     <script src="index.js"></script>
 </body>

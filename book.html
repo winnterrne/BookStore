@@ -20,20 +20,20 @@
         <div class="menu">
           <ul id="nav">
             <li><a href="index.html">Trang Chủ</a></li>
-            <li><a href="index.html">Giới Thiệu</a></li>
-            <li><a href="index.html">Liên Hệ</a></li>
-            <li><a href="index.html">Tác giả</a></li>
+            <li><a href="#intro">Giới Thiệu</a></li>
+            <li><a href="#contact">Liên Hệ</a></li>
+            <li><a href="#athor">Tác giả</a></li>
             <li>
               <a href="">
                 Thể Loại
                 <i class="nav-arrow-down ti-music-alt down"></i>
               </a>
               <ul class="subnav">
-                <li><a href="page3.html">Thiếu Nhi</a></li>
-                <li><a href="index.html">Lịch Sử</a></li>
-                <li><a href="index.html">Trinh Thám</a></li>
+                <li><a href="page2.html">Thiếu Nhi</a></li>
+                <li><a href="page3.html">Lịch Sử</a></li>
+                <li><a href="page4.html">Trinh Thám</a></li>
                 <li><a href="page2.html">Văn Học</a></li>
-                <li><a href="page2.html">Khoa học</a></li>
+                <li><a href="page5.html">Khoa Học</a></li>
               </ul>
             </li>
           </ul>
@@ -42,17 +42,28 @@
 
         <!-- Begin: Search button -->
         <div class="search-button">
-          <a href="page2.html"><input class="input-box" type="text" placeholder=" Search..." /></a>
-          <i class="search-search ti-search"></i>
-          <a href="history.html" style="text-decoration: none; color: black;" ><i class="search-shopping ti-shopping-cart-full"></i></a>
-          <i class="ti-filter open-modal-btn" style="cursor:pointer; font-size:22px;"></i>
+          <input
+            id="searchInput"
+            class="input-box"
+            type="text"
+            placeholder=" Search..."
+          />
+          <div class="searchIconn">
+            <a style="text-decoration: none; color: black" href="page2.html"
+              ><i class="search-search ti-search"></i
+            ></a>
+          </div>
+          <a href="history.html" style="text-decoration: none; color: black; font-size: 22px;" 
+            ><i class="search-shopping ti-shopping-cart-full"></i
+          ></a>
+          <i
+            class="ti-filter open-modal-btn"
+            style="cursor: pointer; font-size: 22px"
+          ></i>
 
           <div class="book-user">
             <i class="search-book ti-user"></i>
-            <div class="hover-text">
-              <a href="login.html">Đăng Nhập</a>
-              <a href="register.html">Đăng Ký</a>
-            </div>
+            <div class="hover-text"></div>
           </div>
         </div>
         <!-- End: Search button -->
@@ -271,7 +282,6 @@
     </div>
 </div>
 
-    <script src="book.js"></script>
-    <script src="index.js"></script>
+  <script src="book.js"></script>
   </body>
 </html>

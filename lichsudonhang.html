@@ -129,10 +129,10 @@
                     </a>
                     <ul class="subnav">
                         <li><a href="page2.html">Thiếu Nhi</a></li>
-                        <li><a href="page2.html">Lịch Sử</a></li>
-                        <li><a href="page2.html">Trinh Thám</a></li>
+                        <li><a href="page3.html">Lịch Sử</a></li>
+                        <li><a href="page4.html">Trinh Thám</a></li>
                         <li><a href="page2.html">Văn Học</a></li>
-                        <li><a href="page2.html">Khoa Học</a></li>
+                        <li><a href="page5.html">Khoa Học</a></li>
                     </ul>
                 </li>
             </ul>
@@ -142,9 +142,14 @@
             <!-- Begin: Search button -->
             <div class="search-button">
                 <input class="input-box" type="text" placeholder=" Search...">
-                <i class="search-search ti-search"></i>
-                <a href="history.html" style="text-decoration: none; color: black;" ><i class="search-shopping ti-shopping-cart-full"></i></a>
-
+                <div  class="searchIconn">
+                    <a style="text-decoration: none; color: black;" href="page2.html"><i class="search-search ti-search"></i></a>
+                </div>
+                <a href="history.html" style="text-decoration: none; color: black; font-size: 22px;" ><i class="search-shopping ti-shopping-cart-full"></i></a>
+                          <i
+            class="ti-filter open-modal-btn"
+            style="cursor: pointer; font-size: 22px"
+          ></i>
                 <div class="book-user"> 
                     <i class="search-book ti-user"></i>
                     <div class="hover-text">
@@ -273,6 +278,40 @@
                 </div>
             </div>
         </div>
+    </div>
+
+        <!-- Modal tìm kiếm nâng cao -->
+    <div class="modal js-modal">
+      <div class="modal-container">
+        <div class="modal-close js-modal-close">×</div>
+
+        <header class="modal-header">
+          <h2>Tìm kiếm nâng cao</h2>
+        </header>
+
+        <div class="modal-body">
+          <label for="book-name">Tên sách:</label>
+          <input type="text" id="book-name" placeholder="Nhập tên sách..." />
+
+          <label>Giá:</label>
+          <div class="price-inputs">
+            <input type="number" placeholder="Tối thiểu" />
+            <input type="number" placeholder="Tối đa" />
+          </div>
+
+          <label>Thể loại:</label>
+          <select>
+            <option value="">-- Chọn thể loại --</option>
+            <option>Thiếu nhi</option>
+            <option>Lịch sử</option>
+            <option>Trinh thám</option>
+            <option>Văn học</option>
+            <option>Khoa học</option>
+          </select>
+
+          <button class="btn-search">Tìm kiếm</button>
+        </div>
+      </div>
     </div>
     <script src="index.js" ></script>
 </body>

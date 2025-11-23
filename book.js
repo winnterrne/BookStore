@@ -1,3 +1,5 @@
+
+//////////////
 const url = new URLSearchParams(window.location.search);
 const id = url.get("id");
 
@@ -55,7 +57,8 @@ function checkLogin() {
     // 🛍️ Mua ngay
     buyNowBtn.addEventListener("click", () => {
       if (!checkLogin()) return;
-      window.location.href = "checkout.html";
+      alert("Đã Thêm Đơn Hàng");
+      window.location.href = "history.html";
     });
 
     // ====== TĂNG GIẢM SỐ LƯỢNG ======
@@ -69,3 +72,46 @@ function checkLogin() {
       quantityInput.value = value + 1;
     });
   });
+
+  //////////////////////////////
+    const hoverText = document.querySelector(".book-user .hover-text");
+  const cartIcon = document.querySelector(".search-shopping");
+
+  function updateUserUI(user) {
+    if (user) {
+      hoverText.innerHTML = `
+                <div class="user-greeting">Xin chào, Đức Trần</div>
+                <a href="profile.html">Thông tin khách</a>
+                <a href="lichsudonhang.html">Lịch sử giỏ hàng</a>
+                <a href="#" id="logoutBtn">Đăng Xuất</a>
+            `;
+      const logoutBtn = document.getElementById("logoutBtn");
+      if (logoutBtn) {
+        logoutBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          localStorage.removeItem("bookstore_user");
+          window.location.reload();
+        });
+      }
+    } else {
+      hoverText.innerHTML = `
+                <a href="register.html">Đăng Ký</a>
+                <a href="login.html">Đăng Nhập</a>
+            `;
+    }
+  }
+
+  const user = JSON.parse(localStorage.getItem("bookstore_user"));
+  updateUserUI(user);
+
+  // Nếu click giỏ hàng mà chưa login
+  if (cartIcon) {
+    cartIcon.addEventListener("click", (e) => {
+      const user = JSON.parse(localStorage.getItem("bookstore_user"));
+      if (!user) {
+        e.preventDefault();
+        alert("Bạn phải đăng nhập trước khi vào giỏ hàng!");
+        window.location.href = "login.html";
+      }
+    });
+  }

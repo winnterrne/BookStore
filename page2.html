@@ -31,10 +31,10 @@
                     </a>
                     <ul class="subnav">
                         <li><a href="page2.html">Thiếu Nhi</a></li>
-                        <li><a href="page2.html">Lịch Sử</a></li>
-                        <li><a href="page2.html">Trinh Thám</a></li>
+                        <li><a href="page3.html">Lịch Sử</a></li>
+                        <li><a href="page4.html">Trinh Thám</a></li>
                         <li><a href="page2.html">Văn Học</a></li>
-                        <li><a href="page2.html">Khoa Học</a></li>
+                        <li><a href="page5.html">Khoa Học</a></li>
                     </ul>
                     
                 </li>
@@ -46,7 +46,9 @@
             <div class="search-button">
                 
                 <input id="searchInput" class="input-box" type="text" placeholder=" Search...">
-                <i class="search-search ti-search"></i>
+                <div  class="searchIconn">
+                    <a style="text-decoration: none; color: black;" href="page2.html"><i class="search-search ti-search"></i></a>
+                </div>
                 <a href="history.html" style="text-decoration: none; color: black;"><i class="search-shopping ti-shopping-cart-full" style="font-size: 24px;"></i></a>
                 <!-- Nút mở modal -->
                 <i class="ti-filter open-modal-btn" style="cursor:pointer; font-size:24px;"></i>
@@ -71,13 +73,110 @@
                            <!--Slider : Begin-->
         <div class="slider-content">
            <div>
-            <h2 style="color: forestgreen;">Kết quả tìm kiếm cho "Thơ"</h2>
+            <h2 style="color: forestgreen;">Kết quả tìm kiếm cho "Thơ - Văn"</h2>
            </div>
         </div>                        
                      <!--Slider : End-->
 
                         <!--   NEW BOOK: BEGIN-->
 
+        <div id="content-newbooks">
+                <!--TITTLE: BEGIN-->
+            <div class="title-header">
+                <h3></h3>
+            </div>
+                 <!--TITTLE: END-->
+              
+
+<div class="list-book">
+                             <!--SACH THU 1-->
+            <div id="newbooks" class="about-newbooks">
+                
+                <a class="link-book" href="#" onclick="viewBook(17)">
+                    <div class="content-book">
+                        <img class="book-child" title="Nhóc Nicolas 3" src="./accests/img/nhoc-nicolas-3.webp" alt="anh sach">
+                        <div class="action-cart">
+                            <button class="buy-btn-left" type="button">
+                                <i class="shopping-cart ti-shopping-cart"></i>
+                            </button>
+                            <button class="buy-btn-right">Mua Ngay</button>
+                        </div>
+
+                        <div class="info-book">
+                            <h3>Nhóc Nicolas Và Những Chuyện Chưa Kể</h3>
+                            <p>167.700 VND</p>
+                        </div>
+
+                    </div>
+                </a>
+                
+            </div>
+            <!--SACH THU 2-->
+            <div id="newbooks" class="about-newbooks">
+                <a class="list-book" href="#" onclick="viewBook(18)">
+                    <div class="content-book">
+                        <img class="book-history" title="Nhóc Nicolas 2" src="./accests/poem-img/nhoc-nicola-nhung-chuyen-chua-ke-2-e1696477874199-69fbba2e-64d9-47a5-90b5-4a00000c40da.webp" alt="anh sach">
+                        <div class="action-cart">
+                            <button class="buy-btn-left" type="button">
+                                <i class="shopping-cart ti-shopping-cart"></i>
+                            </button>
+                            <button class="buy-btn-right">Mua Ngay</button>
+                        </div>
+
+                        <div class="info-book">
+                            <h3>Nhóc Nicolas 2 Và Những Chuyện Chưa Kể</h3>
+                            <p>169.000 VND</p>
+                        </div>
+                    </div>
+                </a>
+
+                
+            </div>
+            <!--SACH THU 3-->
+            <div id="newbooks" class="about-newbooks">
+                <a class="list-book" href="#" onclick="viewBook(19)">
+                    <div class="content-book">
+                        <img class="book-horror" title="Tình Yêu Bọ Xít" src="./accests/poem-img/tinh-yeu-bo-xit-400-x-400-px.webp" alt="anh sach" >
+                        <div class="action-cart">
+                            <button class="buy-btn-left" type="button">
+                                <i class="shopping-cart ti-shopping-cart"></i>
+                            </button>
+                            <button class="buy-btn-right">Mua Ngay</button>
+                        </div>
+
+                        <div class="info-book">
+                            <h3>Tình Yêu Của Bọ Xít</h3>
+                            <p>99.000 VND</p>
+                        </div>
+
+                    </div>
+                </a>  
+            </div>
+            <!--SACH THU 4-->
+            <div id="newbooks" class="about-newbooks">
+                
+                <a class="list-book" href="#" onclick="viewBook(20)">
+                    <div class="content-book">
+                        <img class="book-love" title="Những Thủ Lĩnh Trên Cát" src="./accests/poem-img/nhung-thu-linh-trien-cat-01.webp" alt="anh sach">
+                        <div class="action-cart">
+                            <button class="buy-btn-left" type="button">
+                                <i class="shopping-cart ti-shopping-cart"></i>
+                            </button>
+                            <button class="buy-btn-right">Mua Ngay</button>
+                        </div>
+
+                        <div class="info-book">
+                            <h3>Những Thủ Lĩnh Trên Cát</h3>
+                            <p>115.000 VND</p>
+                        </div>
+
+                    </div>
+                </a>
+            </div>
+        </div>
+        </div>
+
+        
         <div id="content-newbooks">
                 <!--TITTLE: BEGIN-->
             <div class="title-header">
@@ -165,102 +264,6 @@
                         <div class="info-book">
                             <h3>Trong Đáy Mắt Trời Xanh Là Vĩnh Viễn</h3>
                             <p>145.000 VND</p>
-                        </div>
-
-                    </div>
-                </a>
-            </div>
-        </div>
-        </div>
-
-        
-        <div id="content-newbooks">
-                <!--TITTLE: BEGIN-->
-            <div class="title-header">
-                <h3></h3>
-            </div>
-                 <!--TITTLE: END-->
-              
-        <div class="list-book">
-                             <!--SACH THU 1-->
-            <div id="newbooks" class="about-newbooks">
-                
-                <a class="link-book" href="#" onclick="viewBook(17)">
-                    <div class="content-book">
-                        <img class="book-child" title="Cách Mạng Siêu Nhân Hóa" src="./accests/sceince-img/cachmangsieunhanhoa01.webp" alt="anh sach">
-                        <div class="action-cart">
-                            <button class="buy-btn-left" type="button">
-                                <i class="shopping-cart ti-shopping-cart"></i>
-                            </button>
-                            <button class="buy-btn-right">Mua Ngay</button>
-                        </div>
-
-                        <div class="info-book">
-                            <h3>LucFerry Cách Mạng Siêu Nhân Hóa</h3>
-                            <p>167.700 VND</p>
-                        </div>
-
-                    </div>
-                </a>
-                
-            </div>
-            <!--SACH THU 2-->
-            <div id="newbooks" class="about-newbooks">
-                <a class="list-book" href="#" onclick="viewBook(18)">
-                    <div class="content-book">
-                        <img class="book-history" title="Phong Cách NVIDIA" src="./accests/sceince-img/phong-cach-nvidia-bia-ao-01.webp" alt="anh sach">
-                        <div class="action-cart">
-                            <button class="buy-btn-left" type="button">
-                                <i class="shopping-cart ti-shopping-cart"></i>
-                            </button>
-                            <button class="buy-btn-right">Mua Ngay</button>
-                        </div>
-
-                        <div class="info-book">
-                            <h3>Phong Cách NVIDIA, The NVIDIA Way</h3>
-                            <p>199.000 VND</p>
-                        </div>
-                    </div>
-                </a>
-
-                
-            </div>
-            <!--SACH THU 3-->
-            <div id="newbooks" class="about-newbooks">
-                <a class="list-book" href="#" onclick="viewBook(19)">
-                    <div class="content-book">
-                        <img class="book-horror" title="Tiền Bẩn Và Ngụy Khoa Học" src="./accests/sceince-img/tienbane1700643281311.webp" alt="anh sach" >
-                        <div class="action-cart">
-                            <button class="buy-btn-left" type="button">
-                                <i class="shopping-cart ti-shopping-cart"></i>
-                            </button>
-                            <button class="buy-btn-right">Mua Ngay</button>
-                        </div>
-
-                        <div class="info-book">
-                            <h3>Tiền Bẩn Và Ngụy Khoa Học, Thao Túng Khoa Học... </h3>
-                            <p>233.000 VND</p>
-                        </div>
-
-                    </div>
-                </a>  
-            </div>
-            <!--SACH THU 4-->
-            <div id="newbooks" class="about-newbooks">
-                
-                <a class="list-book" href="#" onclick="viewBook(20)">
-                    <div class="content-book">
-                        <img class="book-love" title="Tra Cứu Đến Nơi Truy Cập Đến Chốn" src="./accests/sceince-img/tra-cuu-den-noi-truy-cap-den-chon-01.webp" alt="anh sach">
-                        <div class="action-cart">
-                            <button class="buy-btn-left" type="button">
-                                <i class="shopping-cart ti-shopping-cart"></i>
-                            </button>
-                            <button class="buy-btn-right">Mua Ngay</button>
-                        </div>
-
-                        <div class="info-book">
-                            <h3>Tra Cứu Đến Nơi Truy Cập Đến Chốn</h3>
-                            <p>95.000 VND</p>
                         </div>
 
                     </div>

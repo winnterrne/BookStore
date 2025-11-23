@@ -34,17 +34,34 @@
       Quản lý sản phẩm
     </div>
 
-    <!-- FORM THÊM -->
-    <div class="action-bar">
-      <form class="products-form-grid" onsubmit="addProduct(); return false;">
-        <input type="text" id="addCode" placeholder="Mã sản phẩm" required>
-        <input type="text" id="addName" placeholder="Tên sản phẩm" required>
-        <input type="text" id="addType" placeholder="Loại sản phẩm">
-        <textarea id="addDesc" placeholder="Mô tả sản phẩm"></textarea>
-        <input type="file" id="addImage" accept="image/*">
-        <button type="submit" class="btn-add">Thêm sản phẩm</button>
-      </form>
-    </div>
+        <!-- FORM THÊM -->
+        <div class="action-bar">
+          <form class="products-form-grid two-columns" onsubmit="addProduct(); return false;">
+            <!-- CỘT 1 -->
+            <div class="form-column">
+              <input type="text" id="addCode" placeholder="Mã sản phẩm" required>
+              <input type="text" id="addName" placeholder="Tên sản phẩm" required>
+              <input type="text" id="addAuthor" placeholder="Tác giả">
+              <input type="text" id="addType" placeholder="Loại sản phẩm">
+              <input type="text" id="addSize" placeholder="Kích thước (ví dụ: 13x20cm)">
+            </div>
+
+            <!-- CỘT 2 -->
+            <div class="form-column">
+              <input type="number" id="addYear" placeholder="Năm xuất bản">
+              <input type="number" id="addPages" placeholder="Số trang">
+              <input type="text" id="addPublisher" placeholder="Nhà xuất bản">
+              <input type="text" id="addTranslator" placeholder="Dịch giả">
+              <textarea id="addDesc" placeholder="Mô tả sản phẩm" rows="5"></textarea>
+            </div>
+
+            <!-- DÒNG FILE + NÚT (căn giữa) -->
+            <div class="form-fullrow">
+              <input type="file" id="addImage" accept="image/*">
+              <button type="submit" class="btn-add">Thêm sản phẩm</button>
+            </div>
+          </form>
+        </div>
 
     <!-- BẢNG -->
     <div class="content-box">
@@ -81,58 +98,81 @@
   <!-- JS -->
   <script src="../data-book.js"></script>
   <script>
-    const tbody = document.getElementById("productBody");
+  const tbody = document.getElementById("productBody");
 
-    /* ---------- GÁN LOẠI ---------- */
-    books.forEach(b => {
-      if (b.image.includes("history-img")) b.type = "Lịch sử";
-      else if (b.image.includes("sceince-img")) b.type = "Khoa học";
-      else if (b.image.includes("poem-img")) b.type = "Thơ";
-      else if (b.image.includes("everypic-img")) b.type = "Văn học nước ngoài";
-      else b.type = "Văn học Việt Nam";
-    });
+  /* ---------- GÁN LOẠI ---------- */
+  books.forEach(b => {
+    if (b.image.includes("history-img")) b.type = "Lịch sử";
+    else if (b.image.includes("sceince-img")) b.type = "Khoa học";
+    else if (b.image.includes("poem-img")) b.type = "Thơ";
+    else if (b.image.includes("everypic-img")) b.type = "Văn học nước ngoài";
+    else b.type = "Văn học Việt Nam";
+  });
 
-    /* ---------- RENDER + MODAL ---------- */
-    function render() {
-      tbody.innerHTML = books.map((b, i) => `
-        <tr>
-          <td>${b.id}</td>
-          <td>${b.title}</td>
-          <td>${b.author}</td>
-          <td>${b.type}</td>
-          <td><a href="#viewModal-${i}"><img src="../${b.image}" width="50" class="thumb-img"></a></td>
-          <td>
-            <a href="#editModal-${i}" class="btn-small btn-reset">Sửa</a>
-            <a href="#deleteModal-${i}" class="btn-small btn-lock">Xóa</a>
-          </td>
-        </tr>
-      `).join('');
+  /* ---------- RENDER + MODAL ---------- */
+  function render() {
+    tbody.innerHTML = books.map((b, i) => `
+      <tr>
+        <td>${b.id}</td>
+        <td>${b.title}</td>
+        <td>${b.author}</td>
+        <td>${b.type}</td>
+        <td><img src="../${b.image}" width="50" class="thumb-img"></td>
+        <td class="actions">
+          <a href="#viewModal-${i}" class="btn-small btn-view">Xem</a>
+          <a href="#editModal-${i}" class="btn-small btn-reset">Sửa</a>
+          <a href="#deleteModal-${i}" class="btn-small btn-lock">Xóa</a>
+        </td>
+      </tr>
+    `).join('');
 
-      const modals = document.createElement('div');
-      books.forEach((b, i) => {
-        /* ---- VIEW MODAL ---- */
-        modals.innerHTML += `
-          <div id="viewModal-${i}" class="modal">
-            <div class="modal-content product-detail-modal">
-              <div class="modal-header">
-                <div class="modal-title">Chi tiết sản phẩm</div>
-                <a href="#" class="modal-close">×</a>
-              </div>
-              <div class="detail-layout">
+    const modals = document.createElement('div');
+    books.forEach((b, i) => {
+      /* ---- VIEW MODAL ---- */
+      modals.innerHTML += `
+        <div id="viewModal-${i}" class="modal">
+          <div class="modal-content product-detail-modal">
+            <div class="modal-header">
+              <div class="modal-title">Chi tiết sản phẩm</div>
+              <a href="#" class="modal-close">×</a>
+            </div>
+
+            <div class="detail-layout">
+              <!-- CỘT TRÁI: ẢNH + BOX THÔNG TIN CHI TIẾT SIÊU TO -->
+              <div class="left-column">
                 <img src="../${b.image}" class="detail-img" alt="${b.title}">
-                <div class="detail-info">
-                  <h3 class="detail-title">${b.title}</h3>
-                  <div class="detail-type"><strong>Loại:</strong> ${b.type}</div>
-                  <div class="detail-author"><strong>Tác giả:</strong> ${b.author}</div>
-                  <div class="detail-desc"><strong>Mô tả:</strong><br>${b.description.replace(/<br>/g, '<br>')}</div>
+
+                <div class="info-box">
+                  <div><span class="label">Dịch giả:</span> <span class="value">${b.translator || 'Không có'}</span></div>
+                  <div><span class="label">Nhà xuất bản:</span> <span class="value">${b.publisher || 'Chưa cập nhật'}</span></div>
+                  <div><span class="label">Kích thước:</span> <span class="value">${b.size || 'Chưa cập nhật'}</span></div>
+                  <div><span class="label">Số trang:</span> <span class="value">${b.pages ? b.pages + ' trang' : 'Chưa cập nhật'}</span></div>
+                  <div><span class="label">Năm phát hành:</span> <span class="value">${b.year || 'Chưa cập nhật'}</span></div>
                 </div>
               </div>
-              <div class="modal-actions modal-actions-right">
-                <a href="#" class="btn-cancel">Đóng</a>
+
+              <!-- CỘT PHẢI: TIÊU ĐỀ + LOẠI/TÁC GIẢ + MÔ TẢ -->
+              <div class="right-column">
+                <h1 class="detail-title">${b.title}</h1>
+                
+                <div class="detail-basic">
+                  <p><strong>Loại:</strong> ${b.type}</p>
+                  <p><strong>Tác giả:</strong> ${b.author}</p>
+                </div>
+
+                <div class="detail-desc">
+                  <strong>Mô tả:</strong><br><br>
+                  ${b.description ? b.description.replace(/<br>/g, '<br>') : 'Chưa có mô tả chi tiết.'}
+                </div>
               </div>
             </div>
+
+            <div class="modal-actions modal-actions-right">
+              <a href="#" class="btn-cancel">Đóng</a>
+            </div>
           </div>
-        `;
+        </div>
+      `;
 
         /* ---- EDIT MODAL ---- */
         modals.innerHTML += `

@@ -160,7 +160,8 @@
   <body>
     <div id="main">
       <div id="header">
-        <!-- HEADER GIỐNG NHƯ TRANG CHỦ -->
+        <!--                 HEAD OF PROJECT                     -->
+        <!-- Begin: Nav -->
         <div class="logo">
           <img src="./accests/img/logo.webp" alt="anh logo" />
         </div>
@@ -177,31 +178,44 @@
                 <i class="nav-arrow-down ti-music-alt down"></i>
               </a>
               <ul class="subnav">
-                <li><a href="index.html">Thiếu Nhi</a></li>
-                <li><a href="index.html">Lịch Sử</a></li>
-                <li><a href="page2.html">Trinh Thám</a></li>
+                <li><a href="page2.html">Thiếu Nhi</a></li>
+                <li><a href="page3.html">Lịch Sử</a></li>
+                <li><a href="page4.html">Trinh Thám</a></li>
                 <li><a href="page2.html">Văn Học</a></li>
-                <li><a href="page3.html">Khoa Học</a></li>
+                <li><a href="page5.html">Khoa Học</a></li>
               </ul>
             </li>
           </ul>
+          <!-- End: Nav -->
         </div>
 
+        <!-- Begin: Search button -->
         <div class="search-button">
-          <input class="input-box" type="text" placeholder=" Search..." />
-          <i class="search-search ti-search"></i>
-          <a href="history.html"
-            ><i style="color: black; text-decoration: none;" class="search-shopping ti-shopping-cart-full"></i
+          <input
+            id="searchInput"
+            class="input-box"
+            type="text"
+            placeholder=" Search..."
+          />
+          <div class="searchIconn">
+            <a style="text-decoration: none; color: black" href="page2.html"
+              ><i class="search-search ti-search"></i
+            ></a>
+          </div>
+          <a href="history.html" style="text-decoration: none; color: black; font-size: 22px; "
+            ><i class="search-shopping ti-shopping-cart-full"></i
           ></a>
+          <i
+            class="ti-filter open-modal-btn"
+            style="cursor: pointer; font-size: 22px"
+          ></i>
 
           <div class="book-user">
             <i class="search-book ti-user"></i>
-            <div class="hover-text">
-              <a href="register.html">Đăng Ký</a>
-              <a href="login.html">Đăng Nhập</a>
-            </div>
+            <div class="hover-text"></div>
           </div>
         </div>
+        <!-- End: Search button -->
       </div>
 
       <!-- NỘI DUNG XÁC NHẬN ĐƠN HÀNG -->

@@ -177,31 +177,32 @@
                 <i class="nav-arrow-down ti-music-alt down"></i>
               </a>
               <ul class="subnav">
-                <li><a href="index.html">Thiếu Nhi</a></li>
-                <li><a href="index.html">Lịch Sử</a></li>
-                <li><a href="page2.html">Trinh Thám</a></li>
+                <li><a href="page2.html">Thiếu Nhi</a></li>
+                <li><a href="page3.html">Lịch Sử</a></li>
+                <li><a href="page4.html">Trinh Thám</a></li>
                 <li><a href="page2.html">Văn Học</a></li>
-                <li><a href="page3.html">Khoa Học</a></li>
+                <li><a href="page5.html">Khoa Học</a></li>
               </ul>
             </li>
           </ul>
         </div>
+                      <!-- Begin: Header-->
+            <div class="search-button">
+                <input id="searchInput" class="input-box" type="text" placeholder=" Search...">
+                <div  class="searchIconn">
+                    <a style="text-decoration: none; color: black;" href="page2.html"><i class="search-search ti-search"></i></a>
+                </div>
+                <a href="history.html" style="text-decoration: none; color: black; font-size: 22px;"><i class="search-shopping ti-shopping-cart-full"></i></a>
+                 <i class="ti-filter open-modal-btn" style="cursor:pointer; font-size:22px;"></i>
+                
+                <div class="book-user"> 
+                    <i class="search-book ti-user"></i>
+                    <div class="hover-text">
 
-        <div class="search-button">
-          <input class="input-box" type="text" placeholder=" Search..." />
-          <i class="search-search ti-search"></i>
-          <a href="history.html"
-            ><i style="color: black; text-decoration: none;" class="search-shopping ti-shopping-cart-full"></i
-          ></a>
-
-          <div class="book-user">
-            <i class="search-book ti-user"></i>
-            <div class="hover-text">
-              <a href="register.html">Đăng Ký</a>
-              <a href="login.html">Đăng Nhập</a>
+                    </div>
+                </div> 
             </div>
-          </div>
-        </div>
+        <!--End Header-->
       </div>
 
       <!-- NỘI DUNG XÁC NHẬN ĐƠN HÀNG -->
@@ -307,7 +308,7 @@
 
         <div class="order-actions">
           <a href="index.html"><button class="btn-confirm">Xác nhận</button></a>
-          <a href="index.html" class="btn-back">Quay về</a>
+          <a href="history.html" class="btn-back">Quay về</a>
         </div>
       </div>
 
@@ -370,6 +371,40 @@
           <div class="word-footer">
             <p class="copy-right">Powered by<a href=""> w3.css</a></p>
           </div>
+        </div>
+      </div>
+    </div>
+
+        <!-- Modal tìm kiếm nâng cao -->
+    <div class="modal js-modal">
+      <div class="modal-container">
+        <div class="modal-close js-modal-close">×</div>
+
+        <header class="modal-header">
+          <h2>Tìm kiếm nâng cao</h2>
+        </header>
+
+        <div class="modal-body">
+          <label for="book-name">Tên sách:</label>
+          <input type="text" id="book-name" placeholder="Nhập tên sách..." />
+
+          <label>Giá:</label>
+          <div class="price-inputs">
+            <input type="number" placeholder="Tối thiểu" />
+            <input type="number" placeholder="Tối đa" />
+          </div>
+
+          <label>Thể loại:</label>
+          <select>
+            <option value="">-- Chọn thể loại --</option>
+            <option>Thiếu nhi</option>
+            <option>Lịch sử</option>
+            <option>Trinh thám</option>
+            <option>Văn học</option>
+            <option>Khoa học</option>
+          </select>
+
+          <button class="btn-search">Tìm kiếm</button>
         </div>
       </div>
     </div>

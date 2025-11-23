@@ -1531,3 +1531,328 @@ form input {
   color: #d32f2f !important;
   text-align: right !important;
 }
+
+.lock-confirm p {
+  text-align: center !important;
+  font-size: 16px !important;
+  color: #d32f2f !important;
+  margin: 20px 0 !important;
+}
+
+/* ====================== THIẾT LẬP LỢI NHUẬN THEO LOẠI – ĐẸP & SẠCH ====================== */
+.profit-category-grid {
+  display: grid;
+  grid-template-columns: 240px 90px 40px;
+  gap: 16px 12px;
+  align-items: center;
+  margin-bottom: 14px;
+  font-size: 15px;
+}
+
+.profit-category-grid.header {
+  font-weight: 700;
+  color: #2e7d32;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #e8f5e9;
+}
+
+.profit-category-grid input {
+  width: 100%;
+  padding: 10px 8px;
+  border: 1.5px solid #ccc;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.profit-category-grid input:focus {
+  outline: none;
+  border-color: #2e7d32;
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.15);
+}
+
+.profit-category-grid .percent-label {
+  color: #555;
+  font-weight: 600;
+  text-align: left;
+}
+
+/* Tùy chỉnh modal này một chút cho rộng rãi */
+#setProfitByCategory .modal-content {
+  max-width: 560px !important;
+}
+
+#setProfitByCategory .modal-header {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+/* =============================
+   FIX PRODUCTS.HTML – PHIÊN BẢN HOÀN HẢO CUỐI CÙNG 20/11/2025
+   → Không trống thừa, không sát nhau, đẹp chuẩn admin pro
+============================= */
+
+/* Khoảng cách giữa form và bảng vừa đủ thoáng */
+.action-bar {
+  margin-bottom: 60px !important;
+}
+.content-box {
+  margin-top: 40px !important;
+}
+
+/* Form 2 cột rộng vừa đủ, không trống thừa 2 bên */
+.products-form-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 22px 32px !important;           /* gap vừa đẹp, không quá rộng */
+  max-width: 900px !important;         /* <<< GIỚI HẠN ĐỘ RỘNG TỐI ĐA – quan trọng nhất! */
+  margin: 0 auto !important;
+  padding: 0 20px !important;          /* thêm chút padding 2 bên để không sát mép */
+}
+
+/* Khoảng cách giữa các ô trong cùng 1 cột */
+.form-column {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 18px !important;                /* vừa đủ, không sát, không quá xa */
+}
+
+/* Input đẹp, hiện đại, kích thước chuẩn */
+.form-column input,
+.form-column textarea {
+  height: 54px !important;
+  padding: 0 18px !important;
+  font-size: 15.5px !important;
+  border: 2px solid #ddd !important;
+  border-radius: 14px !important;
+  background: #fff !important;
+  transition: all 0.3s ease !important;
+}
+
+.form-column input:focus,
+.form-column textarea:focus {
+  outline: none !important;
+  border-color: forestgreen !important;
+  box-shadow: 0 0 0 4px rgba(34,139,34,0.2) !important;
+}
+
+.form-column textarea {
+  height: 116px !important;
+  padding: 14px 18px !important;
+  resize: vertical !important;
+}
+
+/* Chọn tệp + nút Thêm căn giữa đẹp */
+.form-fullrow {
+  grid-column: 1 / -1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 20px !important;
+  margin-top: 28px !important;
+}
+
+/* Input file gọn gàng, vừa vặn */
+.form-fullrow input[type="file"] {
+  padding: 14px 20px !important;
+  background: #f8fff8 !important;
+  border: 2px dashed #2e7d32 !important;
+  border-radius: 14px !important;
+  font-size: 16px !important;
+  width: 380px !important;
+  text-align: center !important;
+}
+
+/* Nút Thêm đẹp, không quá to */
+.form-fullrow .btn-add {
+  padding: 15px 60px !important;
+  font-size: 17px !important;
+  font-weight: 700 !important;
+  min-width: 220px !important;
+  border-radius: 14px !important;
+  background: forestgreen !important;
+  box-shadow: 0 6px 16px rgba(0,128,0,0.3) !important;
+}
+
+.form-fullrow .btn-add:hover {
+  background: #2e7d32 !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Nút Xem */
+.btn-view {
+  background: #1565c0 !important;
+  color: white !important;
+}
+.btn-view:hover {
+  background: #0d47a1 !important;
+}
+
+/* Mobile vẫn đẹp */
+@media (max-width: 768px) {
+  .products-form-grid {
+    grid-template-columns: 1fr !important;
+    max-width: 100% !important;
+    padding: 0 16px !important;
+  }
+  .form-fullrow input[type="file"] {
+    width: 100% !important;
+    max-width: 380px;
+  }
+}
+
+/* =============================
+   MODAL CHI TIẾT SẢN PHẨM – ĐẸP TUYỆT ĐỐI (20/11/2025)
+============================= */
+
+.product-view-modal .modal-content {
+  max-width: 1000px !important;
+  display: grid !important;
+  grid-template-columns: 360px 1fr !important;
+  gap: 40px !important;
+  padding: 30px !important;
+}
+
+.product-view-modal img {
+  width: 100% !important;
+  border-radius: 16px !important;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2) !important;
+}
+
+.product-view-modal .product-info h2 {
+  font-size: 28px !important;
+  font-weight: 800 !important;
+  color: forestgreen !important;
+  margin: 0 0 12px 0 !important;
+}
+
+.product-view-modal .product-info > div {
+  font-size: 16.5px !important;
+  color: #444 !important;
+  margin-bottom: 8px !important;
+}
+
+.detail-grid {
+  display: grid !important;
+  grid-template-columns: 140px 1fr !important;
+  gap: 14px 20px !important;
+  background: #f8fff8 !important;
+  padding: 20px !important;
+  border-radius: 14px !important;
+  margin: 24px 0 !important;
+  border: 1px solid #e8f5e9 !important;
+}
+
+.detail-grid h3 {
+  grid-column: 1 / -1 !important;
+  color: forestgreen !important;
+  font-size: 19px !important;
+  margin: 0 0 16px 0 !important;
+  text-align: center !important;
+  font-weight: 800 !important;
+}
+
+.detail-label {
+  font-weight: 700 !important;
+  color: #2e7d32 !important;
+}
+
+.detail-value {
+  color: #333 !important;
+  font-weight: 500 !important;
+}
+
+.product-view-modal .product-desc {
+  line-height: 1.7 !important;
+  color: #333 !important;
+  background: #fff !important;
+  padding: 20px !important;
+  border-radius: 12px !important;
+  border: 1px solid #eee !important;
+}
+
+/* Bỏ click vào hình trong bảng */
+.table .product-thumb img {
+  pointer-events: none !important;
+}
+
+/* MODAL CHI TIẾT SẢN PHẨM - ĐẸP TUYỆT ĐỐI */
+.product-view-modal .modal-content {
+  max-width: 1000px;
+  width: 95%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.detail-layout {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 40px;
+  margin: 20px 0;
+}
+
+.detail-img {
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.detail-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: forestgreen;
+  margin: 0 0 16px 0;
+  line-height: 1.3;
+}
+
+.detail-grid {
+  background: #f8fff8;
+  padding: 20px;
+  border-radius: 14px;
+  border: 1px solid #e0e0e0;
+  margin: 24px 0;
+}
+
+.detail-grid h4 {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: forestgreen;
+  font-size: 20px;
+  margin-bottom: 16px;
+  font-weight: 800;
+}
+
+.detail-grid > div {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 10px;
+  font-size: 16px;
+}
+
+.detail-label {
+  font-weight: 700;
+  color: #2e7d32;
+}
+
+.detail-value {
+  color: #333;
+}
+
+.detail-desc {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #eee;
+  line-height: 1.8;
+  font-size: 16px;
+  color: #333;
+}
+
+/* Bỏ click vào ảnh trong bảng */
+.product-thumb img {
+  pointer-events: none !important;
+  cursor: default;
+}
