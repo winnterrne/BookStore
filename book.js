@@ -115,3 +115,31 @@ function checkLogin() {
       }
     });
   }
+
+
+
+    const searchInput = document.getElementById("searchInput");
+  const searchIcon = document.querySelector(".searchIconn");
+
+  function doSearch() {
+    const query = searchInput.value.trim();
+
+    if (query !== "") {
+      window.location.href = "page2.html";
+    }
+  }
+
+  if (searchIcon) {
+    searchIcon.addEventListener("click", () => {
+      doSearch();
+    });
+  }
+
+  if (searchInput) {
+    searchInput.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        doSearch();
+      }
+    });
+  }
