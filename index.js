@@ -58,6 +58,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  const thongbao = document.getElementById("saveProfile");
+  if(thongbao) {
+    thongbao.addEventListener("click",(e) => {
+      alert("Đã Lưu Thông Tin Cá Nhân");
+    })
+  }
+
   // =========================
   // 3. PAYMENT OPTION SELECT
   // =========================
